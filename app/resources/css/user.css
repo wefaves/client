@@ -1,3 +1,7 @@
+.left-panel {
+    background-color: #00acc1;
+}
+
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
 *:focus {
     outline: none;

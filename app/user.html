@@ -9,29 +9,9 @@
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="bower_components/materialize/dist/css/materialize.min.css"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="resources/css/signupStyle.css"  media="screen,projection"/>
-
-    <link type="text/css" rel="stylesheet" href="resources/css/indexStyle.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/css/user.css"/>
 </head>
 <body ng-app="wefaves.user">
-
-<header>
-    <ul id="slide-out" class="side-nav">
-        <li>
-            <div class="userView">
-                <div class="background">
-                    <img src="../../resources/images/back.jpg">
-                </div>
-                <a href="#!user"><img class="circle" src="../../resources/images/marghe.jpg"></a>
-                <a href="#!name"><span class="white-text name">Romain Margheriti</span></a>
-                <a href="#!email"><span class="white-text email">romain.margheriti@epitech.eu</span></a>
-            </div>
-        </li>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="../users/profile.html">Paramètre</a></li>
-    </ul>
-    <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-</header>
 
 <div ng-view></div>
 
@@ -44,22 +24,6 @@
 <script src="controllers/userController.js"></script>
 <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="bower_components/materialize/dist/js/materialize.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('.collapsible').collapsible();
-
-
-        // Initialize collapse button
-        $(".button-collapse").sideNav();
-
-        $('.button-collapse').sideNav({
-                menuWidth: 300,
-                edge: 'left',
-                closeOnClick: true,
-                draggable: true
-            }
-        );
-    });
-</script>
+<script type="text/javascript" src="resources/js/user.js"></script>
 </body>
 </html>

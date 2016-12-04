@@ -3,8 +3,19 @@
  */
 'use strict';
 
+var user = angular.module('wefaves.user', ['ngRoute']).
+config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+    $locationProvider.hashPrefix('!');
 
-var home = angular.module('myApp.home', ['ngRoute']).
+    $routeProvider
+        .when('/signup', {templateUrl: 'templates/users/signup.html',
+            controller: 'signupController'})
+        .when('/', {templateUrl: 'templates/users/profile.html',
+            controller: 'userController'})
+        .otherwise({redirectTo: '/templates/users/profile.html'});
+}]);
+
+var home = angular.module('wefaves.home', ['ngRoute']).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
 
@@ -14,11 +25,12 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
         .otherwise({redirectTo: '/templates/home/home.html'});
 }]);
 
-angular.module('myApp', ['ngRoute', 'myApp.home']).
+angular.module('wefaves', ['ngRoute', 'wefaves.home']).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
 
     $routeProvider
     .otherwise({redirectTo: '/templates/home/home.html'});
 }]);
+
 

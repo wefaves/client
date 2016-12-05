@@ -11,6 +11,7 @@
     "angular-loader": "~1.5.0",
     "angular-mocks": "~1.5.0",
     "materialize": "^0.97.8",
-    "jquery": "^3.1.1"
+    "jquery": "^3.1.1",
+    "angular-cookies": "^1.5.9"
   }
 }

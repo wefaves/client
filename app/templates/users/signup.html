@@ -1,9 +1,9 @@
 <div id="login-box">
     <div class="left">
         <h1>Sign up</h1>
-        <form name="form">
+        <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
             <input type="text" name="username" placeholder="Username" ng-model="username" required/>
-            <input type="email" name="email" placeholder="E-mail" ng-model="email" required/>
+            <input type="email" name="email" placeholder="E-mail" class="validate" ng-model="email" required/>
             <input type="password" name="password" placeholder="Password" ng-model="password" required/>
             <input type="password" name="passwordConfirm" placeholder="Retype password" ng-model="passwordConfirm" required/>
 

@@ -1,20 +1,25 @@
-<div id="login-box">
-    <div class="left">
-        <h1>Sign in</h1>
+<div class="valign-wrapper row form-box">
+    <div class="col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">
         <form>
-            <input type="text" name="email" placeholder="E-mail" ng-model="email"/>
-            <input type="password" name="password" placeholder="Password" ng-model="password"/>
-
-            <input type="submit"  value="Sign me in" ng-click="signup()"/>
+            <div class="card-content">
+                <span class="card-title">Sign in</span>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="email">Email address</label>
+                        <input type="email" class="validate" name="email" id="email" />
+                    </div>
+                    <div class="input-field col s12">
+                        <label for="password">Password </label>
+                        <input type="password" class="validate" name="password" id="password" />
+                    </div>
+                    <div class="input-field col s12">
+                        <input type="submit" class="btn waves-light" value="Sign in">
+                    </div>
+                    <div class="input-field col s12">
+                        <p>No account ? <a href="#!/signup">Sign up now</a></p>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
-
-    <div class="right">
-        <span class="loginwith">Use<br />social network</span>
-
-        <button class="social-signin facebook">Log in with facebook</button>
-        <button class="social-signin twitter">Log in with Twitter</button>
-        <button class="social-signin google">Log in with Google+</button>
-    </div>
-    <div class="or">OR</div>
 </div>

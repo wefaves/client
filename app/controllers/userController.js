@@ -76,6 +76,7 @@ user.controller('signinController', function($scope, $routeParams, $http, $cooki
                     }
                 }).success(function (result) {
                     $cookies.put('token', result.token);
+                    $location.path( '/' );
                 }).error(function(error) {
                     console.log('error :'+error.message);
                 })

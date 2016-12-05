@@ -21,6 +21,7 @@
   },
   "main": "app/app.js",
   "dependencies": {
+    "angular-cookies": "^1.5.9",
     "materialize": "^1.0.0"
   },
   "author": "marghe_r"

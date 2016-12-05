@@ -32,13 +32,6 @@ user.controller('signinController', function($scope, $routeParams, $http) {
     $scope.submitForm = function(isValid) {
         if (isValid) {
             //send loggin request
-        } else {
-            //show error message(s)
-
-            //check if email is valide else print error message
-            if (!$scope.userForm.email.$valid) {
-
-            }
         }
     }
 });

@@ -19,7 +19,7 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
         .otherwise({redirectTo: '/'});
 }]);
 
-var home = angular.module('wefaves.home', ['ngRoute']).
+var home = angular.module('wefaves.home', ['ngRoute', 'ngCookies', 'angular-jwt']).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
 

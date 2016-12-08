@@ -14,9 +14,7 @@
 </head>
 <body ng-app="wefaves.home">
 
-  <header>
-    <div ng-include src="'templates/header.html'"></div>
-  </header>
+  <div ng-include src="'templates/menu.html'"></div>
 
   <div ng-view></div>
 
@@ -25,6 +23,8 @@
   -->
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-jwt/dist/angular-jwt.js"></script>
   <script src="app.js"></script>
   <script src="controllers/homeController.js"></script>
   <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>

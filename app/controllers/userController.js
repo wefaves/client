@@ -106,7 +106,7 @@ user.controller('signupController', function($scope, $routeParams, $http, $cooki
     }
 });
 
-user.controller('signinController', function($scope, $routeParams, $http, $cookies, $location, apiUrl,jwtHelper) {
+user.controller('signinController', function($scope, $routeParams, $http, $cookies, $location, apiUrl, jwtHelper) {
     console.log('singinController');
     var token = $cookies.get('token');
 

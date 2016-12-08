@@ -13,7 +13,7 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
         .when('/signup', {templateUrl: 'templates/users/signup.html',
             controller: 'signupController'})
         .when('/history', {templateUrl: 'templates/users/history.html',
-            controller: 'getHistoryController'})
+            controller: 'historyController'})
         .when('/', {templateUrl: 'templates/users/profile.html',
             controller: 'userController'})
         .otherwise({redirectTo: '/'});

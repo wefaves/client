@@ -14,7 +14,7 @@ user.controller('userController', function($scope, $routeParams, $http, $cookies
     
     //check if token is save in the session.
     if (token == null) {
-        $location.path( '/signin' );
+        $location.path('/signin');
     } else {
         //user Info
         $scope.userInfo = function () {
@@ -109,10 +109,9 @@ user.controller('signupController', function($scope, $routeParams, $http, $cooki
 user.controller('signinController', function($scope, $routeParams, $http, $cookies, $location, apiUrl,jwtHelper) {
     console.log('singinController');
     var token = $cookies.get('token');
-    var id = $routeParams.id;
-    
+
     if (token != null) {
-        $location.path( '/' );
+        $location.path('/');
     } else {
         //check form validation
         $scope.submitForm = function(isValid) {
@@ -176,11 +175,9 @@ user.controller('historyController', function($scope, $routeParams, $http, $cook
 
 // GET the whole history of the user
 
-user.controller('getHistoryController', function($scope, $routeParams, $http, $cookies, $location, apiUrl) {
-    console.log("getHistoryController");
+user.controller('historyController', function($scope, $routeParams, $http, $cookies, $location, apiUrl) {
+    console.log("historyController");
     var token = $cookies.get('token');
-    console.log(token);
-    var id = $routeParams.id;
     
     if (token == null) {
         $location.path( '/signin' );
@@ -193,7 +190,6 @@ user.controller('getHistoryController', function($scope, $routeParams, $http, $c
             }).success(function (response) {
                 $scope.getUserHist = response;
                 console.log($scope.getUserHist);
-                id = $scope.getUserHist.id;
             }).error(function (error) {
                 console.log(error);
             })

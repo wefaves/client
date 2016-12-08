@@ -11,19 +11,17 @@ home.controller('menuController', function($scope, $route, $routeParams, $http, 
     console.log("menuController");
     var token = $cookies.get('token')
 
-    console.log(token);
-
     if (token != null) {
         var tokenPayload = jwtHelper.decodeToken(token);
         $scope.email = tokenPayload.email;
         $scope.username = tokenPayload.username;
-    } else {
-        console.log("redirect")
-        $window.location.href = '/user';
-    }
 
-    $scope.logout = function() {
-        $cookies.remove('token')
-        $route.reload()
+        $scope.logout = function() {
+            $window.location.href = '/user';
+            $cookies.remove('token')
+            $route.reload()
+        }
+    } else {
+        $window.location.href = '/user';
     }
 });

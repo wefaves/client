@@ -97,7 +97,23 @@ user.controller('signupController', function($scope, $routeParams, $http, $cooki
                     }
                 }).success(function (result) {
                     console.log(result);
-                    $location.path( '/signin' );
+
+                    $http({
+                        method: 'POST',
+                        url: apiUrl + 'login_check',
+                        data: {
+                            _username: username,
+                            _password: password
+                        }
+                    }).success(function (response) {
+                        var token = response.token
+                        var expireDate = jwtHelper.getTokenExpirationDate(token);
+
+                        $cookies.put('token', token, {'expires': expireDate});
+                        $location.path( '/' );
+                    }).error(function(error) {
+                        console.log('error :'+error.message);
+                    })
                 }).error(function(error) {
                     console.log(error);
                 })

@@ -29,31 +29,37 @@ user.controller('userController', function($scope, $routeParams, $http, $cookies
         $scope.userPatchInfo = function(user) {
             var edited = [];
 
-            if (user.email != null) {
-                edited.push({'email': user.email})
-            }
+//            edited.push({'username': user.username})
+//            console.log(user.username);
 
-            if (user.first != null && user.first == user.second) {
-                edited.push({
-                    plainPassword: {
-                        first: user.first,
-                        second: user.second
-                    }
-                })
-            }
-
-            if (edited.length > 0) {
+//            if (user.first != null && user.first == user.second) {
+//                edited.push({'current_password': user.first
+////                        second: user.second
+//                    })
+//                }
+//            
+//            if (user.email != null) {
+//                edited.push({'email': user.email})
+//            }
+//            if (edited.length) {
+            console.log(user.first);
                 $http({
                     method: 'PATCH',
                     url: apiUrl + 'users/self',
-                    data: { fos_user_registration_form: edited },
+                    data: { 
+                        fos_user_profile_form: {
+                            username: user.username,
+                            email: user.email,
+                            current_password: user.first
+                         }
+                    },
                     headers: {'Authorization': 'Bearer ' + token}
                 }).success(function(response) {
                     console.log(response)
                 }).error(function(error) {
                     console.log(error)
                 })
-            }
+//            }
         }
     }    
 });

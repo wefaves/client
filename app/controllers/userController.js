@@ -7,18 +7,17 @@ user.constant('apiUrl', 'https://api.wefaves.com/');
 user.controller('userController', function($scope, $routeParams, $http, $cookies, $location, apiUrl) {
     console.log('userController');
     var token = $cookies.get('token');
-    var id = $routeParams.id;
-    
-    console.log($routeParams);
+
     //check if token is save in the session.
     if (token == null) {
         $location.path( '/signin' );
     } else {
         //user Info
-        $scope.userInfoId = function () {
+        $scope.userInfo = function () {
             $http({
                 method: 'GET',
-                url: apiUrl + 'users/' + id,
+                url: apiUrl + 'users/self' ,
+                headers: {'Authorization': 'Bearer ' + token}
             }).success(function (response) {
                 $scope.userInfo = response;
                 console.log($scope.userInfo);
@@ -26,22 +25,36 @@ user.controller('userController', function($scope, $routeParams, $http, $cookies
                 console.log(error);
             })
          }
-        $scope.userPatchInfo = function () {
-            $http({
-                method: 'PATCH',
-                url: apiUrl + 'users/self',
-                data: {
-                    fos_user_registration_form: {
-                        email: $scope.user.email,
-                        username: $scope.user.username,
-                        plainPassword: {
-                            first: $scope.user.first,
-                            second: $scope.user.second
-                        }
+
+        $scope.userPatchInfo = function(user) {
+            var edited = [];
+
+            if (user.email != null) {
+                edited.push({'email': user.email})
+            }
+
+            if (user.first != null && user.first == user.second) {
+                edited.push({
+                    plainPassword: {
+                        first: user.first,
+                        second: user.second
                     }
-                },
-                headers: {'Authorization': 'Bearer ' + token}
-            })
+                })
+            }
+
+            if (edited.length < 0) {
+                $http({
+                    method: 'PATCH',
+                    url: apiUrl + 'users/self',
+                    data: { fos_user_registration_form: edited },
+                    headers: {'Authorization': 'Bearer ' + token}
+                }).success(function(response) {
+                    $route.reload();
+                    console.log(response)
+                }).error(function(error) {
+                    console.log(error)
+                })
+            }
         }
     }    
 });

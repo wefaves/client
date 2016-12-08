@@ -8,9 +8,9 @@ user.controller('userController', function($scope, $routeParams, $http, $cookies
     console.log('userController');
     var token = $cookies.get('token');
 
-    $scope.go = function() {
-   $location.path('/history');
-   }
+    $scope.goToHistory = function() {
+       $location.path('/history');
+    }
     
     //check if token is save in the session.
     if (token == null) {
@@ -106,7 +106,7 @@ user.controller('signupController', function($scope, $routeParams, $http, $cooki
     }
 });
 
-user.controller('signinController', function($scope, $routeParams, $http, $cookies, $location, apiUrl) {
+user.controller('signinController', function($scope, $routeParams, $http, $cookies, $location, apiUrl,jwtHelper) {
     console.log('singinController');
     var token = $cookies.get('token');
     var id = $routeParams.id;
@@ -127,22 +127,12 @@ user.controller('signinController', function($scope, $routeParams, $http, $cooki
                         _username: username,
                         _password: password
                     }
-                }).success(function (result) {
-                    $cookies.put('token', result.token);
-                    token = result.token;
-                    console.log(token);
-                    $http({
-                        method: 'GET',
-                        url: apiUrl + 'users/self',
-                        headers: {'Authorization': 'Bearer ' + token}
-                    }).success(function (response) {
-                        $scope.userInfo = response;
-                        console.log($scope.userInfo);
-                        console.log($scope.userInfo.id);
-                        $location.path( '/' + $scope.userInfo.id);
-                    }).error(function(error) {
-                        console.log(error);
-                    })
+                }).success(function (response) {
+                    var token = response.token
+                    var expireDate = jwtHelper.getTokenExpirationDate(token);
+
+                    $cookies.put('token', token, {'expires': expireDate});
+                    $location.path( '/' );
                 }).error(function(error) {
                     console.log('error :'+error.message);
                 })

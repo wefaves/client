@@ -3,7 +3,7 @@
  */
 'use strict';
 
-var user = angular.module('wefaves.user', ['ngRoute', 'ngCookies']).
+var user = angular.module('wefaves.user', ['ngRoute', 'ngCookies', 'angular-jwt']).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
 

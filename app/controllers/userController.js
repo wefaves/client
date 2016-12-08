@@ -16,7 +16,7 @@ user.controller('userController', function($scope, $routeParams, $http, $cookies
         $scope.userInfo = function () {
             $http({
                 method: 'GET',
-                url: apiUrl + 'users/self' ,
+                url: apiUrl + 'users/self',
                 headers: {'Authorization': 'Bearer ' + token}
             }).success(function (response) {
                 $scope.userInfo = response;
@@ -42,14 +42,13 @@ user.controller('userController', function($scope, $routeParams, $http, $cookies
                 })
             }
 
-            if (edited.length < 0) {
+            if (edited.length > 0) {
                 $http({
                     method: 'PATCH',
                     url: apiUrl + 'users/self',
                     data: { fos_user_registration_form: edited },
                     headers: {'Authorization': 'Bearer ' + token}
                 }).success(function(response) {
-                    $route.reload();
                     console.log(response)
                 }).error(function(error) {
                     console.log(error)

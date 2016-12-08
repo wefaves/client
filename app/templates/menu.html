@@ -5,9 +5,10 @@
                 <div class="background">
                     <img src="../resources/images/back.jpg">
                 </div>
-                <a href="#!user"><img class="circle" src="../resources/images/default-avatar.png"></a>
-                <a href="#!name"><span class="white-text name">{{username}}</span></a>
-                <a href="#!email"><span class="white-text email">{{email}}</span></a>
+                <img class="circle" src="../resources/images/default-avatar.png">
+                <span class="white-text name">{{username}}</span>
+                <span class="white-text email">{{email}}</span>
+                <button class="btn" ng-click="logout()">Déconnexion</button>
             </div>
         </li>
         <li><a ng-href="user">Paramètre</a></li>

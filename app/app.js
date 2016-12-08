@@ -26,7 +26,7 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
     $routeProvider
         .when('/', {templateUrl: 'templates/home/home.html',
             controller: 'homeController'})
-        .otherwise({redirectTo: '/'});
+        // .otherwise({redirectTo: '/'});
 }]);
 
 angular.module('wefaves', ['ngRoute', 'wefaves.home']).
@@ -36,5 +36,4 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
     $routeProvider
     .otherwise({redirectTo: '/'});
 }]);
-
 

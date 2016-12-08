@@ -7,11 +7,23 @@ home.controller('homeController', function($scope, $routeParams, $http) {
 });
 
 
-home.controller('menuController', function($scope, $routeParams, $http, $cookies, jwtHelper) {
+home.controller('menuController', function($scope, $route, $routeParams, $http, $cookies, $window, jwtHelper) {
     console.log("menuController");
     var token = $cookies.get('token')
-    var tokenPayload = jwtHelper.decodeToken(token);
 
-    $scope.email = tokenPayload.email;
-    $scope.username = tokenPayload.username;
+    console.log(token);
+
+    if (token != null) {
+        var tokenPayload = jwtHelper.decodeToken(token);
+        $scope.email = tokenPayload.email;
+        $scope.username = tokenPayload.username;
+    } else {
+        console.log("redirect")
+        $window.location.href = '/user';
+    }
+
+    $scope.logout = function() {
+        $cookies.remove('token')
+        $route.reload()
+    }
 });

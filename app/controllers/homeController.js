@@ -30,32 +30,23 @@ home.controller('menuController', function($scope, $route, $routeParams, $http, 
 
 home.controller('historyController', function($scope, $routeParams, $http, $cookies, $location, apiUrl) {
     console.log("historyController");
+    $scope.history;
     var token = $cookies.get('token');
 
     if (token == null) {
         $location.path( '/signin');
     } else {
-        console.log("getHistoryController");
-        var token = $cookies.get('token');
-        console.log(token);
-        var id = $routeParams.id;
-
-        if (token == null) {
-            $location.path( '/signin' );
-        } else {
-            $scope.getUserHistory = function () {
-                $http({
-                    method: 'GET',
-                    url: apiUrl + 'users/self/history',
-                    headers: {'Authorization': 'Bearer ' + token}
-                }).success(function (response) {
-                    $scope.getUserHist = response;
-                    console.log($scope.getUserHist);
-                    id = $scope.getUserHist.id;
-                }).error(function (error) {
-                    console.log(error);
-                })
-            }
+        $scope.getUserHistory = function () {
+            $http({
+                method: 'GET',
+                url: apiUrl + 'users/self/history',
+                headers: {'Authorization': 'Bearer ' + token}
+            }).success(function (response) {
+                $scope.history = response;
+                console.log($scope.history);
+            }).error(function (error) {
+                console.log(error);
+            })
         }
 
         $scope.removeHistoryById = function () {

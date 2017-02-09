@@ -12,8 +12,6 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
             controller: 'signinController'})
         .when('/signup', {templateUrl: 'templates/users/signup.html',
             controller: 'signupController'})
-        .when('/history', {templateUrl: 'templates/users/history.html',
-            controller: 'historyController'})
         .when('/', {templateUrl: 'templates/users/profile.html',
             controller: 'userController'})
         .otherwise({redirectTo: '/'});
@@ -26,7 +24,9 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
     $routeProvider
         .when('/', {templateUrl: 'templates/home/home.html',
             controller: 'homeController'})
-        // .otherwise({redirectTo: '/'});
+        .when('/history', {templateUrl: 'templates/home/history.html',
+            controller: 'historyController'})
+        .otherwise({redirectTo: '/'});
 }]);
 
 angular.module('wefaves', ['ngRoute', 'wefaves.home']).

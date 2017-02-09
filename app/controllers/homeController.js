@@ -76,7 +76,7 @@ home.controller('historyController', function($scope, $routeParams, $http, $cook
                 url: apiUrl + 'users/self/history' + id,
                 headers: {'Authorization': 'Bearer ' + token}
             }).success(function (response) {
-                $scope.userInfo = response;
+                $scope.historyInfo = response;
                 console.log($scope.historyInfo);
             }).error(function(error) {
                 console.log(error);

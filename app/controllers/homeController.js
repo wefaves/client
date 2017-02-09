@@ -83,4 +83,18 @@ home.controller('historyController', function($scope, $routeParams, $http, $cook
             })
         }
     }
-})
+});
+
+home.controller('bookmarksController', function() {
+    console.log("bookmarksController");
+    var token = $cookies.get('token')
+
+    if (token != null) {
+
+        //get bookmarks here
+
+    } else {
+        //redirect to login page
+        $window.location.href = '/user';
+    }
+});

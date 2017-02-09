@@ -26,6 +26,8 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
             controller: 'homeController'})
         .when('/history', {templateUrl: 'templates/home/history.html',
             controller: 'historyController'})
+        .when('/bookmarks', {templateUrl: 'templates/home/bookmarks.html',
+            controller: 'historyController'})
         .otherwise({redirectTo: '/'});
 }]);
 

@@ -74,7 +74,7 @@
           ancestor = ancestor.parentNode;
         }
 
-        // Set css on origin
+        // Set styles on origin
         origin.css({position: 'absolute', 'z-index': 1000})
         .data('width', originalWidth)
         .data('height', originalHeight);
@@ -223,7 +223,7 @@
             }
           );
 
-          // Remove Caption + reset css settings on image
+          // Remove Caption + reset styles settings on image
           $('.materialbox-caption').velocity({opacity: 0}, {
             duration: outDuration, // Delay prevents animation overlapping
             queue: false, easing: 'easeOutQuad',

@@ -2,10 +2,10 @@
   "name": "wefaves",
   "private": true,
   "version": "0.0.0",
-  "description": "project-description",
+  "description": "wefaves",
   "repository": {
     "type": "git",
-    "url": "project-repository"
+    "url": "https://github.com/wefaves/client"
   },
   "license": "MIT",
   "devDependencies": {
@@ -20,8 +20,5 @@
     "start": "http-server -a localhost -p 8000 -c-1 ./app"
   },
   "main": "app/app.js",
-  "dependencies": {
-    "materialize": "^1.0.0"
-  },
   "author": "marghe_r"
 }

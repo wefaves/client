@@ -1047,7 +1047,7 @@ if (jQuery) {
           ancestor = ancestor.parentNode;
         }
 
-        // Set css on origin
+        // Set styles on origin
         origin.css({position: 'absolute', 'z-index': 1000})
         .data('width', originalWidth)
         .data('height', originalHeight);
@@ -1196,7 +1196,7 @@ if (jQuery) {
             }
           );
 
-          // Remove Caption + reset css settings on image
+          // Remove Caption + reset styles settings on image
           $('.materialbox-caption').velocity({opacity: 0}, {
             duration: outDuration, // Delay prevents animation overlapping
             queue: false, easing: 'easeOutQuad',
@@ -1356,8 +1356,8 @@ $(document).ready(function(){
       $this.append('<div class="indicator"></div>');
       var $indicator = $this.find('.indicator');
       if ($this.is(":visible")) {
-        // $indicator.css({"right": $tabs_width - (($index + 1) * $tab_width)});
-        // $indicator.css({"left": $index * $tab_width});
+        // $indicator.styles({"right": $tabs_width - (($index + 1) * $tab_width)});
+        // $indicator.styles({"left": $index * $tab_width});
         setTimeout(function() {
           $indicator.css({"right": calcRightPos($active) });
           $indicator.css({"left": calcLeftPos($active) });
@@ -1629,7 +1629,7 @@ $(document).ready(function(){
               });
             }
 
-            // Set tooptip css placement
+            // Set tooptip styles placement
             tooltipEl.css({
               top: newCoordinates.y,
               left: newCoordinates.x
@@ -2231,7 +2231,7 @@ $(document).ready(function(){
               else {
                 // menu_id.removeAttr('style');
                 menu_id.css('transform', 'translateX(0%)');
-                // menu_id.css('width', options.menuWidth);
+                // menu_id.styles('width', options.menuWidth);
               }
             }
             else if (menuOut === false){

@@ -56,8 +56,8 @@
       $this.append('<div class="indicator"></div>');
       var $indicator = $this.find('.indicator');
       if ($this.is(":visible")) {
-        // $indicator.css({"right": $tabs_width - (($index + 1) * $tab_width)});
-        // $indicator.css({"left": $index * $tab_width});
+        // $indicator.styles({"right": $tabs_width - (($index + 1) * $tab_width)});
+        // $indicator.styles({"left": $index * $tab_width});
         setTimeout(function() {
           $indicator.css({"right": calcRightPos($active) });
           $indicator.css({"left": calcLeftPos($active) });

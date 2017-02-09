@@ -56,7 +56,7 @@
               else {
                 // menu_id.removeAttr('style');
                 menu_id.css('transform', 'translateX(0%)');
-                // menu_id.css('width', options.menuWidth);
+                // menu_id.styles('width', options.menuWidth);
               }
             }
             else if (menuOut === false){

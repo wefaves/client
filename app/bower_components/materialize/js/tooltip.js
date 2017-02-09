@@ -165,7 +165,7 @@
               });
             }
 
-            // Set tooptip css placement
+            // Set tooptip styles placement
             tooltipEl.css({
               top: newCoordinates.y,
               left: newCoordinates.x

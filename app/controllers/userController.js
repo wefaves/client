@@ -8,6 +8,9 @@ user.controller('userController', function($scope, $routeParams, $http, $cookies
     console.log('userController');
     var token = $cookies.get('token');
 
+    $scope.go = function() {
+        $location.path('/history');
+    }
 
     //check if token is save in the session.
     if (token == null) {

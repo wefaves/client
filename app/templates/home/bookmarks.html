@@ -15,7 +15,7 @@
                         <tbody>
                         <tr ng-repeat="bookmark in bookmarks">
                             <td>{{bookmark.title}}</td>
-                            <td>{{bookmark.url}}</td>
+                            <td><a ng-href="http://{{bookmark.url}}">{{bookmark.url}}</a></td>
                         </tr>
                         </tbody>
                     </table>

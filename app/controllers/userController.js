@@ -7,43 +7,65 @@ user.constant('apiUrl', 'https://api.wefaves.com/');
 user.controller('userController', function($scope, $routeParams, $http, $cookies, $location, apiUrl) {
     console.log('userController');
     var token = $cookies.get('token');
-    var id = $routeParams.id;
-    
-    console.log($routeParams);
+
+    $scope.go = function() {
+        $location.path('/history');
+    }
+
     //check if token is save in the session.
     if (token == null) {
         $location.path( '/signin' );
     } else {
         //user Info
-        $scope.userInfoId = function () {
+        $scope.userInfo = function () {
             $http({
                 method: 'GET',
-                url: apiUrl + 'users/' + id,
+                url: apiUrl + 'users/self',
+                headers: {'Authorization': 'Bearer ' + token}
             }).success(function (response) {
                 $scope.userInfo = response;
                 console.log($scope.userInfo);
             }).error(function(error) {
                 console.log(error);
             })
-         }
-        $scope.userPatchInfo = function () {
+        }
+
+        $scope.userPatchInfo = function(user) {
+            var edited = [];
+
+//            edited.push({'username': user.username})
+//            console.log(user.username);
+
+//            if (user.first != null && user.first == user.second) {
+//                edited.push({'current_password': user.first
+////                        second: user.second
+//                    })
+//                }
+//
+//            if (user.email != null) {
+//                edited.push({'email': user.email})
+//            }
+//            if (edited.length) {
+            console.log(user.first);
             $http({
                 method: 'PATCH',
                 url: apiUrl + 'users/self',
                 data: {
-                    fos_user_registration_form: {
-                        email: $scope.user.email,
-                        username: $scope.user.username,
-                        plainPassword: {
-                            first: $scope.user.first,
-                            second: $scope.user.second
-                        }
+                    fos_user_profile_form: {
+                        username: user.username,
+                        email: user.email,
+                        current_password: user.first
                     }
                 },
                 headers: {'Authorization': 'Bearer ' + token}
+            }).success(function(response) {
+                console.log(response)
+            }).error(function(error) {
+                console.log(error)
             })
+//            }
         }
-    }    
+    }
 });
 
 user.controller('signupController', function($scope, $routeParams, $http, $cookies, $location, apiUrl) {
@@ -65,12 +87,12 @@ user.controller('signupController', function($scope, $routeParams, $http, $cooki
                     url: apiUrl + 'users',
                     data: {
                         fos_user_registration_form: {
-                                email: email,
-                                username: username,
-                                plainPassword: {
-                                    first: password,
-                                    second: password
-                                }
+                            email: email,
+                            username: username,
+                            plainPassword: {
+                                first: password,
+                                second: password
+                            }
                         }
                     }
                 }).success(function (result) {
@@ -88,7 +110,7 @@ user.controller('signinController', function($scope, $routeParams, $http, $cooki
     console.log('singinController');
     var token = $cookies.get('token');
     var id = $routeParams.id;
-    
+
     if (token != null) {
         $location.path( '/' );
     } else {

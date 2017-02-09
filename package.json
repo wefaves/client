@@ -2,10 +2,10 @@
   "name": "wefaves",
   "private": true,
   "version": "0.0.0",
-  "description": "project-description",
+  "description": "wefaves",
   "repository": {
     "type": "git",
-    "url": "project-repository"
+    "url": "https://github.com/wefaves/client"
   },
   "license": "MIT",
   "devDependencies": {

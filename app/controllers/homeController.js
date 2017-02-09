@@ -76,7 +76,7 @@ home.controller('historyController', function($scope, $routeParams, $http, $cook
                 url: apiUrl + 'users/self/history' + id,
                 headers: {'Authorization': 'Bearer ' + token}
             }).success(function (response) {
-                $scope.userInfo = response;
+                $scope.historyInfo = response;
                 console.log($scope.historyInfo);
             }).error(function(error) {
                 console.log(error);
@@ -87,11 +87,48 @@ home.controller('historyController', function($scope, $routeParams, $http, $cook
 
 home.controller('bookmarksController', function() {
     console.log("bookmarksController");
-    var token = $cookies.get('token')
+    var token = $cookies.get('token');
+    var id = $routeParams.id;
 
     if (token != null) {
+        $scope.getUserBookmarks = function () {
+            $http({
+                method: 'GET',
+                url: apiUrl + 'users/self/favorite',
+                headers: {'Authorization': 'Bearer ' + token}
+            }).success(function (response) {
+                $scope.getUserBook = response;
+                console.log($scope.getUserBook);
+                id = $scope.getUserBook.id;
+            }).error(function (error) {
+                console.log(error);
+            })
+        }
 
-        //get bookmarks here
+        $scope.removeBookmarksById = function () {
+            $http({
+                method: 'DELETE',
+                url: apiUrl + 'users/self/favorite' + id,
+                headers: {'Authorization': 'Bearer ' + id}
+            }).success(function (response) {
+                console.log(response);
+            }).error(function (error) {
+                console.log(error);
+            })
+        }
+
+        $scope.getBookmarksById = function () {
+            $http({
+                method: 'GET',
+                url: apiUrl + 'users/self/favorite' + id,
+                headers: {'Authorization': 'Bearer ' + token}
+            }).success(function (response) {
+                $scope.BookmarksInfo = response;
+                console.log($scope.BookmarksInfo);
+            }).error(function(error) {
+                console.log(error);
+            })
+        }
 
     } else {
         //redirect to login page

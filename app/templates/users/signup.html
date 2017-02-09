@@ -1,21 +1,39 @@
-<div id="login-box">
-    <div class="left">
-        <h1>Sign up</h1>
-
-        <input type="text" name="username" placeholder="Username" />
-        <input type="text" name="email" placeholder="E-mail" />
-        <input type="password" name="password" placeholder="Password" />
-        <input type="password" name="password2" placeholder="Retype password" />
-
-        <input type="submit" name="signup_submit" value="Sign me up" />
+<div class="valign-wrapper row form-box">
+    <div class="col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">
+        <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
+            <div class="card-content">
+                <span class="card-title">Sign up</span>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="username">Username</label>
+                        <input type="text" class="validate" name="username" id="username" ng-model="username" required/>
+                    </div>
+                    <div class="input-field col s12">
+                        <label for="email">Email address</label>
+                        <input type="email" class="validate" name="email" id="email" ng-model="email" required/>
+                        <p style="color: #D32F2F" ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>
+                    </div>
+                    <div class="input-field col s12">
+                        <label for="emailConfirm">Confirm Email address</label>
+                        <input type="email" class="validate" name="emailConfirm" id="emailConfirm" ng-model="emailConfirm" ng-match="email" required/>
+                        <p style="color: #D32F2F" ng-show="userForm.emailConfirm.$invalid && !userForm.emailConfirm.$pristine" class="help-block">Enter a valid email.</p>
+                    </div>
+                    <div class="input-field col s12">
+                        <label for="password">Password </label>
+                        <input type="password" class="validate" name="password" id="password" ng-model="password" required/>
+                    </div>
+                    <div class="input-field col s12">
+                        <label for="passwordConfirme">Retype password</label>
+                        <input type="password" class="validate" name="passwordConfirm" id="passwordConfirme" ng-model="passwordConfirme" required/>
+                    </div>
+                    <div class="input-field col s12">
+                        <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">Sign up</button>
+                    </div>
+                    <div class="input-field col s12">
+                        <p>Already sign up ? <a href="#!/signin">Sign in here</a></p>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
-
-    <div class="right">
-        <span class="loginwith">Sign in with<br />social network</span>
-
-        <button class="social-signin facebook">Log in with facebook</button>
-        <button class="social-signin twitter">Log in with Twitter</button>
-        <button class="social-signin google">Log in with Google+</button>
-    </div>
-    <div class="or">OR</div>
 </div>

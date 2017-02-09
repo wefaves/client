@@ -45,7 +45,6 @@ home.controller('historyController', function($scope, $routeParams, $http, $cook
     } else {
         console.log("getHistoryController");
         var token = $cookies.get('token');
-        console.log(token);
         var id = $routeParams.id;
 
         if (token == null) {
@@ -93,7 +92,7 @@ home.controller('historyController', function($scope, $routeParams, $http, $cook
     }
 });
 
-home.controller('bookmarksController', function() {
+home.controller('bookmarksController', function($scope, $routeParams, $http, $cookies, $location, apiUrl) {
     console.log("bookmarksController");
     var token = $cookies.get('token');
     var id = $routeParams.id;
@@ -106,7 +105,7 @@ home.controller('bookmarksController', function() {
                 headers: {'Authorization': 'Bearer ' + token}
             }).success(function (response) {
                 $scope.getUserBook = response;
-                console.log($scope.getUserBook);
+                console.log(response);
                 id = $scope.getUserBook.id;
             }).error(function (error) {
                 console.log(error);

@@ -3,7 +3,7 @@
  */
 'use strict';
 
-var user = angular.module('wefaves.user', ['ngRoute']).
+var user = angular.module('wefaves.user', ['ngRoute', 'ngCookies', 'angular-jwt']).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
 
@@ -17,13 +17,17 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
         .otherwise({redirectTo: '/'});
 }]);
 
-var home = angular.module('wefaves.home', ['ngRoute']).
+var home = angular.module('wefaves.home', ['ngRoute', 'ngCookies', 'angular-jwt']).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
 
     $routeProvider
         .when('/', {templateUrl: 'templates/home/home.html',
             controller: 'homeController'})
+        .when('/history', {templateUrl: 'templates/home/history.html',
+            controller: 'historyController'})
+        .when('/bookmarks', {templateUrl: 'templates/home/bookmarks.html',
+            controller: 'historyController'})
         .otherwise({redirectTo: '/'});
 }]);
 
@@ -34,5 +38,4 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
     $routeProvider
     .otherwise({redirectTo: '/'});
 }]);
-
 

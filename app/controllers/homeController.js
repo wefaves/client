@@ -13,6 +13,14 @@ home.controller('menuController', function($scope, $route, $routeParams, $http, 
     console.log("menuController");
     var token = $cookies.get('token')
 
+    $scope.goToHistory = function() {
+        $location.path('/history');
+    }
+
+    $scope.goToBookmarks = function () {
+        $location.path('/bookmarks');
+    }
+
     if (token != null) {
         var tokenPayload = jwtHelper.decodeToken(token);
         $scope.email = tokenPayload.email;

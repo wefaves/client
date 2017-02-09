@@ -8,8 +8,12 @@ user.controller('userController', function($scope, $routeParams, $http, $cookies
     console.log('userController');
     var token = $cookies.get('token');
 
-    $scope.go = function() {
+    $scope.goToHistory = function() {
         $location.path('/history');
+    }
+
+    $scope.goToBookmarks = function () {
+        $location.path('/bookmarks');
     }
 
     //check if token is save in the session.

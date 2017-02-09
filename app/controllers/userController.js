@@ -8,13 +8,13 @@ user.controller('userController', function($scope, $routeParams, $http, $cookies
     console.log('userController');
     var token = $cookies.get('token');
 
-    $scope.goToHistory = function() {
-       $location.path('/history');
+    $scope.go = function() {
+        $location.path('/history');
     }
-    
+
     //check if token is save in the session.
     if (token == null) {
-        $location.path('/signin');
+        $location.path( '/signin' );
     } else {
         //user Info
         $scope.userInfo = function () {
@@ -28,7 +28,7 @@ user.controller('userController', function($scope, $routeParams, $http, $cookies
             }).error(function(error) {
                 console.log(error);
             })
-         }
+        }
 
         $scope.userPatchInfo = function(user) {
             var edited = [];
@@ -41,31 +41,31 @@ user.controller('userController', function($scope, $routeParams, $http, $cookies
 ////                        second: user.second
 //                    })
 //                }
-//            
+//
 //            if (user.email != null) {
 //                edited.push({'email': user.email})
 //            }
 //            if (edited.length) {
             console.log(user.first);
-                $http({
-                    method: 'PATCH',
-                    url: apiUrl + 'users/self',
-                    data: { 
-                        fos_user_profile_form: {
-                            username: user.username,
-                            email: user.email,
-                            current_password: user.first
-                         }
-                    },
-                    headers: {'Authorization': 'Bearer ' + token}
-                }).success(function(response) {
-                    console.log(response)
-                }).error(function(error) {
-                    console.log(error)
-                })
+            $http({
+                method: 'PATCH',
+                url: apiUrl + 'users/self',
+                data: {
+                    fos_user_profile_form: {
+                        username: user.username,
+                        email: user.email,
+                        current_password: user.first
+                    }
+                },
+                headers: {'Authorization': 'Bearer ' + token}
+            }).success(function(response) {
+                console.log(response)
+            }).error(function(error) {
+                console.log(error)
+            })
 //            }
         }
-    }    
+    }
 });
 
 user.controller('signupController', function($scope, $routeParams, $http, $cookies, $location, apiUrl) {
@@ -87,33 +87,17 @@ user.controller('signupController', function($scope, $routeParams, $http, $cooki
                     url: apiUrl + 'users',
                     data: {
                         fos_user_registration_form: {
-                                email: email,
-                                username: username,
-                                plainPassword: {
-                                    first: password,
-                                    second: password
-                                }
+                            email: email,
+                            username: username,
+                            plainPassword: {
+                                first: password,
+                                second: password
+                            }
                         }
                     }
                 }).success(function (result) {
                     console.log(result);
-
-                    $http({
-                        method: 'POST',
-                        url: apiUrl + 'login_check',
-                        data: {
-                            _username: username,
-                            _password: password
-                        }
-                    }).success(function (response) {
-                        var token = response.token
-                        var expireDate = jwtHelper.getTokenExpirationDate(token);
-
-                        $cookies.put('token', token, {'expires': expireDate});
-                        $location.path( '/' );
-                    }).error(function(error) {
-                        console.log('error :'+error.message);
-                    })
+                    $location.path( '/signin' );
                 }).error(function(error) {
                     console.log(error);
                 })
@@ -122,12 +106,13 @@ user.controller('signupController', function($scope, $routeParams, $http, $cooki
     }
 });
 
-user.controller('signinController', function($scope, $routeParams, $http, $cookies, $location, apiUrl, jwtHelper) {
+user.controller('signinController', function($scope, $routeParams, $http, $cookies, $location, apiUrl) {
     console.log('singinController');
     var token = $cookies.get('token');
+    var id = $routeParams.id;
 
     if (token != null) {
-        $location.path('/');
+        $location.path( '/' );
     } else {
         //check form validation
         $scope.submitForm = function(isValid) {
@@ -142,12 +127,22 @@ user.controller('signinController', function($scope, $routeParams, $http, $cooki
                         _username: username,
                         _password: password
                     }
-                }).success(function (response) {
-                    var token = response.token
-                    var expireDate = jwtHelper.getTokenExpirationDate(token);
-
-                    $cookies.put('token', token, {'expires': expireDate});
-                    $location.path( '/' );
+                }).success(function (result) {
+                    $cookies.put('token', result.token);
+                    token = result.token;
+                    console.log(token);
+                    $http({
+                        method: 'GET',
+                        url: apiUrl + 'users/self',
+                        headers: {'Authorization': 'Bearer ' + token}
+                    }).success(function (response) {
+                        $scope.userInfo = response;
+                        console.log($scope.userInfo);
+                        console.log($scope.userInfo.id);
+                        $location.path( '/' + $scope.userInfo.id);
+                    }).error(function(error) {
+                        console.log(error);
+                    })
                 }).error(function(error) {
                     console.log('error :'+error.message);
                 })
@@ -163,7 +158,7 @@ user.controller('historyController', function($scope, $routeParams, $http, $cook
     console.log("historyController");
     var token = $cookies.get('token');
     var id = $routeParams.id;
-    
+
     if (token != null) {
         $location.path( '/signin');
     } else {
@@ -191,10 +186,12 @@ user.controller('historyController', function($scope, $routeParams, $http, $cook
 
 // GET the whole history of the user
 
-user.controller('historyController', function($scope, $routeParams, $http, $cookies, $location, apiUrl) {
-    console.log("historyController");
+user.controller('getHistoryController', function($scope, $routeParams, $http, $cookies, $location, apiUrl) {
+    console.log("getHistoryController");
     var token = $cookies.get('token');
-    
+    console.log(token);
+    var id = $routeParams.id;
+
     if (token == null) {
         $location.path( '/signin' );
     } else {
@@ -206,6 +203,7 @@ user.controller('historyController', function($scope, $routeParams, $http, $cook
             }).success(function (response) {
                 $scope.getUserHist = response;
                 console.log($scope.getUserHist);
+                id = $scope.getUserHist.id;
             }).error(function (error) {
                 console.log(error);
             })
@@ -219,8 +217,8 @@ user.controller('manageHistoryController', function($scope, $routeParams, $http,
     console.log("manageHistoryController");
     var token = $cookies.get('token');
     var id = $routeParams.id;
-    
-     if (token == null) {
+
+    if (token == null) {
         $location.path( '/signin' );
     } else {
         $scope.getHistoryById = function () {
@@ -234,7 +232,7 @@ user.controller('manageHistoryController', function($scope, $routeParams, $http,
             }).error(function(error) {
                 console.log(error);
             })
-         }
+        }
         $scope.removeHistoryById = function () {
             $http({
                 method: 'DELETE',

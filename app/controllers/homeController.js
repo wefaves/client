@@ -96,9 +96,8 @@ home.controller('bookmarksController', function($scope, $routeParams, $http, $co
                 url: apiUrl + 'users/self/favorite',
                 headers: {'Authorization': 'Bearer ' + token}
             }).success(function (response) {
-                $scope.getUserBook = response;
+                $scope.bookmarks = response;
                 console.log(response);
-                id = $scope.getUserBook.id;
             }).error(function (error) {
                 console.log(error);
             })

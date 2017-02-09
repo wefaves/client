@@ -1,7 +1,7 @@
 <div class="row" ng-init="getUserHistory()">
-    <div class="col-sm-12" id="history" ng-repeat="link in getUserHist">
-        <span style="color: white;">{{link.title}}</span>
-        <button class="waves-effect waves-light btn" style="width: 4%; height: 3%;">{{link.id}}</button>
-
+    <div class="col-sm-12" id="history" ng-repeat="elem in history">
+        <!--<span style="color: white;">{{elem.title}}</span>-->
+        <!--<button class="waves-effect waves-light btn" style="width: 4%; height: 3%;">{{elem.title}}</button>-->
+        <p>{{elem.title}}</p>
     </div>
 </div>

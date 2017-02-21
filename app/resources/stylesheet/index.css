@@ -12,10 +12,7 @@ img .centered {
   margin-left: auto;
   margin-right: auto; }
 
-/******************************************** */
-/***************BOOKMARKS******************** */
-/******************************************** */
-#bookmarks {
+#bookmarks h3, #history h3 {
   color: #DBEECC; }
 
 /*# sourceMappingURL=index.css.map */

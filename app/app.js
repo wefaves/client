@@ -12,6 +12,8 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
             controller: 'signinController'})
         .when('/signup', {templateUrl: 'templates/users/signup.html',
             controller: 'signupController'})
+        .when('/logout', {templateUrl: 'templates/users/profile.html',
+            controller: 'logoutController'})
         .when('/', {templateUrl: 'templates/users/profile.html',
             controller: 'userController'})
         .otherwise({redirectTo: '/'});

@@ -1,29 +1,13 @@
-<header ng-controller="menuController">
-    <!--<ul id="slide-out" class="side-nav">-->
-        <!--<li>-->
-            <!--<div class="userView">-->
-                <!--<div class="background">-->
-                    <!--<img src="../resources/images/back.jpg">-->
-                <!--</div>-->
-                <!--<img class="circle" src="../resources/images/default-avatar.png">-->
-                <!--<span class="white-text name">{{username}}</span>-->
-                <!--<span class="white-text email">{{email}}</span>-->
-                <!--<button class="btn" ng-click="logout()">Déconnexion</button>-->
-            <!--</div>-->
-        <!--</li>-->
-        <!--<li><a ng-href="user">Paramètre</a></li>-->
-    <!--</ul>-->
-    <!--<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>-->
+<header>
     <ul id="dropdown1" class="dropdown-content">
-        <li><a href="#!">Mon profil</a></li>
-        <li><a href="#!">Déconnexion</a></li>
+        <li><a href="user">Mon profil</a></li>
+        <li><a href="user#!/logout">Déconnexion</a></li>
     </ul>
     <nav>
         <div class="nav-wrapper">
             <a href="#!/" class="brand-logo"><img id="logo" src="../resources/images/2018_logo_wefaves.png"></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a class="dropdown-button" href="" data-activates="dropdown1"><img class="circle" id="profile-picture" src="../resources/images/default-avatar.png"> Name<i class="material-icons right">arrow_drop_down</i></a></li>
-                <!--<li><a href="sass.html"><img class="circle" id="profile-picture" src="../resources/images/default-avatar.png">Name</a></li>-->
                 <li><a href="badges.html">Favoris</a></li>
                 <li><a href="collapsible.html">Historique</a></li>
             </ul>

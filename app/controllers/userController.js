@@ -161,7 +161,6 @@ user.controller('signinController', function($scope, $routeParams, $http, $cooki
     }
 });
 
-
 user.controller('logoutController', function($scope, $route, $routeParams, $http, $cookies, $window, jwtHelper) {
     console.log("logoutController");
     var token = $cookies.get('token')

@@ -1,0 +1,17 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:300);
+body, html {
+  font-family: Roboto, sans-serif;
+  background: #C1E1A6; }
+
+.nav-wrapper {
+  background-color: #6C9D43;
+  margin-bottom: 100px; }
+  .nav-wrapper img {
+    display: inline-block;
+    height: 90%;
+    vertical-align: middle; }
+
+#profile-picture {
+  margin-right: 10px; }
+
+/*# sourceMappingURL=menu.css.map */

@@ -11,6 +11,7 @@
   <link type="text/css" rel="stylesheet" href="bower_components/materialize/dist/css/materialize.min.css"  media="screen,projection"/>
 
   <link type="text/css" rel="stylesheet" href="resources/stylesheet/index.css"/>
+  <link type="text/css" rel="stylesheet" href="resources/stylesheet/menu.css"/>
 </head>
 <body ng-app="wefaves.home">
 
@@ -33,18 +34,7 @@
   <script type="text/javascript" src="bower_components/materialize/dist/js/materialize.min.js"></script>
   <script type="text/javascript">
       $(document).ready(function(){
-          $('.collapsible').collapsible();
-
-          // Initialize collapse button
-          $(".button-collapse").sideNav();
-
-          $('.button-collapse').sideNav({
-                  menuWidth: 300,
-                  edge: 'left',
-                  closeOnClick: true,
-                  draggable: true,
-              }
-          );
+          $(".dropdown-button").dropdown();
       });
   </script>
 </body>

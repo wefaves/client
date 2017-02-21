@@ -1,4 +1,8 @@
-/*profile page*/
+@import main
+
+/*********************************************/
+/***************PROFILE***********************/
+/*********************************************/
 .center
   margin: auto
 
@@ -46,14 +50,9 @@
 .img-circle
   border-radius: 50%
 
-/* login & singup pages */
-@import url(http://fonts.googleapis.com/css?family=Roboto:300)
-
-html, body
-  background: #50a3a2
-  background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%)
-  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%)
-  font-family: 'Roboto', sans-serif
+/*********************************************/
+/***************Login/singin******************/
+/*********************************************/
 
 html, body, .form-box
   height: 100%
@@ -73,26 +72,26 @@ html, body, .form-box
 
 /* invalid color */
 .input-field input[type=text].invalid
-  border-bottom: 1px solid #e53935
-  box-shadow: 0 1px 0 0 #e53935
+  border-bottom: 1px solid $error-color
+  box-shadow: 0 1px 0 0 $error-color
 
 .input-field input[type=password].invalid
-  border-bottom: 1px solid #e53935
-  box-shadow: 0 1px 0 0 #e53935
+  border-bottom: 1px solid $error-color
+  box-shadow: 0 1px 0 0 $error-color
 
 .input-field input[type=email].invalid
-  border-bottom: 1px solid #e53935
-  box-shadow: 0 1px 0 0 #e53935
+  border-bottom: 1px solid $error-color
+  box-shadow: 0 1px 0 0 $error-color
 
 /* valid color */
 .input-field input[type=text].valid
-  border-bottom: 1px solid #50A3A2
-  box-shadow: 0 1px 0 0 #50A3A2
+  border-bottom: 1px solid $success-color
+  box-shadow: 0 1px 0 0 $success-color
 
 .input-field input[type=password].valid
-  border-bottom: 1px solid #50A3A2
-  box-shadow: 0 1px 0 0 #50A3A2
+  border-bottom: 1px solid $success-color
+  box-shadow: 0 1px 0 0 $success-color
 
 .input-field input[type=email].valid
-  border-bottom: 1px solid #50A3A2
-  box-shadow: 0 1px 0 0 #50A3A2
+  border-bottom: 1px solid $success-color
+  box-shadow: 0 1px 0 0 $success-color

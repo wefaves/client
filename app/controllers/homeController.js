@@ -125,3 +125,11 @@ home.controller('bookmarksController', function($scope, $routeParams, $http, $co
         $window.location.href = '/user';
     }
 });
+
+home.filter("trunc", function(){
+    return function(input, length) {
+        var toTrunc = input.toString();
+        var trunced = toTrunc.substring(0, Math.min(length, toTrunc.length))
+        return trunced;
+    }
+});

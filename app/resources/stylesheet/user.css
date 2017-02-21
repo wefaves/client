@@ -1,5 +1,11 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:300);
-/*profile page */
+body, html {
+  font-family: Roboto, sans-serif;
+  background: #C1E1A6; }
+
+/******************************************** */
+/***************PROFILE********************** */
+/******************************************** */
 .center {
   margin: auto; }
 
@@ -47,11 +53,9 @@
 .img-circle {
   border-radius: 50%; }
 
-/* login & singup pages */
-html, body {
-  background: #C1E1A6;
-  font-family: "Roboto", sans-serif; }
-
+/******************************************** */
+/***************Login/singin***************** */
+/******************************************** */
 html, body, .form-box {
   height: 100%; }
 

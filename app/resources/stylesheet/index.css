@@ -1,6 +1,7 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:300);
 body, html {
-  font: 100% "Roboto", sans-serif;
-  background-color: #C1E1A6; }
+  font-family: Roboto, sans-serif;
+  background: #C1E1A6; }
 
 .favorite-icon {
   max-width: 100px;
@@ -10,5 +11,11 @@ img .centered {
   display: block;
   margin-left: auto;
   margin-right: auto; }
+
+/******************************************** */
+/***************BOOKMARKS******************** */
+/******************************************** */
+#bookmarks {
+  color: #DBEECC; }
 
 /*# sourceMappingURL=index.css.map */

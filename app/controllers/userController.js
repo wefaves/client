@@ -4,12 +4,22 @@
 
 user.constant('apiUrl', 'https://api.wefaves.com/');
 
-user.controller('userController', function($scope, $routeParams, $http, $cookies, $location, apiUrl) {
+user.controller('userController', function($scope, $routeParams, $http, $cookies, $location, $window, apiUrl) {
     console.log('userController');
     var token = $cookies.get('token');
 
     $scope.go = function() {
-        $location.path('/history');
+        $location.path('index.html#!/history');
+    }
+
+    $scope.goToHistory = function() {
+        // console.log("historique");
+        $window.location.href = '/#!/history';
+        // $location.locaton('index.html#!/history');
+    }
+
+    $scope.goToBookmarks = function () {
+        $window.location.href = '/#!/bookmarks';
     }
 
     //check if token is save in the session.

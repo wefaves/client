@@ -4,26 +4,26 @@
 
 home.constant('apiUrl', 'https://api.wefaves.com/');
 
-home.controller('homeController', function($scope, $routeParams, $http) {
+home.controller('homeController', function(isAuthenticated, $window) {
     console.log("homeController");
+
+    if (isAuthenticated == false)
+        $window.location.href = '/user#!/signin';
 });
 
-home.controller('historyController', function($scope, $routeParams, $http, $cookies, $location, apiUrl) {
+home.controller('historyController', function(isAuthenticated, currentUser, $scope, $routeParams, $http, $location, apiUrl) {
     console.log("historyController");
-    $scope.history;
-    var token = $cookies.get('token');
 
-    if (token == null) {
-        $location.path( '/signin');
+    if (isAuthenticated == false) {
+        $window.location.href = '/user#!/signin';
     } else {
         $scope.getUserHistory = function () {
             $http({
                 method: 'GET',
                 url: apiUrl + 'users/self/history',
-                headers: {'Authorization': 'Bearer ' + token}
+                headers: {'Authorization': 'Bearer ' + currentUser.getCurrentUser().token}
             }).success(function (response) {
                 $scope.history = response;
-                console.log($scope.history);
             }).error(function (error) {
                 console.log(error);
             })
@@ -45,7 +45,7 @@ home.controller('historyController', function($scope, $routeParams, $http, $cook
             $http({
                 method: 'GET',
                 url: apiUrl + 'users/self/history' + id,
-                headers: {'Authorization': 'Bearer ' + token}
+                headers: {'Authorization': 'Bearer ' + currentUser.getCurrentUser().token}
             }).success(function (response) {
                 $scope.historyInfo = response;
                 console.log($scope.historyInfo);
@@ -56,17 +56,20 @@ home.controller('historyController', function($scope, $routeParams, $http, $cook
     }
 });
 
-home.controller('bookmarksController', function($scope, $routeParams, $http, $cookies, $location, apiUrl) {
+home.controller('bookmarksController', function(isAuthenticated, currentUser, $scope, $routeParams, $http, $location, apiUrl) {
     console.log("bookmarksController");
-    var token = $cookies.get('token');
     var id = $routeParams.id;
 
-    if (token != null) {
+    if (isAuthenticated == false) {
+        $window.location.href = '/user#!/signin';
+    } else {
+        var user = currentUser;
+
         $scope.getUserBookmarks = function () {
             $http({
                 method: 'GET',
                 url: apiUrl + 'users/self/favorite',
-                headers: {'Authorization': 'Bearer ' + token}
+                headers: {'Authorization': 'Bearer ' + currentUser.getCurrentUser().token}
             }).success(function (response) {
                 $scope.bookmarks = response;
                 console.log(response);
@@ -91,7 +94,7 @@ home.controller('bookmarksController', function($scope, $routeParams, $http, $co
             $http({
                 method: 'GET',
                 url: apiUrl + 'users/self/favorite' + id,
-                headers: {'Authorization': 'Bearer ' + token}
+                headers: {'Authorization': 'Bearer ' + currentUser.getCurrentUser().token}
             }).success(function (response) {
                 $scope.BookmarksInfo = response;
                 console.log($scope.BookmarksInfo);
@@ -99,10 +102,6 @@ home.controller('bookmarksController', function($scope, $routeParams, $http, $co
                 console.log(error);
             })
         }
-
-    } else {
-        //redirect to login page
-        $window.location.href = '/user';
     }
 });
 

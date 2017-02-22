@@ -3,7 +3,41 @@
  */
 'use strict';
 
-var user = angular.module('wefaves.user', ['ngRoute', 'ngCookies', 'angular-jwt']).
+var wefaves = angular.module('wefaves', ['LocalStorageModule'])
+    .controller('wefavesController', function($scope, currentUser) {
+        console.log("wefavesController");
+
+        $scope.user = currentUser.getCurrentUser();
+    });
+
+wefaves.directive('menu', function() {
+        return {
+            templateUrl: 'templates/menu.html'
+        };
+    });
+
+wefaves.factory('currentUser', function(localStorageService) {
+        return {
+            setCurrentUser: function (_user) {
+                return localStorageService.set('currentUser', _user);
+            },
+            getCurrentUser: function () {
+                return localStorageService.get('currentUser');
+            },
+            removeCurrentUser: function () {
+                localStorageService.remove('currentUser');
+            }
+        }
+    });
+
+wefaves.factory('isAuthenticated', function(currentUser) {
+        if (currentUser.getCurrentUser() == null)
+            return false;
+        else
+            return true;
+    });
+
+var user = angular.module('wefaves.user', ['wefaves', 'ngRoute', 'angular-jwt']).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
 
@@ -19,7 +53,7 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
         .otherwise({redirectTo: '/'});
 }]);
 
-var home = angular.module('wefaves.home', ['ngRoute', 'ngCookies', 'angular-jwt']).
+var home = angular.module('wefaves.home', ['wefaves', 'ngRoute', 'angular-jwt']).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
 
@@ -33,11 +67,4 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
         .otherwise({redirectTo: '/'});
 }]);
 
-angular.module('wefaves', ['ngRoute', 'wefaves.home']).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-    $locationProvider.hashPrefix('!');
-
-    $routeProvider
-    .otherwise({redirectTo: '/'});
-}]);
 

@@ -4,34 +4,17 @@
 
 user.constant('apiUrl', 'https://api.wefaves.com/');
 
-user.controller('userController', function($scope, $routeParams, $http, $cookies, $location, $window, apiUrl) {
+user.controller('userController', function(isAuthenticated, currentUser, $scope, $http, $window, apiUrl) {
     console.log('userController');
-    var token = $cookies.get('token');
 
-    $scope.go = function() {
-        $location.path('index.html#!/history');
-    }
-
-    $scope.goToHistory = function() {
-        // console.log("historique");
-        $window.location.href = '/#!/history';
-        // $location.locaton('index.html#!/history');
-    }
-
-    $scope.goToBookmarks = function () {
-        $window.location.href = '/#!/bookmarks';
-    }
-
-    //check if token is save in the session.
-    if (token == null) {
-        $location.path( '/signin' );
+    if (isAuthenticated == false) {
+        $window.location.href = '/user#!/signin';
     } else {
-        //user Info
         $scope.userInfo = function () {
             $http({
                 method: 'GET',
                 url: apiUrl + 'users/self',
-                headers: {'Authorization': 'Bearer ' + token}
+                headers: {'Authorization': 'Bearer ' + currentUser.getCurrentUser().token}
             }).success(function (response) {
                 $scope.userInfo = response;
                 console.log($scope.userInfo);
@@ -41,22 +24,6 @@ user.controller('userController', function($scope, $routeParams, $http, $cookies
         }
 
         $scope.userPatchInfo = function(user) {
-            var edited = [];
-
-//            edited.push({'username': user.username})
-//            console.log(user.username);
-
-//            if (user.first != null && user.first == user.second) {
-//                edited.push({'current_password': user.first
-////                        second: user.second
-//                    })
-//                }
-//
-//            if (user.email != null) {
-//                edited.push({'email': user.email})
-//            }
-//            if (edited.length) {
-            console.log(user.first);
             $http({
                 method: 'PATCH',
                 url: apiUrl + 'users/self',
@@ -67,23 +34,21 @@ user.controller('userController', function($scope, $routeParams, $http, $cookies
                         current_password: user.first
                     }
                 },
-                headers: {'Authorization': 'Bearer ' + token}
+                headers: {'Authorization': 'Bearer ' + currentUser.getCurrentUser().token}
             }).success(function(response) {
                 console.log(response)
             }).error(function(error) {
                 console.log(error)
             })
-//            }
         }
     }
 });
 
-user.controller('signupController', function($scope, $routeParams, $http, $cookies, $location, apiUrl) {
+user.controller('signupController', function(isAuthenticated, $scope, $http, $window, apiUrl) {
     console.log('signupController');
-    var token = $cookies.get('token');
 
-    if (token != null) {
-        $location.path( '/' );
+    if (isAuthenticated == true) {
+        $window.location.href = '/!#/';
     } else {
         //check form validation
         $scope.submitForm = function(isValid) {
@@ -105,9 +70,8 @@ user.controller('signupController', function($scope, $routeParams, $http, $cooki
                             }
                         }
                     }
-                }).success(function (result) {
-                    console.log(result);
-                    $location.path( '/signin' );
+                }).success(function () {
+                    $window.location.href = '/user#!/signin';
                 }).error(function(error) {
                     console.log(error);
                 })
@@ -116,13 +80,11 @@ user.controller('signupController', function($scope, $routeParams, $http, $cooki
     }
 });
 
-user.controller('signinController', function($scope, $routeParams, $http, $cookies, $location, apiUrl) {
+user.controller('signinController', function(isAuthenticated, currentUser, $scope, $routeParams, $http, $window, apiUrl) {
     console.log('singinController');
-    var token = $cookies.get('token');
-    var id = $routeParams.id;
 
-    if (token != null) {
-        $location.path( '/' );
+    if (isAuthenticated == true) {
+        $window.location.href = '/#!/';
     } else {
         //check form validation
         $scope.submitForm = function(isValid) {
@@ -138,18 +100,16 @@ user.controller('signinController', function($scope, $routeParams, $http, $cooki
                         _password: password
                     }
                 }).success(function (result) {
-                    $cookies.put('token', result.token);
-                    token = result.token;
-                    console.log(token);
+                    var token = result.token;
+
                     $http({
                         method: 'GET',
                         url: apiUrl + 'users/self',
                         headers: {'Authorization': 'Bearer ' + token}
                     }).success(function (response) {
-                        $scope.userInfo = response;
-                        console.log($scope.userInfo);
-                        console.log($scope.userInfo.id);
-                        $location.path( '/' + $scope.userInfo.id);
+                        response["token"] = token;
+                        currentUser.setCurrentUser(response);
+                        $window.location.href = '/#!/';
                     }).error(function(error) {
                         console.log(error);
                     })
@@ -161,17 +121,13 @@ user.controller('signinController', function($scope, $routeParams, $http, $cooki
     }
 });
 
-user.controller('logoutController', function($scope, $route, $routeParams, $http, $cookies, $window, jwtHelper) {
+user.controller('logoutController', function(isAuthenticated, currentUser, $scope, $route, $routeParams, $http, $window) {
     console.log("logoutController");
-    var token = $cookies.get('token')
 
-    if (token == null) {
-        console.log("toto");
-        $window.location.href = '/#user/login';
+    if (isAuthenticated == false) {
+        $window.location.href = '/user#!/signin';
     } else {
-        console.log("tata");
-
-        $cookies.remove('token');
-        $window.location.href = '/';
+        currentUser.removeCurrentUser();
+        $window.location.href = '/#!/';
     }
 });

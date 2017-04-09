@@ -114,7 +114,7 @@ user.controller('signinController', function(isAuthenticated, currentUser, $scop
                         console.log(error);
                     })
                 }).error(function(error) {
-                    console.log('error :'+error.message);
+                    console.log(error);
                 })
             }
         }

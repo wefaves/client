@@ -67,4 +67,12 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
         .otherwise({redirectTo: '/'});
 }]);
 
+var newModule = angular.module('wefaves.newModule', ['wefaves', 'ngRoute', 'angular-jwt']).
+config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+    $locationProvider.hashPrefix('!');
 
+    $routeProvider
+        .when('/newModuleController', {templateUrl: 'templates/newModule/newModule.html',
+            controller: 'newModuleController'})
+        .otherwise({redirectTo: '/'});
+}]);

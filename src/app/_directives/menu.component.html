@@ -2,21 +2,18 @@
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" href="/">
     <img src="../../assets/wefaves_logo.png" width="30" height="30" alt="wefaves_logo">
   </a>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Home</a>
-      </li>
       <li class="nav-item dropdown" [ngSwitch]="authenticated">
         <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Account
         </a>
         <div *ngSwitchCase="true" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="/account">My profile</a>
-          <a class="dropdown-item" href="#">My bookmarks</a>
+          <a class="dropdown-item" href="/account/bookmarks">My bookmarks</a>
           <a class="dropdown-item" href="#">My history</a>
         </div>
         <div *ngSwitchCase="false" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">

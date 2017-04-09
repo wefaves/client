@@ -4,6 +4,8 @@ import { AccountComponent } from "./account.component";
 import { LoginComponent } from "./login/login.component";
 import { RegistrationComponent } from "./registration/registration.component";
 import { ProfileComponent } from "./profile/profile.component";
+import {AuthGuard} from "../_guard/auth.guard";
+import {BookmarksComponent} from "./bookmarks/bookmarks.component";
 
 const routes: Routes = [
   {
@@ -15,7 +17,8 @@ const routes: Routes = [
         children: [
           { path: 'login', component: LoginComponent },
           { path: 'registration', component: RegistrationComponent },
-          { path: '', component: ProfileComponent }
+          { path: 'bookmarks', component: BookmarksComponent, canActivate: [AuthGuard] },
+          { path: '', component: ProfileComponent, canActivate: [AuthGuard]}
         ]
       }
     ]

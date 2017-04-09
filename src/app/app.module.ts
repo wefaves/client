@@ -10,6 +10,9 @@ import { AuthenticationService } from "./_services/authentification.service";
 import { AlertComponent } from "./_directives/alert.component";
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from "./_directives/menu.component";
+import { UserService } from "./_services/user.service";
+import { BookmarkService } from "./_services/bookmark.service";
+import { HistoryService } from "./_services/history.service";
 
 @NgModule({
   declarations: [
@@ -27,8 +30,10 @@ import { MenuComponent } from "./_directives/menu.component";
   providers: [
     AlertService,
     AuthenticationService,
-    AuthGuard
-
+    AuthGuard,
+    UserService,
+    BookmarkService,
+    HistoryService
   ],
   bootstrap: [HomeComponent]
 })

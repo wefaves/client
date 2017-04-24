@@ -13,14 +13,12 @@ import { MenuComponent } from "./_directives/menu.component";
 import { UserService } from "./_services/user.service";
 import { BookmarkService } from "./_services/bookmark.service";
 import { HistoryService } from "./_services/history.service";
-import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
     AlertComponent,
     HomeComponent,
-    MenuComponent,
-    TestComponent
+    MenuComponent
   ],
   imports: [
     BrowserModule,

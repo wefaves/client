@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
-import {Http, Headers, RequestOptions, Response} from '@angular/http';
+import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map'
 import { environment} from "../../environments/environment";
+import { ServiceHelper } from "./service.helper";
+import {AuthenticationService} from "./authentification.service";
 
 @Injectable()
-export class HistoryService {
-  constructor(private http: Http) { }
+export class HistoryService extends ServiceHelper {
+  constructor(private http: Http, authenticationService: AuthenticationService) {
+    super(authenticationService);
+  }
 
   getAll() {
     return this.http.get(environment.apiUrl+'/users').map((response: Response) => response.json());
@@ -30,14 +34,4 @@ export class HistoryService {
   // delete(id: number) {
   //   return this.http.delete('/api/users/' + id, this.jwt()).map((response: Response) => response.json());
   // }
-
-  // private helper methods
-  private jwt() {
-    // create authorization header with jwt token
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentUser && currentUser.token) {
-      let headers = new Headers({ 'Authorization': 'Bearer '+currentUser.token });
-      return new RequestOptions({ headers: headers });
-    }
-  }
 }

@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
-import {Http, Headers, Response, RequestOptions} from '@angular/http';
+import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map'
-import {environment} from "../../environments/environment";
-import {UserService} from "./user.service";
-import {AlertService} from "./alert.service";
+import { environment } from "../../environments/environment";
+import { UserService } from "./user.service";
+import { AlertService } from "./alert.service";
 
 @Injectable()
 export class AuthenticationService {
+
+  private currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
   constructor(private http: Http, private userService: UserService, private alertService: AlertService) { }
 
   login(username: string, password: string) {
@@ -24,7 +27,6 @@ export class AuthenticationService {
               user => {
                 user.token = data.token;
                 localStorage.setItem('currentUser', JSON.stringify(user));
-                this.alertService.success('You have been log in', true);
               },
               error => {
                 this.alertService.error(error);
@@ -37,6 +39,7 @@ export class AuthenticationService {
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
+    window.location.reload();
   }
 
   isAuthentificated() {
@@ -45,5 +48,9 @@ export class AuthenticationService {
     } else {
       return false;
     }
+  }
+
+  getCurrentUser() {
+    return this.currentUser;
   }
 }

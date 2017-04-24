@@ -1,0 +1,2 @@
+.firebaserc merge=ours
+firebase.json merge=ours

@@ -13,6 +13,7 @@ import { MenuComponent } from "./_directives/menu.component";
 import { UserService } from "./_services/user.service";
 import { BookmarkService } from "./_services/bookmark.service";
 import { HistoryService } from "./_services/history.service";
+import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { HistoryService } from "./_services/history.service";
     AuthGuard,
     UserService,
     BookmarkService,
-    HistoryService
+    HistoryService,
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [HomeComponent]
 })

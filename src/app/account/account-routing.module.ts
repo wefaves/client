@@ -4,8 +4,8 @@ import { AccountComponent } from "./account.component";
 import { LoginComponent } from "./login/login.component";
 import { RegistrationComponent } from "./registration/registration.component";
 import { ProfileComponent } from "./profile/profile.component";
-import {AuthGuard} from "../_guard/auth.guard";
-import {BookmarksComponent} from "./bookmarks/bookmarks.component";
+import { AuthGuard } from "../_guard/auth.guard";
+import { BookmarksComponent } from "./bookmarks/bookmarks.component";
 
 const routes: Routes = [
   {

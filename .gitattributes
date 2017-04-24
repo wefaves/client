@@ -1,2 +1,3 @@
 .firebaserc merge=ours
 firebase.json merge=ours
+src/index.html merge=ours

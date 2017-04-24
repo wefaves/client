@@ -12,4 +12,5 @@ script:
   - ng build --prod
 
 after_success:
-  - firebase deploy --token $FIREBASE_TOKEN
+  - chmod +x deploy.sh
+  - ./deploy.sh

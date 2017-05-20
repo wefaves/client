@@ -2,11 +2,11 @@
  * Created by romain on 2017-05-20.
  */
 var config = {
-  apiKey: "AIzaSyCR4ZiFsVgpl1J92l_KnnBYl2w24YHSiW4",
-  authDomain: "wefaves-dev.firebaseapp.com",
-  databaseURL: "https://wefaves-dev.firebaseio.com",
-  projectId: "wefaves-dev",
-  storageBucket: "wefaves-dev.appspot.com",
-  messagingSenderId: "803720943552"
+  apiKey: "AIzaSyAI2wt6tMs2oAxTI-iBAv-Qe5FUc3MoRV4",
+  authDomain: "wefaves-prod.firebaseapp.com",
+  databaseURL: "https://wefaves-prod.firebaseio.com",
+  projectId: "wefaves-prod",
+  storageBucket: "wefaves-prod.appspot.com",
+  messagingSenderId: "818124736472"
 };
 firebase.initializeApp(config);

@@ -7,5 +7,5 @@ export const environment = {
   production: false,
   envName: 'development',
   apiUrl: 'https://api.wefaves.com',
-  version: '1.2.2'
+  version: '1.2.4'
 };

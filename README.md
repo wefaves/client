@@ -1,8 +1,8 @@
-[![Build Status](https://travis-ci.org/wefaves/client.svg?branch=master)](https://travis-ci.org/wefaves/client)
+[![Build Status](https://travis-ci.org/wefaves/client.svg?branch=develop)](https://travis-ci.org/wefaves/client)
 
 # urls
 
-`https://wefaves-prod.firebaseapp.com/#/`
+`https://wefaves-dev.firebaseapp.com/#/`
 
 # info
 

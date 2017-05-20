@@ -14,7 +14,5 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('Environment = '+this.environmentName);
-    console.log('Version = '+this.environmentVersion);
   }
 }

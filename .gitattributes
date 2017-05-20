@@ -1,2 +1,2 @@
 .firebaserc merge=ours
-.travis.yml
+.travis.yml merge=ours

@@ -13,7 +13,8 @@ import { MenuComponent } from "./_directives/menu.component";
 import { UserService } from "./_services/user.service";
 import { BookmarkService } from "./_services/bookmark.service";
 import { HistoryService } from "./_services/history.service";
-import {HashLocationStrategy, LocationStrategy} from "@angular/common";
+import { HashLocationStrategy, LocationStrategy } from "@angular/common";
+import { FacebookModule} from "ngx-facebook";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {HashLocationStrategy, LocationStrategy} from "@angular/common";
     FormsModule,
     HttpModule,
     AccountModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FacebookModule.forRoot()
   ],
   providers: [
     AlertService,

@@ -1,4 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://api.wefaves.com'
+  envName: 'production',
+  apiUrl: 'https://api.wefaves.com',
+  version: '1'
 };

@@ -6,6 +6,7 @@ import { RegistrationComponent } from "./registration/registration.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { AuthGuard } from "../_guard/auth.guard";
 import { BookmarksComponent } from "./bookmarks/bookmarks.component";
+import { HistoryComponent } from "./history/history.component";
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
           { path: 'login', component: LoginComponent },
           { path: 'registration', component: RegistrationComponent },
           { path: 'bookmarks', component: BookmarksComponent, canActivate: [AuthGuard] },
+          { path: 'history', component: HistoryComponent, canActivate: [AuthGuard] },
           { path: '', component: ProfileComponent, canActivate: [AuthGuard]}
         ]
       }

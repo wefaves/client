@@ -25,7 +25,6 @@ export class BookmarksComponent implements OnInit {
 
             this.bookmarks[_i].domain = result;
           }
-          console.log(this.bookmarks);
         },
         error => {
           let obj = JSON.parse(error._body);
@@ -38,7 +37,6 @@ export class BookmarksComponent implements OnInit {
     this.bookmarkService.delete(this.selectedBookmark.id)
       .subscribe(
         data => {
-          console.log(data);
           this.alertService.success('Your bookmark has been deleted.');
         }, error => {
           // this.alertService.error(error);

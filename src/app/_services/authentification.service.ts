@@ -4,11 +4,12 @@ import 'rxjs/add/operator/map'
 import { environment } from "../../environments/environment";
 import { UserService } from "./user.service";
 import { AlertService } from "./alert.service";
+import { Cookie} from "ng2-cookies";
 
 @Injectable()
 export class AuthenticationService {
 
-  private currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  // private currentUser = JSON.parse(Cookie.get('currentUser'));
 
   constructor(private http: Http, private userService: UserService, private alertService: AlertService) { }
 
@@ -21,12 +22,12 @@ export class AuthenticationService {
         let data = response.json();
 
         if (data.token) {
-          localStorage.setItem('currentUser', JSON.stringify(data));
+          Cookie.set('currentUser', JSON.stringify(data));
           this.userService.getSelf()
             .subscribe(
               user => {
                 user.token = data.token;
-                localStorage.setItem('currentUser', JSON.stringify(user));
+                Cookie.set('currentUser', JSON.stringify(user));
               },
               error => {
                 this.alertService.error(error);
@@ -37,13 +38,12 @@ export class AuthenticationService {
   }
 
   logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
+    Cookie.delete('currentUser');
     window.location.reload();
   }
 
   isAuthentificated() {
-    if (localStorage.getItem('currentUser')) {
+    if (Cookie.get('currentUser')) {
       return true;
     } else {
       return false;
@@ -51,6 +51,6 @@ export class AuthenticationService {
   }
 
   getCurrentUser() {
-    return this.currentUser;
+    // return this.currentUser;
   }
 }

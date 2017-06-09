@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import 'rxjs/add/operator/map'
-import { environment} from "../../environments/environment";
+import { environment} from '../../environments/environment';
+import { Cookie } from 'ng2-cookies';
 
 @Injectable()
 export class UserService {
@@ -34,7 +35,7 @@ export class UserService {
   // private helper methods
   private jwt() {
     // create authorization header with jwt token
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    let currentUser = JSON.parse(Cookie.get('currentUser'));
     if (currentUser && currentUser.token) {
       let headers = new Headers({ 'Authorization': 'Bearer '+currentUser.token });
       return new RequestOptions({ headers: headers });

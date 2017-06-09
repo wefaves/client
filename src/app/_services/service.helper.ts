@@ -3,6 +3,7 @@
  */
 import { Headers, RequestOptions, } from "@angular/http";
 import { AuthenticationService } from "./authentification.service";
+import {Cookie} from "ng2-cookies";
 
 export class ServiceHelper {
 
@@ -10,7 +11,7 @@ export class ServiceHelper {
   }
 
   protected jwt() {
-    var currentUser = this.authenticationService.getCurrentUser();
+    var currentUser = JSON.parse(Cookie.get('currentUser'));
 
     if (this.authenticationService && currentUser.token) {
       let headers = new Headers({ 'Authorization': 'Bearer '+currentUser.token });

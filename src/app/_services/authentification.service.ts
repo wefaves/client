@@ -9,7 +9,7 @@ import { Cookie} from "ng2-cookies";
 @Injectable()
 export class AuthenticationService {
 
-  private currentUser = JSON.parse(Cookie.get('currentUser'));
+  // private currentUser = JSON.parse(Cookie.get('currentUser'));
 
   constructor(private http: Http, private userService: UserService, private alertService: AlertService) { }
 
@@ -38,7 +38,6 @@ export class AuthenticationService {
   }
 
   logout() {
-    // remove user from local storage to log user out
     Cookie.delete('currentUser');
     window.location.reload();
   }
@@ -52,6 +51,6 @@ export class AuthenticationService {
   }
 
   getCurrentUser() {
-    return this.currentUser;
+    // return this.currentUser;
   }
 }

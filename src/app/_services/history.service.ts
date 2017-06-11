@@ -8,7 +8,7 @@ import {AuthenticationService} from "./authentification.service";
 @Injectable()
 export class HistoryService extends ServiceHelper {
   constructor(private http: Http, authenticationService: AuthenticationService) {
-    super(authenticationService);
+    super();
   }
 
   getAll() {

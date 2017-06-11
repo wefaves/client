@@ -12,7 +12,7 @@ import { AuthenticationService } from "./authentification.service";
 export class BookmarkService extends ServiceHelper {
 
   constructor(private http: Http, authenticationService: AuthenticationService) {
-    super(authenticationService);
+    super();
   }
 
   getAll() {

@@ -10,7 +10,7 @@ export class ServiceHelper {
   }
 
   protected jwt() {
-    let currentUser = JSON.parse(Cookie.get('currentUser'));
+    let currentUser = Cookie.get('currentUser');
     if (currentUser) {
       let headers = new Headers({ 'Authorization': 'Bearer '+currentUser });
       return new RequestOptions({ headers: headers });

@@ -18,7 +18,7 @@ export class AuthenticationService {
         let data = response.json();
 
         if (data.token) {
-          Cookie.set('currentUser', JSON.stringify(data.token));
+          Cookie.set('currentUser', data.token);
         }
     });
   }

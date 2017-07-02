@@ -26,8 +26,7 @@ deploy:
     on:
       branch: develop
   - provider: firebase
-    token:
-      secure: "RjWoxci0T199lwF0LH0HCISph1S/d7OiJX1fCu3CUohqY97xgay0Qp12lU1i2LLvZ3d1YFQTLJ0Tdh/tYTDBtaxQb/B2XqLvG9pfxmjDj9QOHbpEEp8aMxnEJEiSyZfLokIwavlygO/5mQZHHLV8gixH8nmD02o9EZzdxfi8ZazDd+aj9eybBN2VKYrttKC9Ofrqq569Xi6x3Q2fWPyEzLkp/ghTZzhz+nOQwiNpTTDUdqUdTrHvdodXdOD9OrHbD90VkO2/n7wMYMXLPXnS3exzuXHkmFKkIOOkJF2P2GUA9HQwioSnkDu3Zjoml3geq8+MVPwRmJTbzedBJzHjhfXS2Zl0m4ojiBCCxhCuZmR6gGQPclGgkYvmHwcQDjOAT7T73LFTH7uSTm0GIm90vaFGuJuC0xEVPW+CqacNI1bee2YAqDbCyTwRkjMFJphMxKs3hF/6FmErOzsi6da6yyq5rfjFmnRmJZK8l/Xl7tIOrSs9lew0cl0oZ+r2AAZyCwDrBIbzBJ9yxNrlyUYgMrAbCjInjnRK4MaZ01GFfhsaezl5YmMNuPvY9YwfKs/B4sNBdBl7NdXX/mPwkgX0v9mp657o/plwjpHYBHay/ucmONz5LGd3wUFjQEkLoLH/p0tUlYcNrXcQShwBomRaKMgec+bwWu/tsmNBTS+sSUk="
+    token: $FIREBASE_TOKEN
     project: "wefaves-prod"
     on:
       branch: master

@@ -15,8 +15,7 @@ before_script:
   - npm install
 
 script:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then ng build --prod; fi
-  - if [ "$TRAVIS_BRANCH" != "master" ]; then ng build --dev; fi
+  - ng build --prod
 
 after_success:
   - echo "script succeed"

@@ -18,6 +18,12 @@ script:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then ng build --prod; fi
   - if [ "$TRAVIS_BRANCH" != "master" ]; then ng build --dev; fi
 
+after_success:
+  - echo "script succeed"
+
+after_failure:
+  - echo "script failed"
+
 deploy:
   - provider: firebase
     token:

@@ -1,5 +1,0 @@
-.firebaserc merge=ours
-.travis.yml merge=ours
-.gitattributes merge=ours
-src/assets/js/firebaseconfig.js merge=ours
-README.md merge=ours

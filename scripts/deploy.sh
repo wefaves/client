@@ -10,6 +10,7 @@ then
 fi
 if [ "$1" == "develop" ];
 then
+  ls -l;
   firebase use dev;
   firebase deploy --token $FIREBASE_TOKEN;
 fi

@@ -14,19 +14,23 @@ before_script:
   - npm install -g --silent firebase-tools
   - npm install
 
+#script:
+#  - if [ "$TRAVIS_BRANCH" == "master" ]; then ng build --prod; fi
+#  - if [ "$TRAVIS_BRANCH" != "master" ]; then ng build --dev; fi
 script:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then ng build --prod; fi
-  - if [ "$TRAVIS_BRANCH" != "master" ]; then ng build --dev; fi
+  - ng build --prod
 
 deploy:
-  # deploy develop to the staging environment
-  - provider: script
-    script: scripts/deploy.sh develop
+  - provider: firebase
+    token:
+      secure: "GFf3l6qhniNe8rfumhrx6Y1ME6lC4Mn/UOxX1dIyknOpIs7ETgorxKZPDiucdsWglDQ5bdt3PBcC3EyUssBpADnN8UDCV+5sm9RO5zbLzyls/wlWe3eYhbp2PWX0RcLpjz1yI9VfYFXD1Gi3ElSQATyxSa+O0D2+vLW/nzRDBJUSr12SWvIEpfSj/KkLTjLGM4AsMSvPvX66YYPMxH1rRLdNwK/IK4ksa5cf+xNNcyJrUYAOwtnTTQ5d9tUU7+4uz33AOzI/Tzy0ff5QlEWG4TG0NkrOVxY9LYf4mk2IVG8aPMRorUPOABnt9WBXaZEhxSfjCaVIR5WahPX2XHkpje4CTxVOshq7KGREKdNYCdLbJAvM8lrlsIqMwIL7iH1kpCGKSSxv27feeIU0XN9IbfN9kIDP8r6ShcxK3KzXJKWa5gNJMjRLBmenRiPdWPcjVOJiFJV3bqVgG0XVvwg/pIY58/YZGP7oiViN++JXpt01yLGQo3Au1ue0DsE/MveRAYauRbVmEeNYQRubn61FgWvDQfa1j8mO+7NOsUCs/Z71GW3/D21QxNXuLmY5F6iLQmH/stof0xKD5cpSw0WfZl3TFzWz7O3IVJrp9fRixAIIB6kHZczGhnwrT746RUJoVXbnE6q8t1eBGKa0SX06ZOeINeHi8LzGGyBC6lsoatE="
+    project: "wefaves-dev"
     on:
       branch: develop
-  # deploy master to production
-  - provider: script
-    script: scripts/deploy.sh production
+  - provider: firebase
+    token:
+      secure: "GFf3l6qhniNe8rfumhrx6Y1ME6lC4Mn/UOxX1dIyknOpIs7ETgorxKZPDiucdsWglDQ5bdt3PBcC3EyUssBpADnN8UDCV+5sm9RO5zbLzyls/wlWe3eYhbp2PWX0RcLpjz1yI9VfYFXD1Gi3ElSQATyxSa+O0D2+vLW/nzRDBJUSr12SWvIEpfSj/KkLTjLGM4AsMSvPvX66YYPMxH1rRLdNwK/IK4ksa5cf+xNNcyJrUYAOwtnTTQ5d9tUU7+4uz33AOzI/Tzy0ff5QlEWG4TG0NkrOVxY9LYf4mk2IVG8aPMRorUPOABnt9WBXaZEhxSfjCaVIR5WahPX2XHkpje4CTxVOshq7KGREKdNYCdLbJAvM8lrlsIqMwIL7iH1kpCGKSSxv27feeIU0XN9IbfN9kIDP8r6ShcxK3KzXJKWa5gNJMjRLBmenRiPdWPcjVOJiFJV3bqVgG0XVvwg/pIY58/YZGP7oiViN++JXpt01yLGQo3Au1ue0DsE/MveRAYauRbVmEeNYQRubn61FgWvDQfa1j8mO+7NOsUCs/Z71GW3/D21QxNXuLmY5F6iLQmH/stof0xKD5cpSw0WfZl3TFzWz7O3IVJrp9fRixAIIB6kHZczGhnwrT746RUJoVXbnE6q8t1eBGKa0SX06ZOeINeHi8LzGGyBC6lsoatE="
+    project: "wefaves-prod"
     on:
       branch: master
 

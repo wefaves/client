@@ -15,13 +15,8 @@ before_script:
   - npm install
 
 script:
-  - ng build --prod
-
-after_success:
-  - echo "script succeed"
-
-after_failure:
-  - echo "script failed"
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then ng build --prod; fi
+  - if [ "$TRAVIS_BRANCH" != "master" ]; then ng build --dev; fi
 
 deploy:
   - provider: firebase

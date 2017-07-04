@@ -19,12 +19,14 @@ script:
   - if [ "$TRAVIS_BRANCH" != "master" ]; then ng build --dev; fi
 
 deploy:
+  # deploy develop to the staging environment
   - provider: script
-  script: scripts/deploy.sh develop
+    script: scripts/deploy.sh develop
     on:
       branch: develop
+  # deploy master to production
   - provider: script
-  script: scripts/deploy.sh master
+    script: scripts/deploy.sh production
     on:
       branch: master
 

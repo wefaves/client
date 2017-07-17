@@ -19,6 +19,7 @@ deploy:
   bucket: dev.my.wefaves.com
   local-dir: "./dist"
   acl: public_read
+  skip_cleanup: true
   on:
     repo: wefaves/client
     branch: develop

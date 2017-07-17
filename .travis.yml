@@ -1,21 +1,36 @@
-# tavis.yml
-
 language: node_js
 node_js:
-  - "7"
-
+- '7'
 branches:
   only:
   - master
   - develop
-
 before_script:
-  - npm install -g --silent @angular/cli
-  - npm install
-
+- npm install -g --silent @angular/cli
+- npm install
 script:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then ng build --prod; fi
-  - if [ "$TRAVIS_BRANCH" != "master" ]; then ng build --dev; fi
-
+- if [ "$TRAVIS_BRANCH" == "master" ]; then ng build --prod; fi
+- if [ "$TRAVIS_BRANCH" != "master" ]; then ng build --dev; fi
+deploy:
+  provider: s3
+  access_key_id: AKIAJUOXUY6DMFUSBYGQ
+  secret_access_key:
+    secure: WqtMeuOMg0fubSFWWmG6Hezv6LBCxGrvPbimfZS49Mk5XzVzfxqTMxGu7PAYx23ZE6ou+er2KSM6inR+vSQvGsG+4eTUHS14oKkjIYBeICb5tHogsgprYRsDkwssRgpvlpjjZeSfSYBsxKy10bPicNue7tQ6mVGQCxzuqB/5/Zmj1e47aXamgl2iYZ3NnhPj6KY44PKW/BaYbohtYoVPXMsRGCVF8GYgfqmeyF04Fo1vGDcNNtEGKuTmu+19cAUuTeQEh7VXqbIqyW84Y+MskuOPGw5XABFXinDHkoUITOihq29gshttgjMC8vY1rLZ2xQkzcRvrj0jtVqDvN9ZSj60TepDY/VJckmWLa2W69RidvtxUZN3I18X7v+Jje+s5qqN5Ka5l1wiwadCalSzIwQttwZ9mOG7bYEtRL/m/cu54ktRQ/SZEc0qkJpU54zIAAJejqLOL6BKxPJnEq8+3YOTPW57W4jaxBzlsCZd0J9p8PDYcexMP4OQdXpcp5Ru8b4C6yQR9oqrAxaeHLS+01C7zHuUou210cGhz54obl+iveteJh+wPB7XR/v85iCRfykAlL9pV5R8OJ6Asbzu0KZ/iaE3Og/bz8qgk9Bp9HC6j7+GRyyi4dVVlQEi/tm6E4fdzS1ffQepaj0ST7NnZw4/jU4wEl7wdReuDtrRt3A8=
+  bucket: dev.my.wefaves.com
+  skip_cleanup: true
+  acl: public_read
+  region: eu-central-1
+  on:
+      branch: develop
+  provider: s3
+  access_key_id: AKIAJUOXUY6DMFUSBYGQ
+  secret_access_key:
+    secure: WqtMeuOMg0fubSFWWmG6Hezv6LBCxGrvPbimfZS49Mk5XzVzfxqTMxGu7PAYx23ZE6ou+er2KSM6inR+vSQvGsG+4eTUHS14oKkjIYBeICb5tHogsgprYRsDkwssRgpvlpjjZeSfSYBsxKy10bPicNue7tQ6mVGQCxzuqB/5/Zmj1e47aXamgl2iYZ3NnhPj6KY44PKW/BaYbohtYoVPXMsRGCVF8GYgfqmeyF04Fo1vGDcNNtEGKuTmu+19cAUuTeQEh7VXqbIqyW84Y+MskuOPGw5XABFXinDHkoUITOihq29gshttgjMC8vY1rLZ2xQkzcRvrj0jtVqDvN9ZSj60TepDY/VJckmWLa2W69RidvtxUZN3I18X7v+Jje+s5qqN5Ka5l1wiwadCalSzIwQttwZ9mOG7bYEtRL/m/cu54ktRQ/SZEc0qkJpU54zIAAJejqLOL6BKxPJnEq8+3YOTPW57W4jaxBzlsCZd0J9p8PDYcexMP4OQdXpcp5Ru8b4C6yQR9oqrAxaeHLS+01C7zHuUou210cGhz54obl+iveteJh+wPB7XR/v85iCRfykAlL9pV5R8OJ6Asbzu0KZ/iaE3Og/bz8qgk9Bp9HC6j7+GRyyi4dVVlQEi/tm6E4fdzS1ffQepaj0ST7NnZw4/jU4wEl7wdReuDtrRt3A8=
+  bucket: prod.my.wefaves.com
+  skip_cleanup: true
+  acl: public_read
+  region: eu-central-1
+  on:
+      branch: develop
 notifications:
   slack: wefaves:F04bQ8KHvdkQJ5HtOUvhBvy8

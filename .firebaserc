@@ -1,6 +1,0 @@
-{
-  "projects": {
-    "dev": "wefaves-dev",
-    "prod": "wefaves-prod"
-  }
-}

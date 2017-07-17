@@ -1,42 +1,34 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map'
-import { environment } from "../../environments/environment";
-import { Cookie} from "ng2-cookies";
+import {ApiService} from "./api.service";
+import {User} from "../models/user/user";
+import {UserService} from "./user.service";
+import {Router} from "@angular/router";
+import {AlertService} from "app/services/alert.service";
 
 @Injectable()
 export class AuthenticationService {
 
-  constructor(private http: Http) { }
+  constructor(private userService: UserService,
+              private apiService: ApiService,
+              private router: Router,
+              private alertService: AlertService) { }
 
-  login(username: string, password: string) {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-
-    return this.http.post(environment.apiUrl+'/login_check', JSON.stringify({ _username: username, _password: password }),  options)
-      .map((response: Response) => {
-        let data = response.json();
-
-        if (data.token) {
-          Cookie.set('currentUser', data.token);
-        }
+  login(username: string, password: string): Promise<User> {
+    return new Promise((resolve, reject) => {
+      this.apiService.postRequest('/login_check', {_username: username, _password: password})
+        .subscribe(
+          data => resolve(User.ParseFromJwt(data)),
+          error => reject(<any>error));
     });
   }
 
   logout() {
-    Cookie.delete('currentUser');
-    window.location.reload();
-  }
-
-  isAuthentificated() {
-    if (Cookie.get('currentUser')) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  getCurrentUser() {
-    // return this.currentUser;
+    this.userService.deleteOnStorage().then(
+      () => {
+        this.alertService.success('Vous êtes déconnecté.', true);
+        this.router.navigate(['/account/login'])
+      }
+    );
   }
 }

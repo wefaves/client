@@ -2,24 +2,20 @@
  * Created by romain on 2017-04-09.
  */
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import 'rxjs/add/operator/map'
-import { environment } from "../../environments/environment";
-import { ServiceHelper } from "./service.helper";
-import { AuthenticationService } from "./authentification.service";
+import {ApiService} from "./api.service";
+import {Bookmark} from "../models/bookmark/bookmark";
 
 @Injectable()
-export class BookmarkService extends ServiceHelper {
+export class BookmarkService {
 
-  constructor(private http: Http, authenticationService: AuthenticationService) {
-    super();
-  }
+  constructor(private apiService: ApiService) {}
 
-  getAll() {
-    return this.http.get(environment.apiUrl+'/users/self/favorite', this.jwt()).map((response: Response) => response.json());
-  }
-
-  delete(bookmarkId: string) {
-    return this.http.delete(environment.apiUrl+'/users/self/favorite/'+bookmarkId, this.jwt()).map((response: Response) => response.json());
+  public getUserBoomarks(): Promise<[Bookmark]> {
+    return new Promise((resolve, reject) => {
+      this.apiService.getRequest('/users/self/favorite')
+        .subscribe(
+          data => resolve(Bookmark.ParseFromObjectToArray(data)),
+          error => reject(<any>error));
+    });
   }
 }

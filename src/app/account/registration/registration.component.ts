@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrationComponent implements OnInit {
 
+  private model: any = {};
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  registration() {
+    console.log(this.model);
+  }
 }

@@ -19,14 +19,6 @@ export class ProfileComponent implements OnInit {
   }
 
   getUserInfo() {
-    this.userService.getSelf()
-      .subscribe(
-        user => {
-          this.user = user;
-        }, error => {
-          this.alertService.error(error);
-        }
-      );
   }
 
 }

@@ -20,14 +20,14 @@ export class HistoryComponent implements OnInit {
   }
 
   getUserHistory() {
-    this.historyService.getAll()
-      .subscribe(
-        history => {
-          this.history = history;
-        }, error => {
-          this.alertService.error(error);
-        }
-      );
+    // this.historyService.getAll()
+    //   .subscribe(
+    //     history => {
+    //       this.history = history;
+    //     }, error => {
+    //       this.alertService.error(error);
+    //     }
+    //   );
   }
 
   onDelete() {

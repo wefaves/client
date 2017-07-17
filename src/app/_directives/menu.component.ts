@@ -2,7 +2,7 @@
  * Created by romain on 2017-04-09.
  */
 import { Component, OnInit } from '@angular/core';
-import {AuthenticationService} from "../_services/authentification.service";
+import {AuthenticationService} from "../services/authentification.service";
 
 @Component({
   moduleId: module.id,

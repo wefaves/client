@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AlertService} from "../../_services/alert.service";
-import {UserService} from "../../_services/user.service";
+import {AlertService} from "../../services/alert.service";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-profile',

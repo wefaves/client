@@ -20,6 +20,7 @@ deploy:
   local-dir: "dist"
   acl: public_read
   skip_cleanup: true
+  region: eu-central-1
   on:
     repo: wefaves/client
     branch: develop

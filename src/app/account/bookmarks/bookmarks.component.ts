@@ -10,8 +10,8 @@ import {Bookmark} from "../../models/bookmark/bookmark";
 })
 export class BookmarksComponent implements OnInit {
 
-  bookmarks: Array<Bookmark> =  new Array<Bookmark>();
-  selectedBookmark: Bookmark;
+  private bookmarks: Array<Bookmark> =  new Array<Bookmark>();
+  private selectedBookmark: Bookmark;
 
   constructor(private bookmarkService: BookmarkService, private alertService: AlertService) { }
 
@@ -36,9 +36,9 @@ export class BookmarksComponent implements OnInit {
   }
 
   getBookmarks() {
-    this.bookmarkService.getUserBoomarks().then(
+    this.bookmarkService.getUserBookmarks().then(
       (bookmarks) => {
-        console.log(bookmarks);
+        this.alertService.success('Vos favoris ont été synchronisé.')
         this.bookmarks = bookmarks;
       }
     ).catch(
@@ -48,19 +48,20 @@ export class BookmarksComponent implements OnInit {
     );
   }
   onDelete() {
-    // this.bookmarkService.delete(this.selectedBookmark.id)
-    //   .subscribe(
-    //     data => {
-    //       this.alertService.success('Your bookmark has been deleted.');
-    //     }, error => {
-    //       // this.alertService.error(error);
-    //       let index: number = this.bookmarks.indexOf(this.selectedBookmark);
-    //       if (index !== -1) {
-    //         this.bookmarks.splice(index, 1);
-    //       }
-    //       this.alertService.success('Your bookmark has been deleted.');
-    //     }
-    //   );
+    this.bookmarkService.deleteById(this.selectedBookmark.id).then(
+      (res) => {
+        console.log(res);
+        this.alertService.success('Your bookmark has been deleted.');
+        let index: number = this.bookmarks.indexOf(this.selectedBookmark);
+        if (index !== -1) {
+          this.bookmarks.splice(index, 1);
+        }
+      }
+    ).catch(
+      (err) => {
+        this.alertService.error(err);
+      }
+    );
   }
 
   onEdit() {

@@ -69,13 +69,17 @@ export class ApiService {
    * @param body
    * @returns {Observable<>}
    */
-  putRequest(url: string, body: Object): Observable<Object> {
-    return this.http.put(this.BASE_URL + url, body, ApiService.formatHeader())
+  putRequest(url: string, body: Object, auth: boolean = true): Observable<Object> {
+    let header: RequestOptions = null;
+
+    if (auth) {
+      header = ApiService.formatHeader();
+    }
+    return this.http.put(this.BASE_URL + url, body, header)
       .map(ApiService.handleBody)
       .catch(ApiService.handleError);
   }
 
-  //noinspection JSUnusedGlobalSymbols
   /**
    * Perform a POST request.
    *
@@ -84,30 +88,15 @@ export class ApiService {
    * @param body
    * @returns {Observable<>}
    */
-  postRequest(url: string, body: Object): Observable<Object> {
-    return this.http.post(this.BASE_URL + url, body, ApiService.formatHeader())
+  postRequest(url: string, body: Object, auth: boolean = true): Observable<Object> {
+    let header: RequestOptions = null;
+
+    if (auth) {
+      header = ApiService.formatHeader();
+    }
+    return this.http.post(this.BASE_URL + url, body, header)
       .map(ApiService.handleBody)
       .catch(ApiService.handleError);
-  }
-
-  //noinspection JSUnusedGlobalSymbols
-  /**
-   * Perform a HEAD request.
-   *
-   * @param url
-   * @param auth
-   * @returns {Observable<>}
-   */
-  headRequest(url: string, auth: boolean): Observable<Object> {
-    if (auth) {
-      return this.http.head(this.BASE_URL + url, ApiService.formatHeader())
-        .map(ApiService.handleBody)
-        .catch(ApiService.handleError);
-    } else {
-      return this.http.head(url)
-        .map(ApiService.handleBody)
-        .catch(ApiService.handleError);
-    }
   }
 
   /**
@@ -117,13 +106,17 @@ export class ApiService {
    * @param auth
    * @returns {Promise<>}
    */
-  getRequest(url: string): Observable<Object> {
-    return this.http.get(this.BASE_URL + url, ApiService.formatHeader())
+  getRequest(url: string, auth: boolean = true): Observable<Object> {
+    let header: RequestOptions = null;
+
+    if (auth) {
+      header = ApiService.formatHeader();
+    }
+    return this.http.get(this.BASE_URL + url, header)
       .map(ApiService.handleBody)
       .catch(ApiService.handleError);
   }
 
-  //noinspection JSUnusedGlobalSymbols
   /**
    * Perform a DELETE request.
    *
@@ -131,15 +124,33 @@ export class ApiService {
    * @param auth
    * @returns {Observable<>}
    */
-  deleteRequest(url: string, auth: boolean): Observable<Object> {
+  deleteRequest(url: string, auth: boolean = true): Observable<Object> {
+    let header: RequestOptions = null;
+
     if (auth) {
-      return this.http.delete(this.BASE_URL + url, ApiService.formatHeader())
-        .map(ApiService.handleBody)
-        .catch(ApiService.handleError);
-    } else {
-      return this.http.delete(this.BASE_URL + url)
-        .map(ApiService.handleBody)
-        .catch(ApiService.handleError);
+      header = ApiService.formatHeader();
     }
+    return this.http.delete(this.BASE_URL + url, header)
+      .map(ApiService.handleBody)
+      .catch(ApiService.handleError);
+  }
+
+  /**
+   * Perform a Patch request.
+   *
+   * @param url
+   * @param body
+   * @param auth
+   * @returns {Observable<>}
+   */
+  patchRequest(url: string, body: Object, auth: boolean = true): Observable<Object> {
+    let header: RequestOptions = null;
+
+    if (auth) {
+      header = ApiService.formatHeader();
+    }
+    return this.http.patch(this.BASE_URL + url, body, header)
+      .map(ApiService.handleBody)
+      .catch(ApiService.handleError);
   }
 }

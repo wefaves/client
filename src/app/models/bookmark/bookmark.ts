@@ -35,6 +35,16 @@ export class Bookmark {
     return bookmarks;
   }
 
+  public static GetModel(bookmark: Bookmark): Object {
+    return {
+      data : {
+        index: bookmark.id,
+        title: bookmark.title,
+        url: bookmark.url
+      }
+    }
+  }
+
   constructor(id: number, indexId: number, title: string, url: string, user: User) {
     this._id = id;
     this._indexId = indexId;

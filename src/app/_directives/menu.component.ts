@@ -17,7 +17,7 @@ export class MenuComponent {
   private user: User;
 
   constructor(private authenticatedService: AuthenticationService, private userService: UserService) {
-    this.user = User.GetNewInstance();
+    this.user = userService.getOnStorageSync();
 
     this.userService.subscribeToUserService((user) => {
       this.user = user;

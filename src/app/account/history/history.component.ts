@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AlertService} from "../../services/alert.service";
 import {HistoryService} from "../../services/history.service";
+import {History} from "../..//models/history/history";
 
 @Component({
   selector: 'app-history',
@@ -9,7 +10,7 @@ import {HistoryService} from "../../services/history.service";
 })
 export class HistoryComponent implements OnInit {
 
-  history: any = [];
+  private history: Array<History> =  new Array<History>();
   constructor(
     private alertService: AlertService,
     private historyService: HistoryService
@@ -20,14 +21,16 @@ export class HistoryComponent implements OnInit {
   }
 
   getUserHistory() {
-    // this.historyService.getAll()
-    //   .subscribe(
-    //     history => {
-    //       this.history = history;
-    //     }, error => {
-    //       this.alertService.error(error);
-    //     }
-    //   );
+    this.historyService.getUserHistory().then(
+      (history) => {
+        this.history = history;
+        this.alertService.success('Votre historique à été synchronisé.');
+      }
+    ).catch(
+      (err) => {
+        this.alertService.error(err);
+      }
+    );
   }
 
   onDelete() {

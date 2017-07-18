@@ -10,11 +10,38 @@ export class BookmarkService {
 
   constructor(private apiService: ApiService) {}
 
-  public getUserBoomarks(): Promise<[Bookmark]> {
+  public getUserBookmarks(): Promise<[Bookmark]> {
     return new Promise((resolve, reject) => {
       this.apiService.getRequest('/users/self/favorite')
         .subscribe(
           data => resolve(Bookmark.ParseFromObjectToArray(data)),
+          error => reject(<any>error));
+    });
+  }
+
+  public getOne(bookmark_id: number): Promise<Bookmark> {
+    return new Promise((resolve, reject) => {
+      this.apiService.getRequest('/users/self/favorite/' + bookmark_id)
+        .subscribe(
+          data => resolve(Bookmark.ParseFromObject(data)),
+          error => reject(<any>error));
+    });
+  }
+
+  public deleteById(bookmark_id: number): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.apiService.deleteRequest('/users/self/favorite/' + bookmark_id)
+        .subscribe(
+          data => resolve(data),
+          error => reject(<any>error));
+    });
+  }
+
+  public editById(bookmark: Bookmark): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.apiService.patchRequest('/users/self/favorite/' + bookmark.id, Bookmark.GetModel(bookmark))
+        .subscribe(
+          data => resolve(data),
           error => reject(<any>error));
     });
   }

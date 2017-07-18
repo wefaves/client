@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Response } from '@angular/http';
 import 'rxjs/add/operator/map'
-import { environment} from '../../environments/environment';
 import { Subject } from 'rxjs/Subject';
 import { ApiService } from './api.service';
 import { User } from "../models/user/user";
+import { Cookie } from "ng2-cookies/ng2-cookies";
 
 @Injectable()
 export class UserService {
@@ -41,7 +40,9 @@ export class UserService {
         }
       }).then(() => {
         this.updateUserService(user);
+        console.log(JSON.stringify(User.GetModel(user)));
         localStorage.setItem('user', JSON.stringify(User.GetModel(user)));
+        Cookie.set("CurrentUser", JSON.stringify(User.GetModel(user)));
         resolve();
       });
     });
@@ -93,37 +94,9 @@ export class UserService {
   deleteOnStorage(): Promise<any> {
     return new Promise((resolve) => {
       localStorage.removeItem('user');
+      Cookie.delete("CurrentUser");
       this.updateOnStorage(null);
       resolve();
     });
   }
-
-  /* ---------------------------------------------------------------------------------------------------------------- */
-  /* User API management                                                                                              */
-
-
-  // getAll() {
-  //   return
-  //   return this.http.get(environment.apiUrl+'/users').map((response: Response) => response.json());
-  // }
-  //
-  // getSelf() {
-  //   return this.http.get(environment.apiUrl+'/users/self', this.jwt()).map((response: Response) =>response.json());
-  // }
-  //
-  // getById(id: string) {
-  //   return this.http.get(environment.apiUrl+'/users/'+id).map((response: Response) =>response.json());
-  // }
-  //
-  // update(user: any = {}) {
-  //   return this.http.put(environment.apiUrl+'/users/'+user.id, user, this.jwt()).map((response: Response) => response.json());
-  // }
-  //
-  // create(user: any = {}) {
-  //   return this.http.post(environment.apiUrl+'/users', user).map((response: Response) => response.json());
-  // }
-
-  // delete(id: number) {
-  //   return this.http.delete('/api/users/' + id, this.jwt()).map((response: Response) => response.json());
-  // }
 }

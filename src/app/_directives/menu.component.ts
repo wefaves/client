@@ -1,8 +1,10 @@
 /**
  * Created by romain on 2017-04-09.
  */
-import { Component, OnInit } from '@angular/core';
-import {AuthenticationService} from "../_services/authentification.service";
+import { Component } from '@angular/core';
+import {AuthenticationService} from "../services/authentification.service";
+import {UserService} from "../services/user.service";
+import {User} from "../models/user/user";
 
 @Component({
   moduleId: module.id,
@@ -11,16 +13,18 @@ import {AuthenticationService} from "../_services/authentification.service";
 })
 
 export class MenuComponent {
-  authenticated: boolean = false;
 
-  constructor(private authenticatedService: AuthenticationService) { }
+  private user: User;
 
-  ngOnInit() {
-    this.authenticated = this.authenticatedService.isAuthentificated();
+  constructor(private authenticatedService: AuthenticationService, private userService: UserService) {
+    this.user = userService.getOnStorageSync();
+
+    this.userService.subscribeToUserService((user) => {
+      this.user = user;
+    });
   }
 
   logout() {
-    console.log('logout')
     this.authenticatedService.logout();
   }
 }

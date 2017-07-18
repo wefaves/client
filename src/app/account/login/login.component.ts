@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {AlertService} from "../../_services/alert.service";
-import {AuthenticationService} from "../../_services/authentification.service";
+import {AlertService} from "../../services/alert.service";
+import {AuthenticationService} from "../../services/authentification.service";
 import {Router, ActivatedRoute} from "@angular/router";
+import {AuthGuard} from "../../_guard/auth.guard";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-login',
@@ -15,30 +17,37 @@ export class LoginComponent implements OnInit {
 
   constructor(private alertService: AlertService,
               private authenticationService: AuthenticationService,
+              private authGuard: AuthGuard,
+              private userService: UserService,
               private route: ActivatedRoute,
               private router: Router) { }
 
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 
-    if (this.authenticationService.isAuthentificated()) {
+    if (this.authGuard.isAuthenticated()) {
       this.alertService.success('You\'re already login', true);
       this.router.navigate([this.returnUrl]);
     }
   }
 
   login() {
-    this.authenticationService.login(this.model.username, this.model.password)
-      .subscribe(
-        data => {
-          window.location.reload();
-          this.router.navigate([this.returnUrl]);
-        },
-        error => {
-          let obj = JSON.parse(error._body);
-
-          this.alertService.error(obj.message);
-          this.loading = false;
-        });
+    this.loading = true;
+    this.authenticationService.login(this.model.username, this.model.password).then(
+      (user) => {
+        this.loading = false;
+        this.userService.createOnStorage(user).then(
+          (res) => {
+            this.alertService.success('Bonjour !', true);
+            this.router.navigate([this.returnUrl]);
+          }
+        );
+      }
+    ).catch(
+      (error) => {
+        this.loading = false;
+        this.alertService.error(error);
+      }
+    );
   }
 }

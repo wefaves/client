@@ -5,5 +5,14 @@
     <p>Environment version = {{environmentVersion}}</p>
     <alert></alert>
   </div>
+
+
+  <div class="row"  >
+    <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" *ngFor="let bookmark of bookmarks">
+       <img src="https://www.google.com/s2/favicons?domain={{bookmark.url}}" class="img-responsive">
+        <img src="http://fakeimg.pl/320x320/" (click)="openInNewTab(bookmark.url);" style="cursor: pointer;" class="img-responsive">
+       <h4 style="text-align: center">{{bookmark.title}}</h4>
+     </div>
+  </div>
   <router-outlet></router-outlet>
 </div>

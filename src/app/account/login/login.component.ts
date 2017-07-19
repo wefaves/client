@@ -11,10 +11,9 @@ import {UserService} from "../../services/user.service";
   styleUrls: ['./login.component.sass']
 })
 export class LoginComponent implements OnInit {
-  model: any = {};
-  loading = false;
-  returnUrl: string;
 
+  model: any = {};
+  returnUrl: string;
   constructor(private alertService: AlertService,
               private authenticationService: AuthenticationService,
               private authGuard: AuthGuard,
@@ -32,20 +31,19 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.loading = true;
     this.authenticationService.login(this.model.username, this.model.password).then(
       (user) => {
-        this.loading = false;
         this.userService.createOnStorage(user).then(
-          (res) => {
+          () => {
             this.alertService.success('Bonjour !', true);
+            console.log('return url :');
+            console.log(this.returnUrl);
             this.router.navigate([this.returnUrl]);
           }
         );
       }
     ).catch(
       (error) => {
-        this.loading = false;
         this.alertService.error(error);
       }
     );

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map'
 import { Subject } from 'rxjs/Subject';
-import { ApiService } from './api.service';
 import { User } from "../models/user/user";
 import { Cookie } from "ng2-cookies/ng2-cookies";
 
@@ -10,7 +9,7 @@ export class UserService {
 
   private _user: Subject<User> = new Subject<User>();
 
-  constructor(public apiService: ApiService) {}
+  constructor() {}
 
   /* ---------------------------------------------------------------------------------------------------------------- */
   /* Observable use object                                                                                            */
@@ -39,10 +38,9 @@ export class UserService {
           this.deleteOnStorage();
         }
       }).then(() => {
-        this.updateUserService(user);
-        console.log(JSON.stringify(User.GetModel(user)));
         localStorage.setItem('user', JSON.stringify(User.GetModel(user)));
-        Cookie.set("CurrentUser", JSON.stringify(User.GetModel(user)));
+        Cookie.set("currentUser", user.token);
+        this.updateUserService(user);
         resolve();
       });
     });
@@ -55,7 +53,6 @@ export class UserService {
    */
   getOnStorage(): Promise<User> {
     return new Promise((resolve) => {
-      this.updateUserService(User.ParseFromObject(localStorage.getItem('user')));
       resolve(localStorage.getItem('user'));
     });
   }
@@ -67,23 +64,7 @@ export class UserService {
    */
   getOnStorageSync(): User {
     const user = User.ParseFromObject(JSON.parse(localStorage.getItem('user')));
-
-    this.updateUserService(user);
     return user;
-  }
-
-  /**
-   * Update user properties from local storage.
-   *
-   * TODO to implement
-   *
-   * @param user
-   * @returns {Promise<User>}
-   */
-  updateOnStorage(user: User): Promise<User> {
-    return new Promise((resolve) => {
-      resolve(localStorage.getItem('user'));
-    });
   }
 
   /**
@@ -94,8 +75,8 @@ export class UserService {
   deleteOnStorage(): Promise<any> {
     return new Promise((resolve) => {
       localStorage.removeItem('user');
-      Cookie.delete("CurrentUser");
-      this.updateOnStorage(null);
+      Cookie.delete("currentUser");
+      this.updateUserService(null);
       resolve();
     });
   }

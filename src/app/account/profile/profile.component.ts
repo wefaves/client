@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AlertService} from "../../_services/alert.service";
-import {UserService} from "../../_services/user.service";
+import {AlertService} from "../../services/alert.service";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-profile',
@@ -19,14 +19,6 @@ export class ProfileComponent implements OnInit {
   }
 
   getUserInfo() {
-    this.userService.getSelf()
-      .subscribe(
-        user => {
-          this.user = user;
-        }, error => {
-          this.alertService.error(error);
-        }
-      );
   }
 
 }

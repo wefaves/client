@@ -8,12 +8,14 @@ import { RegistrationComponent } from './registration/registration.component';
 import { FormsModule } from "@angular/forms";
 import { BookmarksComponent } from './bookmarks/bookmarks.component';
 import { HistoryComponent } from './history/history.component';
+import { TruncateModule } from "ng2-truncate";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    AccountRoutingModule
+    AccountRoutingModule,
+    TruncateModule
   ],
   declarations: [AccountComponent, ProfileComponent, LoginComponent, RegistrationComponent, ProfileComponent, BookmarksComponent, HistoryComponent]
 })

@@ -21,7 +21,7 @@ export class UserService {
       if (this.jwtHelper.isTokenExpired(token)) {
         this.deleteOnStorage().then(
           () => {
-            this.alertService.error('Votre session à expiré veuilliez vous reconnecter,', true);
+            this.alertService.warning('Votre session à expiré veuilliez vous reconnecter,', true);
             this.router.navigate(['/account/login']);
           }
         );

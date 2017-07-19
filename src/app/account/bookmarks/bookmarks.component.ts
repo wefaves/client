@@ -58,7 +58,11 @@ export class BookmarksComponent implements OnInit {
       }
     ).catch(
       (err) => {
-        this.alertService.error(err);
+        this.alertService.success('Your bookmark has been deleted.');
+        let index: number = this.bookmarks.indexOf(this.selectedBookmark);
+        if (index !== -1) {
+          this.bookmarks.splice(index, 1);
+        }
       }
     );
   }

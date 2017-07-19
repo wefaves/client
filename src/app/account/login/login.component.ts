@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
       (user) => {
         this.userService.createOnStorage(user).then(
           () => {
-            this.alertService.success('Bonjour !', true);
+            this.alertService.success('Bonjour ' + user.username + ' 🤗', true);
             this.router.navigate([this.returnUrl]);
           }
         );

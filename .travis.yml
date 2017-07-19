@@ -35,7 +35,7 @@ deploy:
   region: eu-central-1
   on:
     repo: wefaves/client
-    branch: master
+    all_branches: true
 
 notifications:
   slack: wefaves:F04bQ8KHvdkQJ5HtOUvhBvy8

@@ -3,13 +3,14 @@ import 'rxjs/add/operator/map'
 import { Subject } from 'rxjs/Subject';
 import { User } from "../models/user/user";
 import { Cookie } from "ng2-cookies/ng2-cookies";
+import {ApiService} from "./api.service";
 
 @Injectable()
 export class UserService {
 
   private _user: Subject<User> = new Subject<User>();
 
-  constructor() {}
+  constructor(private apiService: ApiService) {}
 
   /* ---------------------------------------------------------------------------------------------------------------- */
   /* Observable use object                                                                                            */
@@ -78,6 +79,18 @@ export class UserService {
       Cookie.delete("currentUser");
       this.updateUserService(null);
       resolve();
+    });
+  }
+
+  /* ---------------------------------------------------------------------------------------------------------------- */
+  /* API                                                                                         */
+
+  postOnApi(user: {}): Promise<User> {
+    return new Promise((resolve, reject) => {
+      this.apiService.postRequest('/users', user)
+        .subscribe(
+          data => resolve(User.ParseFromObject(data)),
+          error => reject(<any>error));
     });
   }
 }

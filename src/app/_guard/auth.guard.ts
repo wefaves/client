@@ -9,7 +9,6 @@ export class AuthGuard implements CanActivate {
   constructor(private router: Router, private userService: UserService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-
     if (this.isAuthenticated()) {
       return true;
     }
@@ -18,8 +17,8 @@ export class AuthGuard implements CanActivate {
     return false;
   }
 
-  isAuthenticated() {
-    if (this.userService.getOnStorageSync().token) {
+  isAuthenticated(): boolean {
+    if (this.userService.getOnStorageSync()) {
       return true;
     }
     return false;

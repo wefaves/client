@@ -23,10 +23,13 @@ export class User {
     return user;
   }
 
-  public static ParseFromObject(object): User {
+  public static ParseFromObject(object, inData: boolean = false): User {
     const user = User.GetNewInstance();
 
     if (object) {
+      if (inData) {
+        object = object.data;
+      }
       user.username = object.username;
       user.id = object.id;
       user.email = object.email;

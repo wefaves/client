@@ -110,4 +110,22 @@ export class UserService {
           error => reject(<any>error));
     });
   }
+
+  getSelf(): Promise<User> {
+    return new Promise((resolve, reject) => {
+      this.apiService.getRequest('/users/self')
+        .subscribe(
+          data => resolve(User.ParseFromObject(data)),
+          error => reject(<any>error));
+    });
+  }
+
+  updateSelf(model: {}): Promise<User> {
+    return new Promise((resolve, reject) => {
+      this.apiService.patchRequest('/users/self', model)
+        .subscribe(
+          data => resolve(User.ParseFromObject(data, true)),
+          error => reject(<any>error));
+    });
+  }
 }

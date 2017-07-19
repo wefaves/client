@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
   }
 
   isAuthenticated(): boolean {
-    if (this.userService.getOnStorageSync()) {
+    if (this.userService.getOnStorageSync().token) {
       return true;
     }
     return false;

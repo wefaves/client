@@ -15,6 +15,5 @@ export class RegistrationComponent implements OnInit {
   }
 
   registration() {
-    console.log(this.model);
   }
 }

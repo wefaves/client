@@ -50,7 +50,6 @@ export class BookmarksComponent implements OnInit {
   onDelete() {
     this.bookmarkService.deleteById(this.selectedBookmark.id).then(
       (res) => {
-        console.log(res);
         this.alertService.success('Your bookmark has been deleted.');
         let index: number = this.bookmarks.indexOf(this.selectedBookmark);
         if (index !== -1) {

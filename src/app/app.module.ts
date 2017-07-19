@@ -15,12 +15,14 @@ import { BookmarkService } from "./services/bookmark.service";
 import { HistoryService } from "./services/history.service";
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 import { ApiService } from "./services/api.service";
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
     AlertComponent,
     HomeComponent,
-    MenuComponent
+    MenuComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +41,6 @@ import { ApiService } from "./services/api.service";
     HistoryService,
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
-  bootstrap: [HomeComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

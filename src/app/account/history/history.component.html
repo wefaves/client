@@ -38,6 +38,8 @@
   </div>
 </div>
 
+<h4>My history :</h4>
+<button class="btn btn-warning" (click)="deleteAll()">Supprimer l'historique</button>
 <div class="list-group" *ngFor="let item of history" (click)="onSelect(item)">
   <li class="list-group-item justify-content-between">
     <p class="">{{ item.lastVisit | date:'shortTime' }}</p>

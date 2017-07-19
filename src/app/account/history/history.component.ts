@@ -28,7 +28,7 @@ export class HistoryComponent implements OnInit {
         if (this.history.length > 0) {
           this.alertService.success('Votre historique à été synchronisé.');
         } else {
-          this.alertService.warning('Aucun favori synchronisé.');
+          this.alertService.warning('Aucun historique synchronisé.');
         }
       }
     ).catch(
@@ -59,4 +59,10 @@ export class HistoryComponent implements OnInit {
     this.selectedItem = item;
   }
 
+  deleteAll() {
+    for (const item of this.history) {
+      this.historyService.delete(item.id);
+    }
+    this.history = new Array<History>();
+  }
 }

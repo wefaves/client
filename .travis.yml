@@ -22,7 +22,6 @@ deploy:
   skip_cleanup: true
   region: eu-central-1
   on:
-    repo: wefaves/client
     branch: develop
   provider: s3
   access_key_id: AKIAJUOXUY6DMFUSBYGQ
@@ -34,7 +33,6 @@ deploy:
   skip_cleanup: true
   region: eu-central-1
   on:
-    repo: wefaves/client
     branch: master
 
 notifications:

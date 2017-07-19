@@ -4,13 +4,30 @@ import { Subject } from 'rxjs/Subject';
 import { User } from "../models/user/user";
 import { Cookie } from "ng2-cookies/ng2-cookies";
 import {ApiService} from "./api.service";
+import {JwtHelper} from "angular2-jwt";
+import {AlertService} from "./alert.service";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class UserService {
 
+  jwtHelper: JwtHelper = new JwtHelper();
   private _user: Subject<User> = new Subject<User>();
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private alertService: AlertService, private router: Router) {
+    if (localStorage.getItem('user')) {
+      const token = JSON.parse(localStorage.getItem('user')).token;
+
+      if (this.jwtHelper.isTokenExpired(token)) {
+        this.deleteOnStorage().then(
+          () => {
+            this.alertService.error('Votre session à expiré veuilliez vous reconnecter,', true);
+            this.router.navigate(['/account/login']);
+          }
+        );
+      }
+    }
+  }
 
   /* ---------------------------------------------------------------------------------------------------------------- */
   /* Observable use object                                                                                            */

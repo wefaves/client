@@ -11,18 +11,18 @@
         <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Account
         </a>
-        <div *ngIf="user.username" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <div *ngIf="user" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="#/account">My profile</a>
           <a class="dropdown-item" href="#/account/bookmarks">My bookmarks</a>
           <a class="dropdown-item" href="#/account/history">My history</a>
         </div>
-        <div *ngIf="!user.username" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <div *ngIf="!user" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="#/account/login">Connection</a>
           <a class="dropdown-item" href="#/account/registration">Registration</a>
         </div>
       </li>
     </ul>
-    <span *ngIf="user.username" class="navbar-text">
+    <span *ngIf="user" class="navbar-text">
       <button class="btn btn-outline-success my-2 my-sm-0" (click)="logout()">Logout</button>
     </span>
   </div>

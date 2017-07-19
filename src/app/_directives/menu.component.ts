@@ -14,11 +14,14 @@ import {User} from "../models/user/user";
 
 export class MenuComponent {
 
-  private user: User;
+  private user: User = null;
 
   constructor(private authenticatedService: AuthenticationService, private userService: UserService) {
-    this.user = userService.getOnStorageSync();
-
+    this.userService.getOnStorage().then(
+      (user) => {
+        this.user = user;
+      }
+    );
     this.userService.subscribeToUserService((user) => {
       this.user = user;
     });

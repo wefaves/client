@@ -1,0 +1,9 @@
+<menu></menu>
+<div class="container">
+  <div *ngIf="environmentName == 'development'">
+    <p>Environment name = {{environmentName}}</p>
+    <p>Environment version = {{environmentVersion}}</p>
+    <alert></alert>
+  </div>
+  <router-outlet></router-outlet>
+</div>

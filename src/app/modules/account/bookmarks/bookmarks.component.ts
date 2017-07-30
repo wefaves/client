@@ -38,7 +38,7 @@ export class BookmarksComponent implements OnInit {
       }
     ).catch(
       (err) => {
-        this.alertService.error(err);
+        this.alertService.error(err.message);
       }
     );
   }

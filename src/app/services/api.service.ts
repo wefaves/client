@@ -42,9 +42,20 @@ export class ApiService {
    * @param error
    * @returns {any}
    */
-  private static handleError(error: Response) {
-    const body = error.json();
-    return Observable.throw(body.error);
+  private static handleError(error: Response | any) {
+    let errorModel: any = {};
+
+    if (error instanceof Response) {
+      const body = error.json() || '';
+      const err = body.error || body;
+
+      console.log(err);
+
+      errorModel = { status: err.code, message: `${err.code} - ${err.message}` };
+    } else {
+      errorModel = { status: error.status, message: error.toString()};
+    }
+    return Observable.throw(errorModel);
   }
 
   /* ---------------------------------------------------------------------------------------------------------------- */

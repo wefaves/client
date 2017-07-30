@@ -1,5 +1,6 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -9,27 +10,28 @@ import { AuthGuard } from './guard/auth.guard';
 import { AuthenticationService } from './services/authentification.service';
 import { AlertComponent } from './components/alert/alert.component';
 import { HomeComponent } from './components/home/home.component';
-import { MenuComponent } from './components/menu/menu.component';
 import { UserService } from './services/user.service';
 import { BookmarkService } from './services/bookmark.service';
 import { HistoryService } from './services/history.service';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ApiService } from './services/api.service';
 import { AppComponent } from './app.component';
 import { ClarityModule } from 'clarity-angular';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
   declarations: [
     AlertComponent,
     HomeComponent,
-    MenuComponent,
-    AppComponent
+    AppComponent,
+    PageNotFoundComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
+    ClarityModule.forRoot(),
     FormsModule,
     HttpModule,
-    ClarityModule.forRoot(),
     AccountModule,
     AppRoutingModule
   ],

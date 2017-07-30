@@ -41,8 +41,8 @@ export class LoginComponent implements OnInit {
         );
       }
     ).catch(
-      (error) => {
-        this.alertService.error(error);
+      (err) => {
+        this.alertService.error(err.message);
       }
     );
   }

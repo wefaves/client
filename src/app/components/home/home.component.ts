@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from '../../../environments/environment';
 import { AlertService } from "../../services/alert.service";
 import { BookmarkService } from "../../services/bookmark.service";
 import { Bookmark } from "../../models/bookmark/bookmark";
+import { User } from '../../models/user/user';
+import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,34 +13,17 @@ import { Bookmark } from "../../models/bookmark/bookmark";
 })
 export class HomeComponent implements OnInit {
 
-  environmentName = environment.envName;
-  environmentVersion = environment.version;
+  user: User = null;
 
-  private bookmarks: Array<Bookmark> = new Array<Bookmark>();
-  private selectedBookmark: Bookmark;
+  bookmarks: Array<Bookmark> = new Array<Bookmark>();
 
-  constructor(private bookmarkService: BookmarkService, private alertService: AlertService) {
+  constructor(private bookmarkService: BookmarkService,
+              private alertService: AlertService,
+              private userService: UserService,
+              private router: Router) {
   }
 
-  ngOnInit() {
-    this.getBookmarks();
-    // this.bookmarkService.getAll()
-    //   .subscribe(
-    //     data => {
-    //       this.bookmarks = data;
-    //       for (var _i = 0; _i < this.bookmarks.length; _i++) {
-    //         var arr = this.bookmarks[_i].url.split("/");
-    //         var result = arr[0] + "//" + arr[2]
-    //
-    //         this.bookmarks[_i].domain = result;
-    //       }
-    //     },
-    //     error => {
-    //       let obj = JSON.parse(error._body);
-    //
-    //       this.alertService.error(obj.message);
-    //     });
-  }
+  ngOnInit() {}
 
   getBookmarks() {
     this.bookmarkService.getUserBookmarks().then(
@@ -49,13 +34,10 @@ export class HomeComponent implements OnInit {
       }
     ).catch(
       (err) => {
-        this.alertService.error(err);
+        this.alertService.error(err.message);
       }
     );
   }
-  onSelect(bookmark: any) {
-    this.selectedBookmark = bookmark;
-  };
 
   openInNewTab(url) {
     var win = window.open(url, '_blank');

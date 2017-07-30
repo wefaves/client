@@ -45,13 +45,13 @@ export class RegistrationComponent implements OnInit {
           }
         ).catch(
           (err) => {
-            this.alertService.error(err);
+            this.alertService.error(err.message);
           }
         );
       }
     ).catch(
       (err) => {
-        this.alertService.error(err);
+        this.alertService.error(err.message);
       }
     );
   }

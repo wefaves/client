@@ -1,13 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { environment } from '../environments/environment';
+import { AuthenticationService } from './services/authentification.service';
+import { UserService } from './services/user.service';
+import { Router } from '@angular/router';
+import { User } from './models/user/user';
 
 @Component({
   selector: 'app-app',
   templateUrl: './app.component.html'
-  // styleUrls: ['./app/app.component.sass']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
-  constructor() { }
+  environmentName: string;
+  environmentVersion: string;
 
-  ngOnInit() {}
+  constructor() {
+    this.environmentName = environment.envName;
+    this.environmentVersion = environment.version;
+  }
 }

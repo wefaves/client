@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
       }
     ).catch(
       (err) => {
-        this.alertService.error(err);
+        this.alertService.error(err.message);
       }
     )
   }
@@ -49,7 +49,7 @@ export class ProfileComponent implements OnInit {
       }
     ).catch(
       (err) => {
-        this.alertService.error(err);
+        this.alertService.error(err.message);
       }
     );
   }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {AlertService} from "../../services/alert.service";
-import {AuthenticationService} from "../../services/authentification.service";
-import {Router, ActivatedRoute} from "@angular/router";
-import {AuthGuard} from "../../_guard/auth.guard";
-import {UserService} from "../../services/user.service";
+import { AlertService } from "../../../services/alert.service";
+import { AuthenticationService } from "../../../services/authentification.service";
+import { Router, ActivatedRoute } from "@angular/router";
+import { AuthGuard } from "../../../guard/auth.guard";
+import { UserService } from "../../../services/user.service";
 
 @Component({
   selector: 'app-login',

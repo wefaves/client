@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {AlertService} from "../../services/alert.service";
-import {HistoryService} from "../../services/history.service";
-import {History} from "../..//models/history/history";
+import { AlertService } from '../../../services/alert.service';
+import { HistoryService } from '../../../services/history.service';
+import { History } from '../../../models/history/history'
+
 
 @Component({
   selector: 'app-history',

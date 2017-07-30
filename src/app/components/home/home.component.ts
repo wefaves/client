@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from '../../environments/environment';
-import { AlertService } from "../services/alert.service";
-import { BookmarkService } from "../services/bookmark.service";
-import {Bookmark} from "../models/bookmark/bookmark";
+import { environment } from '../../../environments/environment';
+import { AlertService } from "../../services/alert.service";
+import { BookmarkService } from "../../services/bookmark.service";
+import { Bookmark } from "../../models/bookmark/bookmark";
 
 @Component({
   selector: 'app-home',

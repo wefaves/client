@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertService } from "../../services/alert.service";
-import { BookmarkService } from "../../services/bookmark.service";
-import {Bookmark} from "../../models/bookmark/bookmark";
+import { AlertService } from "../../../services/alert.service";
+import { BookmarkService } from "../../../services/bookmark.service";
+import { Bookmark } from "../../../models/bookmark/bookmark";
 
 @Component({
   selector: 'app-bookmarks',

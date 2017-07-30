@@ -2,14 +2,14 @@
  * Created by romain on 2017-04-09.
  */
 import { Component } from '@angular/core';
-import {AuthenticationService} from "../services/authentification.service";
-import {UserService} from "../services/user.service";
-import {User} from "../models/user/user";
+import { AuthenticationService } from "../../services/authentification.service";
+import { UserService } from "../../services/user.service";
+import { User } from "../../models/user/user";
 
 @Component({
   moduleId: module.id,
   selector: 'menu',
-  templateUrl: 'menu.component.html'
+  templateUrl: './menu.component.html'
 })
 
 export class MenuComponent {

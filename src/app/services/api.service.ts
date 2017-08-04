@@ -50,8 +50,6 @@ export class ApiService {
       const err = body.error || body;
       const exception = err.exception || null;
 
-      console.log(err);
-
       if (exception) {
         errorModel = { status: err.code, message: `${err.code} - ${exception[0].message}` };
       } else {

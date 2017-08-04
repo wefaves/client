@@ -48,10 +48,15 @@ export class ApiService {
     if (error instanceof Response) {
       const body = error.json() || '';
       const err = body.error || body;
+      const exception = err.exception || null;
 
       console.log(err);
 
-      errorModel = { status: err.code, message: `${err.code} - ${err.message}` };
+      if (exception) {
+        errorModel = { status: err.code, message: `${err.code} - ${exception[0].message}` };
+      } else {
+        errorModel = { status: err.code, message: `${err.code} - ${err.message}` };
+      }
     } else {
       errorModel = { status: error.status, message: error.toString()};
     }

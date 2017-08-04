@@ -20,6 +20,7 @@
 </div>
 
 <!-- Delte modal -->
+<h4>My bookmarks :</h4>
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -43,12 +44,12 @@
   <li class="list-group-item justify-content-between">
     <span>
       <img *ngIf="" class="favicon" src="{{bookmark.domain}}/favicon.ico">
-      <a href=""> {{bookmark.title}} | {{bookmark.url}} </a>
+      <a href=""> {{bookmark.title | truncate: 50 }} | {{bookmark.url | truncate: 60 }} </a>
     </span>
     <span class="badge-pill">
-      <button type="button" class="btn btn-primary" aria-label="Left Align" data-toggle="modal" data-target="#editModal">
-        <i class="fa fa-cogs" aria-hidden="true"></i>
-      </button>
+      <!--<button type="button" class="btn btn-primary" aria-label="Left Align" data-toggle="modal" data-target="#editModal">-->
+        <!--<i class="fa fa-cogs" aria-hidden="true"></i>-->
+      <!--</button>-->
       <button type="button" class="btn btn-danger" aria-label="Left Align" data-toggle="modal" data-target="#deleteModal">
         <i class="fa fa-trash-o" aria-hidden="true"></i>
       </button>

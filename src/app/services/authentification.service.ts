@@ -15,6 +15,7 @@ export class AuthenticationService {
               private alertService: AlertService) { }
 
   login(username: string, password: string): Promise<User> {
+
     return new Promise((resolve, reject) => {
       this.apiService.postRequest('/login_check', {_username: username, _password: password})
         .subscribe(

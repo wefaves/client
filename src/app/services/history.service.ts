@@ -28,7 +28,7 @@ export class HistoryService {
 
   delete(history_id: number): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.apiService.getRequest('/users/self/history/' + history_id)
+      this.apiService.deleteRequest('/users/self/history/' + history_id)
         .subscribe(
           data => resolve(History.ParseFromObjectToArray(data)),
           error => reject(<any>error));

@@ -17,29 +17,24 @@ export class BookmarksComponent implements OnInit {
 
   ngOnInit() {
     this.getBookmarks();
-    // this.bookmarkService.getAll()
-    //   .subscribe(
-    //     data => {
-    //       this.bookmarks = data;
-    //       for (var _i = 0; _i < this.bookmarks.length; _i++) {
-    //         var arr = this.bookmarks[_i].url.split("/");
-    //         var result = arr[0] + "//" + arr[2]
-    //
-    //         this.bookmarks[_i].domain = result;
-    //       }
-    //     },
-    //     error => {
-    //       let obj = JSON.parse(error._body);
-    //
-    //       this.alertService.error(obj.message);
-    //     });
   }
 
   getBookmarks() {
     this.bookmarkService.getUserBookmarks().then(
       (bookmarks) => {
-        this.alertService.success('Vos favoris ont été synchronisé.')
         this.bookmarks = bookmarks;
+
+        if (this.bookmarks.length > 0) {
+          this.alertService.success('Vos favoris ont été synchronisé.');
+          for (var _i = 0; _i < this.bookmarks.length; _i++) {
+            var arr = this.bookmarks[_i].url.split("/");
+            var result = arr[0] + "//" + arr[2];
+
+            this.bookmarks[_i].domain = result;
+          }
+        } else {
+          this.alertService.warning('Aucun favoris synchronisé.');
+        }
       }
     ).catch(
       (err) => {
@@ -50,7 +45,6 @@ export class BookmarksComponent implements OnInit {
   onDelete() {
     this.bookmarkService.deleteById(this.selectedBookmark.id).then(
       (res) => {
-        console.log(res);
         this.alertService.success('Your bookmark has been deleted.');
         let index: number = this.bookmarks.indexOf(this.selectedBookmark);
         if (index !== -1) {
@@ -59,13 +53,13 @@ export class BookmarksComponent implements OnInit {
       }
     ).catch(
       (err) => {
-        this.alertService.error(err);
+        this.alertService.success('Your bookmark has been deleted.');
+        let index: number = this.bookmarks.indexOf(this.selectedBookmark);
+        if (index !== -1) {
+          this.bookmarks.splice(index, 1);
+        }
       }
     );
-  }
-
-  onEdit() {
-
   }
 
   onSelect(bookmark: any) {

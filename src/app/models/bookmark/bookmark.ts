@@ -6,6 +6,7 @@ export class Bookmark {
   private _title: string;
   private _url: string;
   private _user: User;
+  private _domain: string;
 
   public static GetNewInstance(): Bookmark {
     return new Bookmark(null, null, null, null, null);
@@ -91,5 +92,13 @@ export class Bookmark {
 
   set user(value: User) {
     this._user = value;
+  }
+
+  get domain(): string {
+    return this._domain;
+  }
+
+  set domain(value: string) {
+    this._domain = value;
   }
 }

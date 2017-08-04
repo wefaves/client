@@ -18,6 +18,7 @@ import { AppComponent } from './app.component';
 import { ClarityModule } from 'clarity-angular';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { FacebookModule} from 'ngx-facebook';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { MenuComponent } from './components/menu/menu.component';
     FormsModule,
     HttpModule,
     AccountModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FacebookModule.forRoot()
   ],
   providers: [
     AlertService,

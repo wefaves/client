@@ -1,17 +1,17 @@
-  <div class="center">
-    <form role="form">
+<div class="col-xs-12 col-sm-8 col-md-6 push-sm-2 push-md-3">
+  <form role="form">
       <h2>Edit your profile.<small>It's always easy</small></h2>
       <hr class="colorgraph">
       <div class="form-group">
-        <input type="text" name="username" id="username" class="form-control input-lg" placeholder="Username" tabindex="4" [(ngModel)]="user.username" #username="ngModel">
+        <input type="text" name="username" id="username" class="form-control input-lg" placeholder="Username" [(ngModel)]="user.username" #username="ngModel">
       </div>
       <div class="form-group">
-        <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4" [(ngModel)]="user.email" #email="ngModel" disabled>
+        <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" [(ngModel)]="user.email" #email="ngModel" disabled>
       </div>
       <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-6">
           <div class="form-group">
-            <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5" [(ngModel)]="password.password" #password="ngModel">
+            <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" [(ngModel)]="password.password" #password="ngModel">
           </div>
         </div>
       </div>

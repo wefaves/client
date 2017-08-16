@@ -5,7 +5,7 @@
       <span class="title">Make it easier</span>
     </a>
   </div>
-  <div class="header-nav">
+  <div class="header-nav" *ngIf="user">
     <a href="#/account/profile" class="nav-link nav-icon" [ngClass]="{'active': currentTabItem === '/account/profile'}" [hidden]="!user">
       <clr-icon shape="user"></clr-icon>
     </a>

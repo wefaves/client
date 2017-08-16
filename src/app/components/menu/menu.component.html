@@ -1,0 +1,34 @@
+<header class="header-4">
+  <div class="branding">
+    <a href="#/home" class="nav-link">
+      <img src="../assets/wefaves_logo.png" style="height: 36px; margin: 10px">
+      <span class="title">Make it easier</span>
+    </a>
+  </div>
+  <div class="header-nav" *ngIf="user">
+    <a href="#/account/profile" class="nav-link nav-icon" [ngClass]="{'active': currentTabItem === '/account/profile'}" [hidden]="!user">
+      <clr-icon shape="user"></clr-icon>
+    </a>
+    <a href="#/account/bookmarks" class="nav-link nav-icon" [ngClass]="{'active': currentTabItem === '/account/bookmarks'}">
+      <clr-icon shape="bookmark"></clr-icon>
+    </a>
+    <a href="#/account/history" class="nav-link nav-icon" [ngClass]="{'active': currentTabItem === '/account/history'}">
+      <clr-icon shape="history"></clr-icon>
+    </a>
+  </div>
+  <div *ngIf="!user" class="header-actions">
+    <clr-dropdown clrMenuPosition="bottom-right">
+      <button class="nav-icon" clrDropdownToggle>
+        <clr-icon shape="user"></clr-icon>
+        <clr-icon shape="caret down"></clr-icon>
+      </button>
+      <clr-dropdown-menu>
+        <a href="#/account/login" clrDropdownItem>Login</a>
+        <a href="#/account/registration" clrDropdownItem>Registration</a>
+      </clr-dropdown-menu>
+    </clr-dropdown>
+  </div>
+  <div *ngIf="user" class="header-actions">
+    <a class="btn btn-success" (click)="logout()">Log out</a>
+  </div>
+</header>

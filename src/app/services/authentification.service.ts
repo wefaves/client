@@ -23,13 +23,4 @@ export class AuthenticationService {
           error => reject(<any>error));
     });
   }
-
-  logout() {
-    this.userService.deleteOnStorage().then(
-      () => {
-        this.alertService.success('Vous êtes déconnecté.', true);
-        this.router.navigate(['/account/login'])
-      }
-    );
-  }
 }

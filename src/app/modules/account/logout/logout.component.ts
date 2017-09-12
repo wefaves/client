@@ -1,30 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../../services/user.service';
-import { AlertService } from '../../../services/alert.service';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { TokenService } from '../../../services/tokenService';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-logout',
-  templateUrl: './logout.component.html',
-  styleUrls: ['./logout.component.sass']
+  templateUrl: './logout.component.html'
 })
-export class LogoutComponent implements OnInit {
+export class LogoutComponent {
 
-  constructor(private userService: UserService,
-              private alertService: AlertService,
-              private router: Router) { }
+  constructor(private tokenService: TokenService) {
 
-  ngOnInit() {
-    this.logout();
-  }
-
-  logout() {
-    this.userService.deleteOnStorage().then(
+    this.tokenService.deleteOnStorage().then(
       () => {
-        this.alertService.success('À bientôt 👋');
-        this.router.navigate(['account/login'])
-      }
-    );
+        window.location.href = environment.vitrine_endpoint + '/logout';
+      });
   }
-
 }

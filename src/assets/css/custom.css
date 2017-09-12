@@ -1,0 +1,33 @@
+/*! Place your custom styles here */
+
+body { font-family: 'Proxima Nova' !important; }
+section {
+  font-family: 'Proxima Nova' !important;
+  /*background-color: #DCDDE0;*/
+}
+.logoSize { width: 50%; }
+.userSize { width: 7%; }
+.bg-blue {
+  background-color: #5093FB;
+  padding-bottom: 5px;
+}
+.posImgUser { text-align: left !important; }
+.marginTab {
+  margin-left: 50px !important;
+  margin-right: 50px !important;
+}
+.titleTab {
+  font-weight: bold;
+}
+li {
+}
+.icon { font-size: 1.5em; }
+.iconSearch {
+  color: #FFF;
+}
+.white { color: #FFF;}
+.center { text-align: center; }
+.modal_del {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}

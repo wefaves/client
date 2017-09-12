@@ -1,24 +1,82 @@
-<div class="col-xs-12 col-sm-8 col-md-6 push-sm-2 push-md-3">
-  <form role="form">
-      <h2>Edit your profile.<small>It's always easy</small></h2>
-      <hr class="colorgraph">
-      <div class="form-group">
-        <input type="text" name="username" id="username" class="form-control input-lg" placeholder="Username" [(ngModel)]="user.username" #username="ngModel">
-      </div>
-      <div class="form-group">
-        <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" [(ngModel)]="user.email" #email="ngModel" disabled>
-      </div>
-      <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-6">
-          <div class="form-group">
-            <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" [(ngModel)]="password.password" #password="ngModel">
-          </div>
+<section class="bg--secondary space--sm">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="boxed boxed--lg boxed--border">
+                    <div class="text-block text-center">
+                        <img alt="avatar" src="../../assets/img/avatar.png" class="image--sm" />
+                        <span class="h5">Charles TAULEIGNE</span>
+                        <span>Compte Pro</span>
+                    </div>
+                    <hr>
+                    <div class="text-block">
+                        <ul class="menu-vertical">
+                            <li>
+                                <a href="" data-toggle-class=".account-tab:not(.hidden);hidden|#account-profile;hidden">Profil</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="boxed boxed--lg boxed--border">
+                    <div id="account-profile" class="account-tab">
+                        <div>
+                            <h4>Profil</h4>
+                            <form>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label>Prénom :</label>
+                                        <input type="text" name="name" value="Charles" />
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label>Nom :</label>
+                                        <input type="text" name="display-name" value="TAULEIGNE" />
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <label>Email:</label>
+                                        <input type="email" name="email" value="charles@wefaves.com" />
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="input-checkbox input-checkbox--switch">
+                                            <input type="checkbox" name="public-profile" />
+                                            <label></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-4">
+                                        <button type="submit" class="btn btn--primary type--uppercase">Sauvegarder</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="boxed boxed--lg boxed--border">
+                    <h4>Mot de passe</h4>
+                    <p>Le mot de passe doit contenir au moins 6 caractères.</p>
+                    <form>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label>Ancien mot de passe:</label>
+                                <input type="password" name="old-password" />
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Nouveau mot de passe:</label>
+                                <input type="password" name="new-password" />
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Confirmer nouveau mot de passe:</label>
+                                <input type="password" name="new-password-confirm" />
+                            </div>
+                            <div class="col-md-3 col-sm-4">
+                                <button type="submit" class="btn btn--primary type--uppercase">Sauvegarder</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
-      <hr class="colorgraph">
-      <div class="row">
-        <div class="col-xs-12 col-md-6"></div>
-        <div class="col-xs-12 col-md-6"><button class="btn btn-success btn-block btn-lg" (click)="save()">Save</button></div>
-      </div>
-    </form>
-  </div>
+        <!--end of row-->
+    </div>
+    <!--end of container-->
+</section>

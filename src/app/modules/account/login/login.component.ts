@@ -5,6 +5,7 @@ import { UserService } from "../../../services/user.service";
 import { AlertService } from '../../../services/alert.service';
 import { AuthenticationService } from '../../../services/authentification.service';
 import { FacebookService, InitParams, LoginResponse } from 'ngx-facebook';
+import { TokenService } from '../../../services/tokenService';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(private alertService: AlertService,
               private authenticationService: AuthenticationService,
               private authGuard: AuthGuard,
-              private userService: UserService,
+              private tokenService: TokenService,
               private route: ActivatedRoute,
               private router: Router,
               private fb: FacebookService) {
@@ -41,11 +42,10 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.authenticationService.login(this.model.username, this.model.password).then(
-      (user) => {
-        this.userService.createOnStorage(user).then(
+    this.authenticationService.login(this.model.email, this.model.password).then(
+      (token) => {
+        this.tokenService.createOnStorage(token).then(
           () => {
-            this.alertService.success('Bonjour ' + user.username + ' 🤗', true);
             this.router.navigate([this.returnUrl]);
           }
         );

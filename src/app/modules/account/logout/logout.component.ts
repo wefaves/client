@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TokenService } from '../../../services/tokenService';
-import { environment } from '../../../../environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-logout',
@@ -8,11 +8,11 @@ import { environment } from '../../../../environments/environment';
 })
 export class LogoutComponent {
 
-  constructor(private tokenService: TokenService) {
-
+  constructor(private tokenService: TokenService, private router: Router) {
     this.tokenService.deleteOnStorage().then(
       () => {
-        window.location.href = environment.vitrine_endpoint + '/logout';
-      });
+        this.router.navigate(['/']);
+      }
+    );
   }
 }

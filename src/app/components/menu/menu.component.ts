@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user/user';
 import { UserService } from '../../services/user.service';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.sass']
+  templateUrl: './menu.component.html'
 })
 export class MenuComponent implements OnInit {
 
@@ -14,8 +13,22 @@ export class MenuComponent implements OnInit {
 
   currentTabItem: string;
 
+  show: boolean = false;
+
   constructor(private userService: UserService,
               private router: Router) {
+    router.events.subscribe(
+      (event) => {
+        if (event  instanceof NavigationEnd) {
+          if (event.url === '/account/login' || event.url === '/account/registration'
+            || event.url === '/') {
+            this.show = false;
+          } else {
+            this.show = true;
+          }
+        }
+      }
+    );
   }
 
   ngOnInit() {

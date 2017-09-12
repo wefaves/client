@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from "../../../services/user.service";
 import { AuthenticationService } from "../../../services/authentification.service";
 import { AlertService } from "../../../services/alert.service";
 import { Router } from "@angular/router";
+import { TokenService } from '../../../services/tokenService';
 
 @Component({
   selector: 'app-registration',
@@ -13,7 +13,7 @@ export class RegistrationComponent implements OnInit {
 
   private model: any = {};
 
-  constructor(private userService: UserService,
+  constructor(private tokenService: TokenService,
               private authentificationService: AuthenticationService,
               private alertService: AlertService,
               private router: Router) { }
@@ -33,26 +33,26 @@ export class RegistrationComponent implements OnInit {
       }
     }
 
-    this.userService.postOnApi(userObj).then(
-      () => {
-        this.authentificationService.login(this.model.username, this.model.password).then(
-          (user) => {
-            this.userService.createOnStorage(user).then(
-              () => {
-                this.alertService.success('✅ Votre compte à été créé. Merci d\'avoir rejoint la communauté Wefaves 🍾🎈🎊🎉 !', true);
-                this.router.navigate(['/']);
-              });
-          }
-        ).catch(
-          (err) => {
-            this.alertService.error(err.message);
-          }
-        );
-      }
-    ).catch(
-      (err) => {
-        this.alertService.error(err.message);
-      }
-    );
+    // this.userService.postOnApi(userObj).then(
+    //   () => {
+    //     this.authentificationService.login(this.model.username, this.model.password).then(
+    //       (token) => {
+    //         this.tokenService.createOnStorage(token).then(
+    //           () => {
+    //             this.alertService.success('✅ Votre compte à été créé. Merci d\'avoir rejoint la communauté Wefaves 🍾🎈🎊🎉 !', true);
+    //             this.router.navigate(['/']);
+    //           });
+    //       }
+    //     ).catch(
+    //       (err) => {
+    //         this.alertService.error(err.message);
+    //       }
+    //     );
+    //   }
+    // ).catch(
+    //   (err) => {
+    //     this.alertService.error(err.message);
+    //   }
+    // );
   }
 }

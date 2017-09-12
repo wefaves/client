@@ -1,34 +1,71 @@
-<header class="header-4">
-  <div class="branding">
-    <a href="#/home" class="nav-link">
-      <img src="../assets/wefaves_logo.png" style="height: 36px; margin: 10px">
-      <span class="title">Make it easier</span>
-    </a>
-  </div>
-  <div class="header-nav" *ngIf="user">
-    <a href="#/account/profile" class="nav-link nav-icon" [ngClass]="{'active': currentTabItem === '/account/profile'}" [hidden]="!user">
-      <clr-icon shape="user"></clr-icon>
-    </a>
-    <a href="#/account/bookmarks" class="nav-link nav-icon" [ngClass]="{'active': currentTabItem === '/account/bookmarks'}">
-      <clr-icon shape="bookmark"></clr-icon>
-    </a>
-    <a href="#/account/history" class="nav-link nav-icon" [ngClass]="{'active': currentTabItem === '/account/history'}">
-      <clr-icon shape="history"></clr-icon>
-    </a>
-  </div>
-  <div *ngIf="!user" class="header-actions">
-    <clr-dropdown clrMenuPosition="bottom-right">
-      <button class="nav-icon" clrDropdownToggle>
-        <clr-icon shape="user"></clr-icon>
-        <clr-icon shape="caret down"></clr-icon>
-      </button>
-      <clr-dropdown-menu>
-        <a href="#/account/login" clrDropdownItem>Login</a>
-        <a href="#/account/registration" clrDropdownItem>Registration</a>
-      </clr-dropdown-menu>
-    </clr-dropdown>
-  </div>
-  <div *ngIf="user" class="header-actions">
-    <a class="btn btn-success" (click)="logout()">Log out</a>
-  </div>
-</header>
+<div *ngIf="show" class="nav-container bg-blue">
+    <div class="bar bar--sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-3 col-sm-2">
+                    <a href="index.html">
+                    </a>
+                </div>
+                <div class="col-xs-9 col-sm-10 text-right">
+                    <a href="#" class="hamburger-toggle" data-toggle-class="#menu1;hidden-xs">
+                        <i class="icon icon--sm stack-interface stack-menu"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav id="menu1" class="bar bar--sm bar-1 hidden-xs hiddem-sm ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-2 hidden-xs">
+                    <div class="bar__module">
+                        <a routerLink="/feed">
+                            <img class="logo logoSize" alt="logo" src="assets/img/logo-white.png" />
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-9 col-sm-12 text-right text-left-xs text-left-sm">
+                    <div class="bar__module">
+                        <ul class="menu-horizontal">
+                            <li class="text-right">
+                                <a href="#" data-notification-link="search-box">
+                                    <i class="stack-search icon iconSearch"></i>
+                                </a>
+                            </li>
+                            <li class="dropdown">
+                                <span class="dropdown__trigger"><i class="icon icon-User white"></i></span>
+                                <div class="dropdown__container">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="dropdown__content col-md-2">
+                                                <ul *ngIf="user" class="menu-vertical">
+                                                    <li><a routerLink="account/profile">Profil</a></li>
+                                                    <li><a routerLink="account/setting">Paramètres</a></li>
+                                                    <li><a routerLink="account/logout">Se déconnecter</a></li>
+                                                </ul>
+                                                <ul *ngIf="!user" class="menu-vertical">
+                                                    <li><a routerLink="account/setting">Paramètres</a></li>
+                                                    <li><a routerLink="account/logout">Se déconnecter</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="notification pos-top pos-right search-box bg--white border--bottom" data-animation="from-top" data-notification-link="search-box">
+    <form>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                <input type="search" name="query" placeholder="Recherchez sur Wefaves" />
+            </div>
+        </div>
+        <!--end of row-->
+    </form>
+</div>

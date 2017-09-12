@@ -9,28 +9,29 @@ import { AlertService } from './services/alert.service';
 import { AuthGuard } from './guard/auth.guard';
 import { AuthenticationService } from './services/authentification.service';
 import { AlertComponent } from './components/alert/alert.component';
-import { HomeComponent } from './components/home/home.component';
 import { UserService } from './services/user.service';
 import { BookmarkService } from './services/bookmark.service';
 import { HistoryService } from './services/history.service';
 import { ApiService } from './services/api.service';
 import { AppComponent } from './app.component';
-import { ClarityModule } from 'clarity-angular';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { FacebookModule} from 'ngx-facebook';
+import { VerifyComponent } from './components/verify/verify.component';
+import { TokenService } from './services/tokenService';
+import { HomepageComponent } from './components/homepage/homepage.component';
 
 @NgModule({
   declarations: [
+    HomepageComponent,
     AlertComponent,
-    HomeComponent,
     AppComponent,
     PageNotFoundComponent,
-    MenuComponent
+    MenuComponent,
+    VerifyComponent
   ],
   imports: [
     BrowserModule,
-    ClarityModule.forRoot(),
     FormsModule,
     HttpModule,
     AccountModule,
@@ -45,6 +46,7 @@ import { FacebookModule} from 'ngx-facebook';
     UserService,
     BookmarkService,
     HistoryService,
+    TokenService,
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]

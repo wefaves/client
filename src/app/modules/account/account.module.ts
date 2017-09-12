@@ -2,15 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AccountRoutingModule } from './account-routing.module';
 import { ProfileComponent } from './profile/profile.component';
-import { LoginComponent } from './login/login.component';
-import { RegistrationComponent } from './registration/registration.component';
 import { FormsModule } from '@angular/forms';
 import { BookmarksComponent } from './bookmarks/bookmarks.component';
 import { HistoryComponent } from './history/history.component';
 import { TruncateModule } from 'ng2-truncate';
-import { AccountComponent } from './account/account.component';
+import { AccountComponent } from './account.component';
 import { LogoutComponent } from './logout/logout.component';
 import { FacebookModule } from 'ngx-facebook/dist/esm';
+import { FeedComponent } from './feed/feed.component';
+import { SettingComponent } from './setting/setting.component';
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   imports: [
@@ -18,8 +20,14 @@ import { FacebookModule } from 'ngx-facebook/dist/esm';
     FormsModule,
     AccountRoutingModule,
     TruncateModule,
-    FacebookModule.forRoot()
+    FacebookModule.forRoot(),
   ],
-  declarations: [ProfileComponent, LoginComponent, RegistrationComponent, ProfileComponent, BookmarksComponent, HistoryComponent, AccountComponent, LogoutComponent]
+  declarations: [
+    ProfileComponent,
+    ProfileComponent, BookmarksComponent, HistoryComponent,
+    AccountComponent, LogoutComponent,
+    FeedComponent, SettingComponent, LoginComponent,
+    RegistrationComponent
+  ]
 })
 export class AccountModule { }

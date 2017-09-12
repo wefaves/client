@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from "./components/home/home.component";
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-
+import { HomepageComponent } from './components/homepage/homepage.component';
+import { FeedComponent } from './modules/account/feed/feed.component';
+import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', component: HomepageComponent },
+  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: 'feed', component: FeedComponent, canActivate: [AuthGuard] },
   { path: '**', component: PageNotFoundComponent }
 ];
 

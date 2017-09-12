@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from "./login/login.component";
-import { RegistrationComponent } from "./registration/registration.component";
 import { ProfileComponent } from "./profile/profile.component";
-import { AuthGuard } from "../../guard/auth.guard";
 import { BookmarksComponent } from "./bookmarks/bookmarks.component";
 import { HistoryComponent } from "./history/history.component";
-import { AccountComponent } from './account/account.component';
+import { AccountComponent } from './account.component';
 import { LogoutComponent } from './logout/logout.component';
+import { FeedComponent } from './feed/feed.component';
+import { SettingComponent } from './setting/setting.component';
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { AuthGuard } from '../../guard/auth.guard';
 
 const routes: Routes = [
   {
@@ -15,11 +17,13 @@ const routes: Routes = [
     component: AccountComponent,
     children: [
       { path: 'login', component: LoginComponent },
-      { path: 'logout', component: LogoutComponent },
       { path: 'registration', component: RegistrationComponent },
-      { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-      { path: 'bookmarks', component: BookmarksComponent, canActivate: [AuthGuard] },
-      { path: 'history', component: HistoryComponent, canActivate: [AuthGuard] },
+      { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard]},
+      { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+      { path: 'bookmarks', component: BookmarksComponent, canActivate: [AuthGuard]},
+      { path: 'history', component: HistoryComponent, canActivate: [AuthGuard]},
+      { path: 'feed', component: FeedComponent, canActivate: [AuthGuard] },
+      { path: 'setting', component: SettingComponent, canActivate: [AuthGuard] },
       { path: '', redirectTo: 'profile', pathMatch: 'full' },
     ]
   }

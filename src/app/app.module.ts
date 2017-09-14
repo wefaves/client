@@ -17,7 +17,6 @@ import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { FacebookModule} from 'ngx-facebook';
-import { VerifyComponent } from './components/verify/verify.component';
 import { TokenService } from './services/tokenService';
 import { HomepageComponent } from './components/homepage/homepage.component';
 
@@ -27,8 +26,7 @@ import { HomepageComponent } from './components/homepage/homepage.component';
     AlertComponent,
     AppComponent,
     PageNotFoundComponent,
-    MenuComponent,
-    VerifyComponent
+    MenuComponent
   ],
   imports: [
     BrowserModule,

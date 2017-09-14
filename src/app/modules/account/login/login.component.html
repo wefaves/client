@@ -1,12 +1,9 @@
-<section class="height-100 imagebg text-center" data-overlay="4">
-    <div class="background-image-holder">
-        <img alt="background" src="../../../../assets/img/particle-bg.jpg" />
-    </div>
+<section class="height-100 text-center">
     <div class="container pos-vertical-center">
         <div class="row">
             <div class="col-sm-7 col-md-5">
-                <h2><img alt="Wefaves" class="logoSize" src="../../../../assets/img/logo-white.png" /></h2>
-                <a class="btn block btn--icon bg--facebook type--uppercase" href="#">
+                <h2><a routerLink="/"><img alt="Wefaves" class="logoSize" src="../../../../assets/img/logo-dark.png" /></a></h2>
+                <a class="btn block btn--icon bg--facebook type--uppercase" (click)="loginWithFacebook()">
           <span class="btn__text">
             <i class="socicon-facebook"></i>
             Connexion avec Facebook

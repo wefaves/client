@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { Token } from '../models/user/token';
 
-
 @Injectable()
 export class TokenService {
   private token: Subject<Token> = new Subject<Token>();
@@ -28,7 +27,7 @@ export class TokenService {
           this.deleteOnStorage();
         }
       }).then(() => {
-        localStorage.setItem('token', JSON.stringify(Token.GetModel(token)));
+        localStorage.setItem('token', JSON.stringify(token.getModel()));
         this.updateToken(token);
         resolve();
       });

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertService } from "../../../services/alert.service";
-import { UserService } from "../../../services/user.service";
-import { User } from "../../../models/user/user";
+import { User } from '../../../models/user/user';
+import { UserService } from '../../../services/user.service';
+import { Password } from '../../../models/user/password/Password';
+import { Token } from '../../../models/user/token';
+import { TokenService } from '../../../services/tokenService';
+import { AlertService } from '../../../services/alert.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,46 +13,30 @@ import { User } from "../../../models/user/user";
 })
 export class ProfileComponent implements OnInit {
 
-  private user: User;
-  private password: any = {};
-  constructor(private alertService: AlertService,
-    private userService: UserService) {
-    this.user = User.GetNewInstance();
+  token: Token;
+  user: User;
+  password: Password = Password.GetNewInstance();
+
+  constructor(private userService: UserService,
+              private tokenService: TokenService,
+              private alertService: AlertService) {
+    this.user = this.userService.getOnStorageSync();
+    this.token = this.tokenService.getOnStorageSync();
   }
 
-  ngOnInit() {
-    this.getUserInfo();
-  }
+  ngOnInit() {}
 
-  getUserInfo() {
-    this.userService.getSelf().then(
-      (user) => {
-        this.user = user;
+  changePassword() {
+    this.userService.changePassword(this.password).then(
+      (res) => {
+        this.alertService.success('Votre mot de passe à été mis à jour.');
+        this.password = Password.GetNewInstance();
+        window.scrollTo(0, 0);
       }
     ).catch(
       (err) => {
-        this.alertService.error(err.message);
-      }
-    )
-  }
-
-  save() {
-    const model = {
-      fos_user_profile_form: {
-        username: this.user.username,
-        email: this.user.email,
-        current_password: this.password.password,
-      }
-    };
-
-    this.userService.updateSelf(model).then(
-      (user) => {
-        this.user = user;
-        this.alertService.success('Votre profil à été mis à jour 👏.');
-      }
-    ).catch(
-      (err) => {
-        this.alertService.error(err.message);
+        this.alertService.error(err);
+        window.scrollTo(0, 0);
       }
     );
   }

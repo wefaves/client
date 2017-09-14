@@ -4,38 +4,64 @@
             <div class="col-md-4">
                 <div class="boxed boxed--lg boxed--border">
                     <div class="text-block text-center">
-                        <img alt="avatar" src="../../assets/img/avatar.png" class="image--sm" />
-                        <span class="h5">Charles TAULEIGNE</span>
+                        <img *ngIf="user.picture" alt="avatar" src="{{user.picture.data.url}}" class="image--sm" />
+                        <span *ngIf="user.name" class="h5">{{user.name}}</span>
                         <span>Compte Pro</span>
-                    </div>
-                    <hr>
-                    <div class="text-block">
-                        <ul class="menu-vertical">
-                            <li>
-                                <a href="" data-toggle-class=".account-tab:not(.hidden);hidden|#account-profile;hidden">Profil</a>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>
             <div class="col-md-8">
+                <div class="boxed boxed--lg boxed--border">
+                    <h4>Notifications Email</h4>
+                    <p>Sélectionnez la fréquence à laquelle vous voullez être notifié des nouveautés Wefaves:</p>
+                    <form>
+                        <div class="row">
+                            <div class="boxed bg--secondary boxed--border">
+                                <div class="col-xs-4 text-center">
+                                    <div class="input-radio">
+                                        <span>Jamais</span>
+                                        <input type="radio" name="frequency" value="never" class="validate-required" />
+                                        <label></label>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 text-center">
+                                    <div class="input-radio checked">
+                                        <span>Hebdomadaire</span>
+                                        <input type="radio" name="frequency" value="weekly" class="validate-required" />
+                                        <label></label>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 text-center">
+                                    <div class="input-radio">
+                                        <span>Mensuel</span>
+                                        <input type="radio" name="frequency" value="monthly" class="validate-required" />
+                                        <label></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-5">
+                                <button type="submit" class="btn btn--primary type--uppercase">Sauvegarder</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <div class="boxed boxed--lg boxed--border">
                     <div id="account-profile" class="account-tab">
                         <div>
                             <h4>Profil</h4>
                             <form>
                                 <div class="row">
-                                    <div class="col-sm-6">
-                                        <label>Prénom :</label>
-                                        <input type="text" name="name" value="Charles" />
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label>Nom :</label>
-                                        <input type="text" name="display-name" value="TAULEIGNE" />
-                                    </div>
+                                    <!--<div class="col-sm-6">-->
+                                        <!--<label>Prénom :</label>-->
+                                        <!--<input type="text" name="name" value="Charles" />-->
+                                    <!--</div>-->
+                                    <!--<div class="col-sm-6">-->
+                                        <!--<label>Nom :</label>-->
+                                        <!--<input type="text" name="display-name" value="TAULEIGNE" />-->
+                                    <!--</div>-->
                                     <div class="col-sm-12">
                                         <label>Email:</label>
-                                        <input type="email" name="email" value="charles@wefaves.com" />
+                                        <input type="email" placeholder="Email" name="email" [(ngModel)]="user.email" #email="ngModel" disabled/>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="input-checkbox input-checkbox--switch">
@@ -51,22 +77,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="boxed boxed--lg boxed--border">
+                <div *ngIf="token.fromFB == false" class="boxed boxed--lg boxed--border">
                     <h4>Mot de passe</h4>
                     <p>Le mot de passe doit contenir au moins 6 caractères.</p>
-                    <form>
+                    <form name="changePwdForm" (ngSubmit)="f.form.valid && changePassword()" #f="ngForm" novalidate>
                         <div class="row">
                             <div class="col-xs-12">
                                 <label>Ancien mot de passe:</label>
-                                <input type="password" name="old-password" />
+                                <input type="password" placeholder="password" name="current_password" [(ngModel)]="password.current_password" #current_password="ngModel" required />
                             </div>
                             <div class="col-sm-6">
                                 <label>Nouveau mot de passe:</label>
-                                <input type="password" name="new-password" />
+                                <input type="password" placeholder="password" name="first" [(ngModel)]="password.plainPassword.first" #first="ngModel" required />
                             </div>
                             <div class="col-sm-6">
                                 <label>Confirmer nouveau mot de passe:</label>
-                                <input type="password" name="new-password-confirm" />
+                                <input type="password" placeholder="password" name="second" [(ngModel)]="password.plainPassword.second" #second="ngModel" required />
                             </div>
                             <div class="col-md-3 col-sm-4">
                                 <button type="submit" class="btn btn--primary type--uppercase">Sauvegarder</button>

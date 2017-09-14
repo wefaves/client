@@ -20,7 +20,7 @@ export class MenuComponent implements OnInit {
     router.events.subscribe(
       (event) => {
         if (event  instanceof NavigationEnd) {
-          if (event.url === '/account/login' || event.url === '/account/registration'
+          if (event.url.split('?')[0] === '/account/login' || event.url === '/account/registration'
             || event.url === '/') {
             this.show = false;
           } else {

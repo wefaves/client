@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
+import { Token } from '../models/user/token';
 
 @Injectable()
 export class ApiService {
@@ -19,9 +20,9 @@ export class ApiService {
    */
   private static formatHeader(): RequestOptions {
     const headers: Headers = new Headers();
-    if (localStorage.getItem('user') != null) {
-      const token = JSON.parse(localStorage.getItem('user')).token;
-      headers.append('Authorization', 'Bearer ' + token);
+    const localToken = JSON.parse(localStorage.getItem('token'));
+    if (localToken != null) {
+      headers.append('Authorization', 'Bearer ' + localToken.access_token);
     }
     return new RequestOptions({headers});
   }

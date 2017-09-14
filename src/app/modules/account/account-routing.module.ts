@@ -6,7 +6,6 @@ import { HistoryComponent } from "./history/history.component";
 import { AccountComponent } from './account.component';
 import { LogoutComponent } from './logout/logout.component';
 import { FeedComponent } from './feed/feed.component';
-import { SettingComponent } from './setting/setting.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AuthGuard } from '../../guard/auth.guard';
@@ -23,7 +22,6 @@ const routes: Routes = [
       { path: 'bookmarks', component: BookmarksComponent, canActivate: [AuthGuard]},
       { path: 'history', component: HistoryComponent, canActivate: [AuthGuard]},
       { path: 'feed', component: FeedComponent, canActivate: [AuthGuard] },
-      { path: 'setting', component: SettingComponent, canActivate: [AuthGuard] },
       { path: '', redirectTo: 'profile', pathMatch: 'full' },
     ]
   }

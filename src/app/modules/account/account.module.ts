@@ -10,7 +10,6 @@ import { AccountComponent } from './account.component';
 import { LogoutComponent } from './logout/logout.component';
 import { FacebookModule } from 'ngx-facebook/dist/esm';
 import { FeedComponent } from './feed/feed.component';
-import { SettingComponent } from './setting/setting.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 
@@ -26,7 +25,7 @@ import { RegistrationComponent } from './registration/registration.component';
     ProfileComponent,
     ProfileComponent, BookmarksComponent, HistoryComponent,
     AccountComponent, LogoutComponent,
-    FeedComponent, SettingComponent, LoginComponent,
+    FeedComponent, LoginComponent,
     RegistrationComponent
   ]
 })

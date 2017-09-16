@@ -19,6 +19,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { FacebookModule} from 'ngx-facebook';
 import { TokenService } from './services/tokenService';
 import { HomepageComponent } from './components/homepage/homepage.component';
+import { CookieService } from 'ng2-cookies';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { HomepageComponent } from './components/homepage/homepage.component';
     ApiService,
     AuthGuard,
     UserService,
+    CookieService,
     BookmarkService,
     HistoryService,
     TokenService,

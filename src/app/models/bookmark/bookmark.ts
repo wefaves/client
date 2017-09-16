@@ -1,26 +1,45 @@
-import {User} from "../user/user";
-
 export class Bookmark {
+  private _bookmark_folder_child: Array<Bookmark>;
+  private _bookmarks: Array<Bookmark>;
+  private _created_at: string;
+  private _date_added: string;
+  private _date_group_modified: string;
   private _id: number;
-  private _indexId: number;
+  private _index_pos: number;
+  private _parent_id: number;
   private _title: string;
+  private _updated_at: string;
   private _url: string;
-  private _user: User;
-  private _domain: string;
 
   public static GetNewInstance(): Bookmark {
-    return new Bookmark(null, null, null, null, null);
+    return new Bookmark(null, null, '', '', '', 0, 0, 0, '', '', '');
   }
 
   public static ParseFromObject(object): Bookmark {
     const bookmark = Bookmark.GetNewInstance();
 
     if (object) {
-      bookmark.id = object.id;
-      bookmark.indexId = object.indexId;
-      bookmark.title = object.title;
-      bookmark.url = object.url;
-      bookmark.user = User.ParseFromObject(object.user);
+      if (object.bookmark_folder_child) {
+        bookmark.bookmark_folder_child = new Array<Bookmark>();
+        for (const bfc of object.bookmark_folder_child) {
+          bookmark.bookmark_folder_child.push(Bookmark.ParseFromObject(bfc));
+        }
+        if (object.bookmarks) {
+          bookmark.bookmarks = new Array<Bookmark>();
+          for (const bkm of object.bookmarks) {
+            bookmark.bookmarks.push(Bookmark.ParseFromObject(bkm));
+          }
+        }
+        bookmark.created_at = object.created_at;
+        bookmark.date_added = object.date_added;
+        bookmark.date_group_modified = object.date_group_modified;
+        bookmark.id = object.id;
+        bookmark.index_pos = object.index_pos;
+        bookmark.parent_id = object.parent_id;
+        bookmark.title = object.title;
+        bookmark.updated_at = object.updated_at;
+        bookmark.url = object.url;
+      }
     }
 
     return bookmark;
@@ -29,8 +48,10 @@ export class Bookmark {
   public static ParseFromObjectToArray(object): Array<Bookmark> {
     const bookmarks = new Array<Bookmark>();
 
-    for (const bookmark of object) {
-      bookmarks.push(Bookmark.ParseFromObject(bookmark));
+    if (object) {
+      for (const bookmark of object) {
+        bookmarks.push(Bookmark.ParseFromObject(bookmark));
+      }
     }
 
     return bookmarks;
@@ -40,18 +61,67 @@ export class Bookmark {
     return {
       data : {
         index: bookmark.id,
-        title: bookmark.title,
-        url: bookmark.url
+        title: bookmark._title,
+        url: bookmark._url
       }
     }
   }
 
-  constructor(id: number, indexId: number, title: string, url: string, user: User) {
+  constructor(bookmark_folder_child: Array<Bookmark>, bookmarks: Array<Bookmark>,
+              created_at: string, date_added: string, date_group_modified: string,
+              id: number, index_pos: number, parent_id: number, title: string,
+              updated_at: string, url: string) {
+    this._bookmark_folder_child = bookmark_folder_child;
+    this._bookmarks = bookmarks;
+    this._created_at = created_at;
+    this._date_added = date_added;
+    this._date_group_modified = date_group_modified;
     this._id = id;
-    this._indexId = indexId;
+    this._index_pos = index_pos;
+    this._parent_id = parent_id;
     this._title = title;
+    this._updated_at = updated_at;
     this._url = url;
-    this._user = user;
+  }
+
+  get bookmark_folder_child(): Array<Bookmark> {
+    return this._bookmark_folder_child;
+  }
+
+  set bookmark_folder_child(value: Array<Bookmark>) {
+    this._bookmark_folder_child = value;
+  }
+
+  get bookmarks(): Array<Bookmark> {
+    return this._bookmarks;
+  }
+
+  set bookmarks(value: Array<Bookmark>) {
+    this._bookmarks = value;
+  }
+
+  get created_at(): string {
+    return this._created_at;
+  }
+
+  set created_at(value: string) {
+    this._created_at = value;
+  }
+
+  get date_added(): string {
+    return this._date_added;
+  }
+
+  set date_added(value: string) {
+    this._date_added = value;
+  }
+
+  get date_group_modified(): string {
+    return this._date_group_modified;
+  }
+
+  set date_group_modified(value: string) {
+    this._date_group_modified = value;
   }
 
   get id(): number {
@@ -62,12 +132,20 @@ export class Bookmark {
     this._id = value;
   }
 
-  get indexId(): number {
-    return this._indexId;
+  get index_pos(): number {
+    return this._index_pos;
   }
 
-  set indexId(value: number) {
-    this._indexId = value;
+  set index_pos(value: number) {
+    this._index_pos = value;
+  }
+
+  get parent_id(): number {
+    return this._parent_id;
+  }
+
+  set parent_id(value: number) {
+    this._parent_id = value;
   }
 
   get title(): string {
@@ -78,27 +156,19 @@ export class Bookmark {
     this._title = value;
   }
 
+  get updated_at(): string {
+    return this._updated_at;
+  }
+
+  set updated_at(value: string) {
+    this._updated_at = value;
+  }
+
   get url(): string {
     return this._url;
   }
 
   set url(value: string) {
     this._url = value;
-  }
-
-  get user(): User {
-    return this._user;
-  }
-
-  set user(value: User) {
-    this._user = value;
-  }
-
-  get domain(): string {
-    return this._domain;
-  }
-
-  set domain(value: string) {
-    this._domain = value;
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BookmarkService } from '../../../services/bookmark.service';
 import { AlertService } from '../../../services/alert.service';
 import { HistoryService } from '../../../services/history.service';
@@ -9,18 +9,21 @@ import { History } from '../../../models/history/history';
   selector: 'app-feed',
   templateUrl: 'feed.component.html'
 })
-export class FeedComponent {
+export class FeedComponent implements OnInit{
 
-  bookmarks: [Bookmark];
+  bookmarks: Array<Bookmark> = new Array<Bookmark>();
   history: [History];
 
   constructor(
     private bookmarkService: BookmarkService,
     private historyService: HistoryService,
-    private alertService: AlertService) {
+    private alertService: AlertService) {}
+
+  ngOnInit() {
     this.getBookmarks();
     this.getHistory();
   }
+
 
   getBookmarks() {
     this.bookmarkService.getUserBookmarks().then(

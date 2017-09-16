@@ -6,6 +6,7 @@
                     <div class="text-block text-center">
                         <img *ngIf="user.picture" alt="avatar" src="{{user.picture.data.url}}" class="image--sm" />
                         <span *ngIf="user.name" class="h5">{{user.name}}</span>
+                        <span *ngIf="user.email" class="h5">{{user.email}}</span>
                         <span>Compte Pro</span>
                     </div>
                 </div>

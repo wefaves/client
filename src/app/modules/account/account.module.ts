@@ -10,6 +10,8 @@ import { FacebookModule } from 'ngx-facebook/dist/esm';
 import { FeedComponent } from './feed/feed.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BookmarkModule } from '../bookmark/bookmark.module';
 
 @NgModule({
   imports: [
@@ -18,6 +20,8 @@ import { RegistrationComponent } from './registration/registration.component';
     AccountRoutingModule,
     TruncateModule,
     FacebookModule.forRoot(),
+    BookmarkModule,
+    NgbModule
   ],
   declarations: [
     ProfileComponent, ProfileComponent,

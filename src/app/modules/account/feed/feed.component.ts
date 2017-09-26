@@ -4,6 +4,7 @@ import { AlertService } from '../../../services/alert.service';
 import { HistoryService } from '../../../services/history.service';
 import { Bookmark } from '../../../models/bookmark/bookmark';
 import { History } from '../../../models/history/history';
+import { NgbAccordionConfig, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-feed',
@@ -11,43 +12,11 @@ import { History } from '../../../models/history/history';
 })
 export class FeedComponent implements OnInit{
 
-  bookmarks: Array<Bookmark> = new Array<Bookmark>();
-  history: [History];
-
-  constructor(
-    private bookmarkService: BookmarkService,
-    private historyService: HistoryService,
-    private alertService: AlertService) {}
-
-  ngOnInit() {
-    this.getBookmarks();
-    this.getHistory();
+  constructor(config: NgbAccordionConfig) {
+    // customize default values of accordions used by this component tree
+    config.closeOthers = true;
+    config.type = 'info';
   }
 
-
-  getBookmarks() {
-    this.bookmarkService.getUserBookmarks().then(
-      (bookmarks) => {
-        this.bookmarks = bookmarks;
-        console.log(this.bookmarks);
-      }
-    ).catch(
-      (err) => {
-        this.alertService.error(err);
-      }
-    );
-  }
-
-  getHistory() {
-    this.historyService.getUserHistory().then(
-      (history) => {
-        this.history = history;
-        console.log(this.history);
-      }
-    ).catch(
-      (err) => {
-        this.alertService.error(err);
-      }
-    );
-  }
+  ngOnInit() {}
 }

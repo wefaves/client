@@ -1,0 +1,8 @@
+<ng-container >
+    <tr *ngFor="let node of bookmarks">
+        <td>{{node.title}}</td>
+        <td>{{node.date_added}}</td>
+        <td><i class="icon icon-File-Edit"></i> <i class="icon icon-File-Share"></i> <i class="icon icon-File-Trash"></i></td>
+        <app-bookmark-detail *ngIf="node.bookmarks" [bookmarks]="node.bookmark_folder_child"></app-bookmark-detail>
+    </tr>
+</ng-container>

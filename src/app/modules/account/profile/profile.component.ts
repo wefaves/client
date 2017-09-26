@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
 
   changePassword() {
     this.userService.changePassword(this.password).then(
-      (res) => {
+      () => {
         this.alertService.success('Votre mot de passe à été mis à jour.');
         this.password = Password.GetNewInstance();
         window.scrollTo(0, 0);

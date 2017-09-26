@@ -20,6 +20,8 @@ import { FacebookModule} from 'ngx-facebook';
 import { TokenService } from './services/tokenService';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { CookieService } from 'ng2-cookies';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BookmarkModule } from './modules/bookmark/bookmark.module';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { CookieService } from 'ng2-cookies';
     HttpModule,
     AccountModule,
     AppRoutingModule,
-    FacebookModule.forRoot()
+    FacebookModule.forRoot(),
+    NgbModule.forRoot(),
+    BookmarkModule
   ],
   providers: [
     AlertService,

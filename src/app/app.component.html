@@ -1,9 +1,7 @@
-<menu></menu>
-<div class="container">
-  <alert></alert>
-  <div *ngIf="environmentName == 'development'">
-    <p>Environment name = {{environmentName}}</p>
-    <p>Environment version = {{environmentVersion}}</p>
+<div class="row">
+  <div class="col-sm-12">
+    <app-menu></app-menu>
+    <app-alert></app-alert>
+    <router-outlet></router-outlet>
   </div>
-  <router-outlet></router-outlet>
 </div>

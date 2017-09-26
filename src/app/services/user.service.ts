@@ -2,32 +2,15 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map'
 import { Subject } from 'rxjs/Subject';
 import { User } from "../models/user/user";
-import { Cookie } from "ng2-cookies/ng2-cookies";
-import {ApiService} from "./api.service";
-import {JwtHelper} from "angular2-jwt";
-import {AlertService} from "./alert.service";
-import {Router} from "@angular/router";
+import { ApiService } from "./api.service";
+import { Password } from '../models/user/password/Password';
 
 @Injectable()
 export class UserService {
 
-  jwtHelper: JwtHelper = new JwtHelper();
   private _user: Subject<User> = new Subject<User>();
 
-  constructor(private apiService: ApiService, private alertService: AlertService, private router: Router) {
-    if (localStorage.getItem('user')) {
-      const token = JSON.parse(localStorage.getItem('user')).token;
-
-      if (this.jwtHelper.isTokenExpired(token)) {
-        this.deleteOnStorage().then(
-          () => {
-            this.alertService.warning('Votre session à expiré veuilliez vous reconnecter,', true);
-            this.router.navigate(['/account/login']);
-          }
-        );
-      }
-    }
-  }
+  constructor(private apiService: ApiService) {}
 
   /* ---------------------------------------------------------------------------------------------------------------- */
   /* Observable use object                                                                                            */
@@ -57,7 +40,6 @@ export class UserService {
         }
       }).then(() => {
         localStorage.setItem('user', JSON.stringify(User.GetModel(user)));
-        Cookie.set("currentUser", user.token);
         this.updateUserService(user);
         resolve();
       });
@@ -93,7 +75,6 @@ export class UserService {
   deleteOnStorage(): Promise<any> {
     return new Promise((resolve) => {
       localStorage.removeItem('user');
-      Cookie.delete("currentUser");
       this.updateUserService(null);
       resolve();
     });
@@ -124,7 +105,16 @@ export class UserService {
     return new Promise((resolve, reject) => {
       this.apiService.patchRequest('/users/self', model)
         .subscribe(
-          data => resolve(User.ParseFromObject(data, true)),
+          data => resolve(User.ParseFromObject(data)),
+          error => reject(<any>error));
+    });
+  }
+
+  changePassword(password: Password): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.apiService.patchRequest('/users/self/change-password', Password.GetModel(password))
+        .subscribe(
+          data => resolve(data),
           error => reject(<any>error));
     });
   }

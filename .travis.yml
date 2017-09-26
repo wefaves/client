@@ -16,7 +16,7 @@ deploy:
     access_key_id: AKIAJUOXUY6DMFUSBYGQ
     secret_access_key:
       secure: EkolnrVtpWMxn6ztANoEtyFduSNdidV5QlB3ap+csEKEXgAupYkhg5ZX3YDJvNNnc5obaSUh1psNHK0E9JAGVG2JHU/SLYSXxNKyDRu4NAVd52GMITJggKJkllX75Gn8z9obwlOw24hVrLT22hpkMwhJVr3sKbTh1YOweN1KB4LDTq1JN/N+OzyFbVmKwG7uPQE26Ykt7Jn1RdpIivS10VOcg8o4HusjdmrUUUHL/Dm7aubG7fCD1X0drJAQW+reMWe5cJ7StcFvdy1gehpWhbyPJDFrIWg12oFWLV52PQw5sAae5fl17kbfu4GC3liGNYRd6BEDxxSEsxkJrF5oL9czZOuYfdCsjQV7jnKsmQjNy+08fE5HwgmM5CRNgt22eXCrZJuZPYEwUChY3YwcLzqDF4omw/TKevUuAu3hcUuvILhuR2O9ialD/enHEtkAdaPZ0hYfOM7lv1joBVAKs8feiVJ0iVAezgjSwyIlDvDfPD7astZgT7cN4zWYEVoAF81iElmQ9k1rL/6HwyqOfW42GQn7mWMGDs+l5t/ZOGcu4M1RGIqGtJUqPLzjxARK/3nrtPzGCmu4fa19wO/A8xFZFJ/pyaEbAhHG5QDT53EPKywiygerk5KWr7h6Lq6FOiIY14ABb1jPMTl+cebD8zVfQeKgsUOPx/LCR1EOLIQ=
-    bucket: dev.my.wefaves.com
+    bucket: dev.wefaves.com
     local-dir: "dist"
     acl: public_read
     skip_cleanup: true
@@ -27,7 +27,7 @@ deploy:
     access_key_id: AKIAJUOXUY6DMFUSBYGQ
     secret_access_key:
       secure: EkolnrVtpWMxn6ztANoEtyFduSNdidV5QlB3ap+csEKEXgAupYkhg5ZX3YDJvNNnc5obaSUh1psNHK0E9JAGVG2JHU/SLYSXxNKyDRu4NAVd52GMITJggKJkllX75Gn8z9obwlOw24hVrLT22hpkMwhJVr3sKbTh1YOweN1KB4LDTq1JN/N+OzyFbVmKwG7uPQE26Ykt7Jn1RdpIivS10VOcg8o4HusjdmrUUUHL/Dm7aubG7fCD1X0drJAQW+reMWe5cJ7StcFvdy1gehpWhbyPJDFrIWg12oFWLV52PQw5sAae5fl17kbfu4GC3liGNYRd6BEDxxSEsxkJrF5oL9czZOuYfdCsjQV7jnKsmQjNy+08fE5HwgmM5CRNgt22eXCrZJuZPYEwUChY3YwcLzqDF4omw/TKevUuAu3hcUuvILhuR2O9ialD/enHEtkAdaPZ0hYfOM7lv1joBVAKs8feiVJ0iVAezgjSwyIlDvDfPD7astZgT7cN4zWYEVoAF81iElmQ9k1rL/6HwyqOfW42GQn7mWMGDs+l5t/ZOGcu4M1RGIqGtJUqPLzjxARK/3nrtPzGCmu4fa19wO/A8xFZFJ/pyaEbAhHG5QDT53EPKywiygerk5KWr7h6Lq6FOiIY14ABb1jPMTl+cebD8zVfQeKgsUOPx/LCR1EOLIQ=
-    bucket: www.dev.my.wefaves.com
+    bucket: www.dev.wefaves.com
     local-dir: "dist"
     acl: public_read
     skip_cleanup: true
@@ -38,7 +38,7 @@ deploy:
     access_key_id: AKIAJUOXUY6DMFUSBYGQ
     secret_access_key:
       secure: EkolnrVtpWMxn6ztANoEtyFduSNdidV5QlB3ap+csEKEXgAupYkhg5ZX3YDJvNNnc5obaSUh1psNHK0E9JAGVG2JHU/SLYSXxNKyDRu4NAVd52GMITJggKJkllX75Gn8z9obwlOw24hVrLT22hpkMwhJVr3sKbTh1YOweN1KB4LDTq1JN/N+OzyFbVmKwG7uPQE26Ykt7Jn1RdpIivS10VOcg8o4HusjdmrUUUHL/Dm7aubG7fCD1X0drJAQW+reMWe5cJ7StcFvdy1gehpWhbyPJDFrIWg12oFWLV52PQw5sAae5fl17kbfu4GC3liGNYRd6BEDxxSEsxkJrF5oL9czZOuYfdCsjQV7jnKsmQjNy+08fE5HwgmM5CRNgt22eXCrZJuZPYEwUChY3YwcLzqDF4omw/TKevUuAu3hcUuvILhuR2O9ialD/enHEtkAdaPZ0hYfOM7lv1joBVAKs8feiVJ0iVAezgjSwyIlDvDfPD7astZgT7cN4zWYEVoAF81iElmQ9k1rL/6HwyqOfW42GQn7mWMGDs+l5t/ZOGcu4M1RGIqGtJUqPLzjxARK/3nrtPzGCmu4fa19wO/A8xFZFJ/pyaEbAhHG5QDT53EPKywiygerk5KWr7h6Lq6FOiIY14ABb1jPMTl+cebD8zVfQeKgsUOPx/LCR1EOLIQ=
-    bucket: my.wefaves.com
+    bucket: wefaves.com
     local-dir: "dist"
     acl: public_read
     skip_cleanup: true
@@ -49,7 +49,7 @@ deploy:
     access_key_id: AKIAJUOXUY6DMFUSBYGQ
     secret_access_key:
       secure: EkolnrVtpWMxn6ztANoEtyFduSNdidV5QlB3ap+csEKEXgAupYkhg5ZX3YDJvNNnc5obaSUh1psNHK0E9JAGVG2JHU/SLYSXxNKyDRu4NAVd52GMITJggKJkllX75Gn8z9obwlOw24hVrLT22hpkMwhJVr3sKbTh1YOweN1KB4LDTq1JN/N+OzyFbVmKwG7uPQE26Ykt7Jn1RdpIivS10VOcg8o4HusjdmrUUUHL/Dm7aubG7fCD1X0drJAQW+reMWe5cJ7StcFvdy1gehpWhbyPJDFrIWg12oFWLV52PQw5sAae5fl17kbfu4GC3liGNYRd6BEDxxSEsxkJrF5oL9czZOuYfdCsjQV7jnKsmQjNy+08fE5HwgmM5CRNgt22eXCrZJuZPYEwUChY3YwcLzqDF4omw/TKevUuAu3hcUuvILhuR2O9ialD/enHEtkAdaPZ0hYfOM7lv1joBVAKs8feiVJ0iVAezgjSwyIlDvDfPD7astZgT7cN4zWYEVoAF81iElmQ9k1rL/6HwyqOfW42GQn7mWMGDs+l5t/ZOGcu4M1RGIqGtJUqPLzjxARK/3nrtPzGCmu4fa19wO/A8xFZFJ/pyaEbAhHG5QDT53EPKywiygerk5KWr7h6Lq6FOiIY14ABb1jPMTl+cebD8zVfQeKgsUOPx/LCR1EOLIQ=
-    bucket: www.my.wefaves.com
+    bucket: www.wefaves.com
     local-dir: "dist"
     acl: public_read
     skip_cleanup: true

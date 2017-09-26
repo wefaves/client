@@ -1,35 +1,29 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map'
-import {ApiService} from "./api.service";
-import {User} from "../models/user/user";
-import {UserService} from "./user.service";
-import {Router} from "@angular/router";
-import {AlertService} from "app/services/alert.service";
+import { ApiService} from "./api.service";
+import { environment } from '../../environments/environment';
+import { Token } from '../models/user/token';
 
 @Injectable()
 export class AuthenticationService {
 
-  constructor(private userService: UserService,
-              private apiService: ApiService,
-              private router: Router,
-              private alertService: AlertService) { }
+  constructor(private apiService: ApiService) { }
 
-  login(username: string, password: string): Promise<User> {
+  login(username: string, password: string): Promise<Token> {
+
+    const url = '/oauth/v2/token'
+      + '?client_id=' + environment.client_id
+      + '&client_secret=' + environment.client_secret
+      + '&grant_type=' + environment.grant_type
+      + '&username=' + username
+      + '&password=' + password
 
     return new Promise((resolve, reject) => {
-      this.apiService.postRequest('/login_check', {_username: username, _password: password})
+      this.apiService.getRequest(url)
         .subscribe(
-          data => resolve(User.ParseFromJwt(data)),
+          data => resolve(Token.ParseFromObject(data)),
           error => reject(<any>error));
     });
   }
-
-  logout() {
-    this.userService.deleteOnStorage().then(
-      () => {
-        this.alertService.success('Vous êtes déconnecté.', true);
-        this.router.navigate(['/account/login'])
-      }
-    );
-  }
 }
+

@@ -1,0 +1,36 @@
+<section class="height-100 text-center">
+    <div class="container pos-vertical-center">
+        <div class="row">
+            <div class="col-sm-7 col-md-5">
+                <h2><a routerLink="/"><img alt="Wefaves" class="logoSize" src="../../../../assets/img/logo-dark.png" /></a></h2>
+                <a class="btn block btn--icon bg--facebook type--uppercase" (click)="loginWithFacebook()">
+          <span class="btn__text">
+            <i class="socicon-facebook"></i>
+            Connexion avec Facebook
+          </span>
+                </a>
+                <hr>
+                <p>Connexion avec votre compte Wefaves</p>
+                <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input type="email" placeholder="Email" name="email" [(ngModel)]="model.email" #email="ngModel" required />
+                        </div>
+                        <div class="col-sm-12">
+                            <input type="password" placeholder="Mot de passe" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+                        </div>
+                        <div class="col-sm-12">
+                            <button class="btn btn--primary type--uppercase" type="submit">Connexion</button>
+                        </div>
+                    </div>
+                </form>
+                <span class="type--fine-print block">Vous n'avez pas encore de compte?
+          <a routerLink="/account/registration">S'inscrire</a>
+        </span>
+                <span class="type--fine-print block">Vous avez oublié votre mot de passe?
+          <a routerLink="/account/recover">Mot de passe oublié</a>
+        </span>
+            </div>
+        </div>
+    </div>
+</section>

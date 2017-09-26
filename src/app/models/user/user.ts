@@ -1,41 +1,34 @@
-import {LogTime} from "./logTime";
-import {JwtHelper} from "angular2-jwt";
-
 export class User {
 
-  private _username: string;
   private _id: number;
   private _email: string;
-  private _lastLogin: LogTime;
-  private _roles: string[];
-  private _token: string;
+  private _is_admin: boolean;
+  private _name: string;
+  private _picture: string;
 
   public static GetNewInstance(): User {
-    return new User(null, null, null, null, null, null);
+    return new User(0, '', false, '', '');
   }
 
-  public static ParseFromJwt(jwt: any): User {
-    const jwtHelper: JwtHelper = new JwtHelper();
-    let object = jwtHelper.decodeToken(jwt.token.toString());
-    const user = User.ParseFromObject(object);
-
-    user.token = jwt.token.toString();
-    return user;
-  }
-
-  public static ParseFromObject(object, inData: boolean = false): User {
+  public static ParseFromObject(object): User {
     const user = User.GetNewInstance();
 
     if (object) {
-      if (inData) {
-        object = object.data;
+      if (object.id) {
+        user.id = object.id;
       }
-      user.username = object.username;
-      user.id = object.id;
-      user.email = object.email;
-      user.lastLogin = LogTime.ParseFromObject(object.lastLogin);
-      user.roles = object.roles;
-      user.token = object.token;
+      if (object.email) {
+        user.email = object.email;
+      }
+      if (object.is_admin) {
+        user.is_admin = object.is_admin;
+      }
+      if (object.name) {
+        user.name = object.name;
+      }
+      if (object.picture) {
+        user.picture = object.picture;
+      }
     }
 
     return user;
@@ -53,30 +46,20 @@ export class User {
 
   public static GetModel(user: User): object {
     return {
-      username: user.username,
       id: user.id,
       email: user.email,
-      lastlogin: LogTime.GetModel(user.lastLogin),
-      roles: user.roles,
-      token: user.token
+      is_admin: user.is_admin,
+      name: user.name,
+      picture: user.picture
     };
   }
 
-  constructor(username: string, id: number, email: string, lastLogin: LogTime, roles: string[], token: string) {
-    this._username = username;
+  constructor(id: number, email: string, is_admin: boolean, name: string, picture: string) {
     this._id = id;
     this._email = email;
-    this._lastLogin = lastLogin;
-    this._roles = roles;
-    this._token = token;
-  }
-
-  get username(): string {
-    return this._username;
-  }
-
-  set username(value: string) {
-    this._username = value;
+    this._is_admin = is_admin;
+    this._name = name;
+    this._picture = picture;
   }
 
   get id(): number {
@@ -95,27 +78,28 @@ export class User {
     this._email = value;
   }
 
-  get lastLogin(): LogTime {
-    return this._lastLogin;
+  get is_admin(): boolean {
+    return this._is_admin;
   }
 
-  set lastLogin(value: LogTime) {
-    this._lastLogin = value;
+  set is_admin(value: boolean) {
+    this._is_admin = value;
   }
 
-  get roles(): string[] {
-    return this._roles;
+  get name(): string {
+    return this._name;
   }
 
-  set roles(value: string[]) {
-    this._roles = value;
+  set name(value: string) {
+    this._name = value;
   }
 
-  get token(): string {
-    return this._token;
+  get picture(): string {
+    return this._picture;
   }
 
-  set token(value: string) {
-    this._token = value;
+  set picture(value: string) {
+    this._picture = value;
   }
 }
+

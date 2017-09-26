@@ -1,0 +1,51 @@
+<section class="height-100 text-center">
+  <!--<div class="background-image-holder">-->
+    <!--<img alt="background" src="../../../../assets/img/particle-bg.jpg" />-->
+  <!--</div>-->
+  <div class="container pos-vertical-center">
+    <div class="row">
+      <div class="col-sm-6 col-md-5">
+        <div class="switchable__text">
+          <h2>Créer un compte Wefaves</h2>
+          <span>Vous avez déjà un compte?
+            <a routerLink="/account/login">Connexion</a>
+          </span>
+          <div><br></div>
+          <div *ngFor="let errors of errorMessage">
+            <div *ngIf="errors.text != ''" class="alert alert-danger">{{errors.text }}</div>
+          </div>
+
+          <form (ngSubmit)="registration()" #signupForm="ngForm" >
+            <div class="row">
+              <!--<div class="col-xs-6">-->
+                <!--<input type="text" placeholder="Prénom" required [(ngModel)]="model.username" name="username" #name="ngModel"/>-->
+              <!--</div>-->
+              <!--<div class="col-xs-6">-->
+                <!--<input type="text" placeholder="Nom" required [(ngModel)]="model.username" name="username" #name="ngModel"/>-->
+              <!--</div>-->
+              <div class="col-xs-12">
+                <input type="email" placeholder="Email" required [(ngModel)]="model.email" name="email" #name="ngModel" />
+              </div>
+              <div class="col-xs-12">
+                <input type="password" placeholder="Mot de passe" required [(ngModel)]="model.password" name="password" #name="ngModel" />
+              </div>
+              <div class="col-xs-12">
+                <input type="password"  placeholder="Confirmer le mot de passe" required [(ngModel)]="model.passwordConf" name="passwordConf" #name="ngModel" />
+              </div>
+              <div class="col-xs-12">
+      <span class="type--fine-print">En vous inscrivant, vous acceptez
+        <a href="#">les conditions d'utilisation</a>
+      </span>
+              </div>
+              <div class="col-xs-12">
+                <button type="submit" class="btn btn--primary type--uppercase" [disabled]="!signupForm.form.valid">S'inscrire</button>
+              </div>
+
+            </div>
+            <!--end row-->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

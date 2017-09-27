@@ -1,19 +1,19 @@
 <!--<div class="row"  >-->
-  <!--<div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" *ngFor="let bookmark of bookmarks">-->
-    <!--<img src="https://www.google.com/s2/favicons?domain={{bookmark.url}}" class="img-responsive">-->
-    <!--<img src="http://fakeimg.pl/320x320/" (click)="openInNewTab(bookmark.url);" style="cursor: pointer;" class="img-responsive">-->
-    <!--<h4 style="text-align: center">{{bookmark.title}}</h4>-->
-  <!--</div>-->
+<!--<div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" *ngFor="let bookmark of bookmarks">-->
+<!--<img src="https://www.google.com/s2/favicons?domain={{bookmark.url}}" class="img-responsive">-->
+<!--<img src="http://fakeimg.pl/320x320/" (click)="openInNewTab(bookmark.url);" style="cursor: pointer;" class="img-responsive">-->
+<!--<h4 style="text-align: center">{{bookmark.title}}</h4>-->
+<!--</div>-->
 <!--</div>-->
 
-<div class="wrapper">
+<!--<div class="wrapper">
   <h1>Bookmarks</h1>
   <div class="cols">
     <div class="col" *ngFor="let bookmark of bookmarks" ontouchstart="this.classList.toggle('hover');">
       <div class="container">
         <div class="front" style="background-image: url(https://unsplash.it/506/506/)">
           <div class="inner">
-            <p>pas d'info</p>
+            <p>JEUX</p>
             <span>Votre Favoris</span>
           </div>
         </div>
@@ -24,5 +24,104 @@
         </div>
       </div>
     </div>
+  </div>
+</div>-->
+<div class="wrapper">
+  <h1>Bookmarks</h1>
+  <div class="cols">
+    <section class="row" >
+    <div class="col-md-4 col-xs-4 col-sm-4" ontouchstart="this.classList.toggle('hover');">
+      <div class="container">
+        <div class="front" style="background-image: url(https://unsplash.it/506/506/)">
+          <div class="inner">
+            <p>VOYAGE</p>
+            <span>{{bookmarks[3].title}}</span>
+          </div>
+        </div>
+        <div class="back">
+          <div class="inner">
+            <p *ngFor="let bookmarkT of bookmarks">{{bookmarkT.title}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-xs-4 col-sm-4" ontouchstart="this.classList.toggle('hover');">
+      <div class="container">
+        <div class="front" style="background-image: url(https://dunegestion.com/upload4mail/commercialisation/op_36852_developpement-informatique1.jpg)">
+          <div class="inner">
+            <p>DEVELOPPEMENT</p>
+            <span>{{bookmarks[4].title}}</span>
+          </div>
+        </div>
+        <div class="back">
+          <div class="inner">
+            <p *ngFor="let bookmarkT of bookmarks">{{bookmarkT.title}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-xs-4 col-sm-4" ontouchstart="this.classList.toggle('hover');">
+      <div class="container">
+        <div class="front" style="background-image: url(https://howtospell-letterpatterns.co.uk/wp-content/uploads/2013/03/Fotolia_18349495_XS.jpg)">
+          <div class="inner">
+            <p>TEST</p>
+            <span>Votre Favoris</span>
+          </div>
+        </div>
+        <div class="back">
+          <div class="inner">
+            <p *ngFor="let bookmarkT of bookmarks">{{bookmarkT.title}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </section>
+    <section class="row" style="margin-top: 10%">
+    <div class="col-md-4 col-xs-4 col-sm-4"  ontouchstart="this.classList.toggle('hover');">
+      <div class="container">
+        <div class="front" style="background-image: url(https://thumbs.dreamstime.com/b/bank-icon-6751361.jpg)">
+          <div class="inner">
+            <p>Banque</p>
+            <span>{{bookmarks[2].title}}</span>
+          </div>
+        </div>
+        <div class="back">
+          <div class="inner">
+            <p *ngFor="let bookmarkT of bookmarks">{{bookmarkT.title}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-xs-4 col-sm-4" ontouchstart="this.classList.toggle('hover');">
+      <div class="container">
+        <div class="front" style="background-image: url(http://zdnet3.cbsistatic.com/hub/i/r/2016/06/20/4df5ac44-889b-4310-8106-101a28a870d5/resize/770xauto/448cc972d6adf156e1f8c0acd4b73e60/browser-wars-2016.jpg)">
+        <div class="inner">
+            <p>Navigation quotiedienne</p>
+            <span>{{bookmarks[0].title}}</span>
+          </div>
+        </div>
+        <div class="back">
+          <div class="inner">
+            <p *ngFor="let bookmarkT of bookmarks">{{bookmarkT.title}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-xs-4 col-sm-4" ontouchstart="this.classList.toggle('hover');">
+      <div class="container">
+        <div class="front" style="background-image: url(https://www.justgeek.fr/wp-content/uploads/2013/09/league-of-legends-jeux-video-fond-ecran-wallpaper.jpg)">
+          <div class="inner">
+            <p>JEUX</p>
+            <span>{{bookmarks[1].title}}</span>
+          </div>
+        </div>
+        <div class="back">
+          <div class="inner">
+            <p *ngFor="let bookmarkT of bookmarks">{{bookmarkT.title}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </section>
   </div>
 </div>

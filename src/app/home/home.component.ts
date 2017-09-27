@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
   getBookmarks() {
     this.bookmarkService.getUserBookmarks().then(
       (bookmarks) => {
-        this.alertService.success('Vos favoris ont été synchronisé.')
+        this.alertService.success('Vos favoris ont été synchronisé.');
         this.bookmarks = bookmarks;
         console.log(this.bookmarks);
       }

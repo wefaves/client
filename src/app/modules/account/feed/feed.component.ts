@@ -12,11 +12,24 @@ import { NgbAccordionConfig, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootst
 })
 export class FeedComponent implements OnInit{
 
-  constructor(config: NgbAccordionConfig) {
+  history: [History];
+  constructor(config: NgbAccordionConfig, private historyService: HistoryService) {
     // customize default values of accordions used by this component tree
     config.closeOthers = true;
     config.type = 'info';
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getHistory();
+  }
+
+  getHistory() {
+    this.historyService.getUserHistory().then(
+      (history) => {
+        this.history = history;
+        console.log(history);
+      }
+    ).catch(
+    );
+  }
 }

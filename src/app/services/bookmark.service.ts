@@ -14,7 +14,7 @@ export class BookmarkService {
     return new Promise((resolve, reject) => {
       this.apiService.getRequest('/users/self/bookmarks')
         .subscribe(
-          data => resolve(Bookmark.ParseFromObjectToArray(data, true)),
+          data => resolve(Bookmark.ParseFromObjectToArray(data)),
           error => reject(<any>error));
     });
   }

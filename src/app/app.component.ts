@@ -17,5 +17,10 @@ export class AppComponent {
   constructor() {
     this.environmentName = environment.envName;
     this.environmentVersion = environment.version;
+
+    if (this.environmentName === 'development') {
+      console.log('This is '+this.environmentName+' environment.');
+      console.log('Version '+this.environmentVersion);
+    }
   }
 }

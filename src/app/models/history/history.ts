@@ -1,3 +1,5 @@
+import { Bookmark } from '../bookmark/bookmark';
+
 export class History {
 
   private _id: number;
@@ -10,7 +12,6 @@ export class History {
   private _updated_at: string;
   private _created_at: string;
 
-
   public static GetNewInstance(): History {
     return new History(null, null, null, null, null, null, null, null, null);
   }
@@ -20,6 +21,7 @@ export class History {
 
     if (object) {
       history.id = object.id;
+      history.item_id = object.item_id;
       history.title = object.title;
       history.last_visit_time = object.last_visit_time;
       history.item_id = object.item_id;

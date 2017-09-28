@@ -23,6 +23,7 @@ export class FeedComponent implements OnInit{
   }
 
   ngOnInit() {
+
     this.bookmarkService.getUserBookmarks().then(
       (bookmark) => {
         this.bookmark = bookmark;

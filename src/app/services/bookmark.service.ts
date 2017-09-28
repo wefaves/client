@@ -14,7 +14,7 @@ export class BookmarkService {
     return new Promise((resolve, reject) => {
       this.apiService.getRequest('/users/self/bookmarks')
         .subscribe(
-          data => resolve(Bookmark.ParseFromObjectToArray(data)),
+          data => resolve(Bookmark.ParseFromObjectToArray(data, true)),
           error => reject(<any>error));
     });
   }
@@ -31,6 +31,15 @@ export class BookmarkService {
   public deleteById(bookmark_id: number): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiService.deleteRequest('/users/self/bookmarks/' + bookmark_id)
+        .subscribe(
+          data => resolve(data),
+          error => reject(<any>error));
+    });
+  }
+
+  public deleteFolderById(folder_id: number): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.apiService.deleteRequest('/users/self/bookmarks/folder/' + folder_id)
         .subscribe(
           data => resolve(data),
           error => reject(<any>error));

@@ -12,6 +12,8 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BookmarkModule } from '../bookmark/bookmark.module';
+import { DirectivesModule } from '../directives/directives.module';
+import { HistoryModule } from '../history/history.module';
 
 @NgModule({
   imports: [
@@ -21,7 +23,9 @@ import { BookmarkModule } from '../bookmark/bookmark.module';
     TruncateModule,
     FacebookModule.forRoot(),
     BookmarkModule,
-    NgbModule
+    HistoryModule,
+    NgbModule,
+    DirectivesModule
   ],
   declarations: [
     ProfileComponent, ProfileComponent,

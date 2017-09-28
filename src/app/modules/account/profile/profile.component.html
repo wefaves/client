@@ -17,22 +17,22 @@
                     <p>Sélectionnez la fréquence à laquelle vous voullez être notifié des nouveautés Wefaves:</p>
                     <form>
                         <div class="row">
-                            <div class="boxed bg--secondary boxed--border">
-                                <div class="col-xs-4 text-center">
+                            <div class="boxed bg--secondary boxed--border col-sm-12">
+                                <div class="col-sm-4 text-center">
                                     <div class="input-radio">
                                         <span>Jamais</span>
                                         <input type="radio" name="frequency" value="never" class="validate-required" />
                                         <label></label>
                                     </div>
                                 </div>
-                                <div class="col-xs-4 text-center">
+                                <div class="col-sm-4 text-center">
                                     <div class="input-radio checked">
                                         <span>Hebdomadaire</span>
                                         <input type="radio" name="frequency" value="weekly" class="validate-required" />
                                         <label></label>
                                     </div>
                                 </div>
-                                <div class="col-xs-4 text-center">
+                                <div class="col-sm-4 text-center">
                                     <div class="input-radio">
                                         <span>Mensuel</span>
                                         <input type="radio" name="frequency" value="monthly" class="validate-required" />
@@ -40,7 +40,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 col-sm-5">
+                            <div class="col-sm-12">
                                 <button type="submit" class="btn btn--primary type--uppercase">Sauvegarder</button>
                             </div>
                         </div>
@@ -52,23 +52,9 @@
                             <h4>Profil</h4>
                             <form>
                                 <div class="row">
-                                    <!--<div class="col-sm-6">-->
-                                    <!--<label>Prénom :</label>-->
-                                    <!--<input type="text" name="name" value="Charles" />-->
-                                    <!--</div>-->
-                                    <!--<div class="col-sm-6">-->
-                                    <!--<label>Nom :</label>-->
-                                    <!--<input type="text" name="display-name" value="TAULEIGNE" />-->
-                                    <!--</div>-->
                                     <div class="col-sm-12">
                                         <label>Email:</label>
                                         <input type="email" placeholder="Email" name="email" [(ngModel)]="user.email" #email="ngModel" disabled/>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <div class="input-checkbox input-checkbox--switch">
-                                            <input type="checkbox" name="public-profile" />
-                                            <label></label>
-                                        </div>
                                     </div>
                                     <div class="col-md-3 col-sm-4">
                                         <button type="submit" class="btn btn--primary type--uppercase">Sauvegarder</button>

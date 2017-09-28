@@ -78,7 +78,6 @@ export class LoginComponent implements OnInit {
   loginWithFacebook() {
     this.fb.login()
       .then((response: LoginResponse) => {
-      console.log(response);
         const token = Token.ParseFromObject(response.authResponse, true);
 
         this.tokenService.createOnStorage(token);
@@ -94,7 +93,6 @@ export class LoginComponent implements OnInit {
           }
         ).catch(
           (err) => {
-            console.log(err);
             this.alertService.error(err);
           }
         );

@@ -26,8 +26,6 @@ export class LogoutComponent {
         if (res.status === "connected") {
           fb.logout().then(
             (resp) => {
-              console.log(resp);
-              console.log('fb disconnected');
             }
           )
         }

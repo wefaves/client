@@ -37,6 +37,15 @@ export class BookmarkService {
     });
   }
 
+  public deleteFolderById(folder_id: number): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.apiService.deleteRequest('/users/self/bookmarks/folder/' + folder_id)
+        .subscribe(
+          data => resolve(data),
+          error => reject(<any>error));
+    });
+  }
+
   public editById(bookmark: Bookmark): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiService.patchRequest('/users/self/bookmarks/' + bookmark.id, Bookmark.GetModel(bookmark))

@@ -1,0 +1,53 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">{{history.title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="col-sm-12">
+      <form novalidate>
+        <div class="col-sm-12">
+          <label>Title:</label>
+          <input type="text" name="title" placeholder="Title" class="validate-required"
+                 [(ngModel)]="history.title" name="title">
+        </div>
+        <div class="col-sm-12" *ngIf="history.url">
+          <label>Url:</label>
+          <input type="text" name="url" placeholder="www.wefaves.com" class="validate-required"
+                 [(ngModel)]="history.url" name="url">
+        </div>
+        <div class="col-sm-6">
+          <button type="submit" class="btn btn--primary" (click)="c('Edit')">Edit</button>
+        </div>
+        <div class="col-sm-6">
+          <button type="submit" class="btn" style="background-color: #a73d33; color: white" (click)="c('Delete')">Delete</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
+
+<div class="card card-1 boxed boxed--sm boxed--border">
+  <div class="card__top">
+    <div class="card__avatar">
+      <span>
+        <strong>{{history.title}}</strong>
+      </span>
+    </div>
+    <div class="card__meta">
+      <span>{{history.created_at | date: 'medium'}}</span>
+    </div>
+  </div>
+  <div class="card__body">
+    <a href="#">
+      <h4>
+        {{history.url}}
+      </h4>
+    </a>
+  </div>
+  <div class="card__bottom">
+    <a (click)="open(content)"><i class="icon icon-File-Edit"></i></a>
+  </div>
+</div>

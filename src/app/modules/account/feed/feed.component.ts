@@ -11,11 +11,6 @@ import { HistoryService } from '../../../services/history.service';
 })
 export class FeedComponent implements OnInit{
 
-<<<<<<< HEAD
-  history: [History];
-  constructor(config: NgbAccordionConfig, private historyService: HistoryService) {
-    // customize default values of accordions used by this component tree
-=======
   bookmark: [Bookmark];
   history: [History];
   closeResult: string;
@@ -23,25 +18,12 @@ export class FeedComponent implements OnInit{
   constructor(config: NgbAccordionConfig,
               private bookmarkService: BookmarkService,
               private modalService: NgbModal) {
->>>>>>> release-1.3.0
     config.closeOthers = true;
     config.type = 'info';
   }
 
   ngOnInit() {
-<<<<<<< HEAD
-    this.getHistory();
-  }
 
-  getHistory() {
-    this.historyService.getUserHistory().then(
-      (history) => {
-        this.history = history;
-        console.log(history);
-      }
-    ).catch(
-    );
-=======
     this.bookmarkService.getUserBookmarks().then(
       (bookmark) => {
         this.bookmark = bookmark;
@@ -65,6 +47,5 @@ export class FeedComponent implements OnInit{
     } else {
       return  `with: ${reason}`;
     }
->>>>>>> release-1.3.0
   }
 }

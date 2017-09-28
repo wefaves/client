@@ -8,16 +8,9 @@ export class History {
   private _url: string;
   private _last_visit_time: string;
   private _typed_count: number;
-<<<<<<< HEAD
-  private _visit_count: string;
-  private _updated_at: string;
-  private _created_at: string;
-=======
   private _visit_count: number;
   private _updated_at: string;
   private _created_at: string;
-
->>>>>>> release-1.3.0
 
   public static GetNewInstance(): History {
     return new History(null, null, null, null, null, null, null, null, null);
@@ -30,18 +23,11 @@ export class History {
       history.id = object.id;
       history.item_id = object.item_id;
       history.title = object.title;
-<<<<<<< HEAD
-      history.url = object.url;
-      history.last_visit_time = object.lastVisit;
-      history.typed_count = object.typedCount;
-      history.visit_count = object.visitCount;
-=======
       history.last_visit_time = object.last_visit_time;
       history.item_id = object.item_id;
       history.url = object.url;
       history.visit_count = object.visit_count;
       history.typed_count = object.typed_count;
->>>>>>> release-1.3.0
       history.updated_at = object.updated_at;
       history.created_at = object.created_at;
     }
@@ -61,20 +47,9 @@ export class History {
     return array;
   }
 
-<<<<<<< HEAD
-  public static ParseToDateArray(history: [History]): Array< [History] > {
-    const array = new Array<[History]>();
-
-
-    return array;
-  }
-
-  constructor(id: number, item_id: number, title: string, url: string, last_visit_time: string, typed_count: number, visit_count: string, updated_at: string, created_at: string) {
-=======
   constructor(id: number, item_id: number, title: string, url: string,
               last_visit_time: string, typed_count: number, visit_count: number,
               updated_at: string, created_at: string) {
->>>>>>> release-1.3.0
     this._id = id;
     this._item_id = item_id;
     this._title = title;
@@ -134,19 +109,11 @@ export class History {
     this._typed_count = value;
   }
 
-<<<<<<< HEAD
-  get visit_count(): string {
-    return this._visit_count;
-  }
-
-  set visit_count(value: string) {
-=======
   get visit_count(): number {
     return this._visit_count;
   }
 
   set visit_count(value: number) {
->>>>>>> release-1.3.0
     this._visit_count = value;
   }
 

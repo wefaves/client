@@ -1,134 +1,84 @@
-<!--<section>-->
-  <!--<div class="">-->
-    <!--<div class="row">-->
-      <!--<div class="col-sm-10 col-sm-offset-1 marginTab">-->
-        <!--<div class="tabs-container tabs&#45;&#45;vertical">-->
-          <!--<ul class="tabs">-->
-            <!--<li class="active">-->
-              <!--<div class="tab__title">-->
-                <!--<span class="titleTab">Favoris</span>-->
-              <!--</div>-->
-              <!--<div class="tab__content">-->
-                <!--&lt;!&ndash;<app-bookmark-list></app-bookmark-list>&ndash;&gt;-->
-              <!--</div>-->
-            <!--</li>-->
-            <!--<li>-->
-              <!--<div class="tab__title">-->
-                <!--<span class="titleTab">Historiques</span>-->
-              <!--</div>-->
-              <!--<div class="tab__content">-->
-                <!--<table>-->
-                  <!--<thead>-->
-                  <!--<th style="width: 60%;">HISTORIQUE</th>-->
-                  <!--<th style="width: 20%;">DATE</th>-->
-                  <!--<th style="width: 20%;">ACTIONS</th>-->
-                  <!--</thead>-->
-                  <!--<tbody>-->
-                  <!--<tr *ngFor="let entity of test">-->
-                    <!--<td>{{entity.name}}</td>-->
-                    <!--<td ><i class="icon icon-File-Edit"></i> <i class="icon icon-File-Share"></i> <i class="icon icon-File-Trash"></i></td>-->
-                  <!--</tr>-->
-                  <!--</tbody>-->
-                <!--</table>-->
-              <!--</div>-->
-            <!--</li>-->
-          <!--</ul>-->
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Effacer vos données de navigation</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="boxed boxed--lg">
+      <div class="row">
+        <div class="col-xs-7">
+          Effacer les éléments suivants correspondant à la période
+        </div>
+        <div class="col-xs-5">
+          <div class="input-select">
+            <select>
+              <option value="">de moins d'une heure</option>
+              <option selected="" value="">des dernières 24h</option>
+              <option value="">de la dernière semaine</option>
+              <option value="">des 4 dernières semaines</option>
+              <option value="">tous</option>
+            </select>
+          </div>
+        </div>
+      </div>
 
-          <!--<div class="tabs-container">-->
-            <!--<ul class="tabs">-->
-              <!--<li>-->
+      <ul class="modal_del">
+        <li>
+          <div class="input-checkbox">
+            <input id="checkbox1" type="checkbox" name="agree" checked/>
+            <label for="checkbox1"></label>
+          </div>
+          <span>Historique de navigation</span>
+        </li>
 
-                <!--<div class="modal-instance">-->
-                  <!--<a class="modal-trigger tab__title" style="text-decoration:none">-->
-                    <!--Effacer vos données de navigation-->
-                  <!--</a>-->
-                  <!--<div class="modal-container">-->
-                    <!--<div class="modal-content">-->
-                      <!--<div class="boxed boxed&#45;&#45;lg">-->
-                        <!--<h4>Effacer vos données de navigation</h4>-->
-                        <!--<div class="row">-->
-                          <!--<div class="col-xs-7">-->
-                            <!--Effacer les éléments suivants correspondant à la période-->
-                          <!--</div>-->
-                          <!--<div class="col-xs-5">-->
-                            <!--<div class="input-select">-->
-                              <!--<select>-->
-                                <!--<option value="">de moins d'une heure</option>-->
-                                <!--<option selected="" value="">des dernières 24h</option>-->
-                                <!--<option value="">de la dernière semaine</option>-->
-                                <!--<option value="">des 4 dernières semaines</option>-->
-                                <!--<option value="">tous</option>-->
-                              <!--</select>-->
-                            <!--</div>-->
-                          <!--</div>-->
-                        <!--</div>-->
+        <li>
+          <div class="input-checkbox">
+            <input id="checkbox2" type="checkbox" name="agree" />
+            <label for="checkbox2"></label>
+          </div>
+          <span>Favoris</span>
+        </li>
 
-                        <!--<ul class="modal_del">-->
-                          <!--<li>-->
-                            <!--<div class="input-checkbox">-->
-                              <!--<input id="checkbox1" type="checkbox" name="agree" checked/>-->
-                              <!--<label for="checkbox1"></label>-->
-                            <!--</div>-->
-                            <!--<span>Historique de navigation</span>-->
-                          <!--</li>-->
+        <li>
+          <div class="input-checkbox">
+            <input id="checkbox3" type="checkbox" name="agree" />
+            <label for="checkbox3"></label>
+          </div>
+          <span>Cookies</span>
+        </li>
+      </ul>
 
-                          <!--<li>-->
-                            <!--<div class="input-checkbox">-->
-                              <!--<input id="checkbox2" type="checkbox" name="agree" />-->
-                              <!--<label for="checkbox2"></label>-->
-                            <!--</div>-->
-                            <!--<span>Favoris</span>-->
-                          <!--</li>-->
+      <div class="row">
+        <div class="col-xs-2">
+        </div>
+        <div class="col-xs-3">
+          <button type="submit" class="btn btn--secondary type--uppercase" (click)="c('Close click')">Annuler</button>
+        </div>
+        <div class="col-xs-7">
+          <button type="submit" class="btn btn--primary type--uppercase">Effacer les données de Navigation</button>
+        </div>
+      </div>
 
-                          <!--<li>-->
-                            <!--<div class="input-checkbox">-->
-                              <!--<input id="checkbox3" type="checkbox" name="agree" />-->
-                              <!--<label for="checkbox3"></label>-->
-                            <!--</div>-->
-                            <!--<span>Cookies</span>-->
-                          <!--</li>-->
-                        <!--</ul>-->
+    </div>
+  </div>
+</ng-template>
 
-                        <!--<div class="row">-->
-                          <!--<div class="col-xs-2">-->
-                          <!--</div>-->
-                          <!--<div class="col-xs-3">-->
-                            <!--<button type="submit" class="btn btn&#45;&#45;secondary type&#45;&#45;uppercase">Annuler</button>-->
-                          <!--</div>-->
-                          <!--<div class="col-xs-7">-->
-                            <!--<button type="submit" class="btn btn&#45;&#45;primary type&#45;&#45;uppercase">Effacer les données de Navigation</button>-->
-                          <!--</div>-->
-                        <!--</div>-->
+<a class="btn btn--primary" href="#" (click)="open(content)" style="margin: 20px;">
+  <span class="btn__text">Effacer les données de navigation</span>
+</a>
 
-                      <!--</div>-->
-                    <!--</div>-->
-                  <!--</div>-->
-                <!--</div>&lt;!&ndash;end of modal instance&ndash;&gt;-->
 
-              <!--</li>-->
-            <!--</ul>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</section>-->
-<p>This accordion uses customized default values.</p>
-
-<ngb-accordion #acc="ngbAccordion" activeIds="config-panel-one">
-  <ngb-panel title="One" id="config-panel-one">
+<ngb-accordion class="col-sm-12" #acc="ngbAccordion" activeIds="config-panel-one">
+  <ngb-panel title="Bookmarks" id="config-panel-one">
     <ng-template ngbPanelContent>
-      <app-bookmark-list></app-bookmark-list>
+      <app-bookmark-list [bookmarks]="null" [index]="0"></app-bookmark-list>
     </ng-template>
   </ngb-panel>
-  <ngb-panel title="Two">
+  <ngb-panel title="History">
     <ng-template ngbPanelContent>
-      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
-      aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-      sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-      craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-      occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-      labore sustainable VHS.
+      <app-history-list></app-history-list>
     </ng-template>
   </ngb-panel>
 </ngb-accordion>

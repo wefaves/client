@@ -1,17 +1,3 @@
-<table>
-    <thead>
-    <th style="width: 60%;">FAVORI</th>
-    <th style="width: 20%;">DATE</th>
-    <th style="width: 20%;">ACTIONS</th>
-    </thead>
-    <tbody>
-    <ng-container *ngFor="let bookmark of bookmarks">
-        <tr>
-            <td>{{bookmark.title}}</td>
-            <td>{{bookmark.date_added}}</td>
-            <td><i class="icon icon-File-Edit"></i> <i class="icon icon-File-Share"></i> <i class="icon icon-File-Trash"></i></td>
-        </tr>
-        <app-bookmark-detail *ngIf="bookmark.bookmark_folder_child.length != 0" [bookmarks]="bookmark.bookmark_folder_child"></app-bookmark-detail>
-    </ng-container>
-    </tbody>
-</table>
+<div *ngFor="let row of _bookmarks">
+    <app-bookmark-detail [bookmark]="row" [index]="_index"></app-bookmark-detail>
+</div>

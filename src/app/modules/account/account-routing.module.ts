@@ -7,18 +7,19 @@ import { FeedComponent } from './feed/feed.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AuthGuard } from '../../guard/auth.guard';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
     path: 'account',
     component: AccountComponent,
     children: [
+      { path: '', component: HomeComponent },
       { path: 'login', component: LoginComponent },
       { path: 'registration', component: RegistrationComponent },
       { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard]},
       { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
       { path: 'feed', component: FeedComponent, canActivate: [AuthGuard] },
-      { path: '', redirectTo: 'profile', pathMatch: 'full' },
     ]
   }
 ];

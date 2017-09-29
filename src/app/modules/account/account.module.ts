@@ -14,6 +14,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BookmarkModule } from '../bookmark/bookmark.module';
 import { DirectivesModule } from '../directives/directives.module';
 import { HistoryModule } from '../history/history.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,7 @@ import { HistoryModule } from '../history/history.module';
     ProfileComponent, ProfileComponent,
     AccountComponent, LogoutComponent,
     FeedComponent, LoginComponent,
-    RegistrationComponent
+    RegistrationComponent, HomeComponent
   ]
 })
 export class AccountModule { }

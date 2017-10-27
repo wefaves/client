@@ -51,12 +51,33 @@ export class Bookmark {
   }
 
   public static GetModel(bookmark: Bookmark): Object {
-    return {
-      title: bookmark._title,
-      url: bookmark._url,
-      parentId: bookmark._parent_id,
-      indexPos: bookmark._index_pos
+    const model: any = {
+      url: bookmark.url,
+      parentId: bookmark.parent_id,
+      indexPos: bookmark.index_pos,
+      date_added: bookmark.date_added,
+      date_group_modified: bookmark.date_group_modified,
+      id: bookmark.id,
+      parent_id: bookmark.parent_id
+    };
+
+    if (bookmark.bookmarks) {
+      model.bookmarks = new Array<Bookmark>();
+
+      for (const bkm of bookmark.bookmarks) {
+        model.bookmarks.push(Bookmark.GetModel(bkm));
+      }
     }
+
+    if (bookmark.bookmark_folder_child) {
+      model.bookmark_folder_child = new Array<Bookmark>();
+
+      for (const bfc of bookmark.bookmark_folder_child) {
+        model.bookmark_folder_child.push(Bookmark.GetModel(bfc));
+      }
+    }
+
+    return model;
   }
 
   constructor(bookmark_folder_child: Array<Bookmark>, bookmarks: Array<Bookmark>,

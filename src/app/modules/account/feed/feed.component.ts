@@ -52,9 +52,10 @@ export class FeedComponent implements OnInit{
   private downloadFile() {
     const bookmarksModel =  new Array<any>();
 
-    for (const bookmkark of this.bookmarks) {
-      bookmarksModel.push(Bookmark.GetModel(bookmkark));
+    for (const bookmark of this.bookmarks) {
+      bookmarksModel.push(Bookmark.GetModel(bookmark));
     }
+
     const json = JSON.stringify(bookmarksModel);
     const blob = new Blob([json], {type: "application/json"});
 

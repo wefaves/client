@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HistoryService } from '../../../services/history.service';
 import { History } from '../../../models/history/history';
 import { AlertService } from '../../../services/alert.service';
+import { ApiError } from '../../../models/error/apiError';
 
 @Component({
   selector: 'app-history-detail',
@@ -44,8 +45,8 @@ export class HistoryDetailComponent implements OnInit {
         this.alertService.success('Your history item has been successfully edited.')
       }
     ).catch(
-      (err) => {
-        this.alertService.success(err);
+      (err: ApiError) => {
+        this.alertService.success(err.cause);
       }
     );
   }
@@ -57,8 +58,8 @@ export class HistoryDetailComponent implements OnInit {
         window.location.reload();
       }
     ).catch(
-      (err) => {
-        this.alertService.success(err);
+      (err: ApiError) => {
+        this.alertService.success(err.cause);
       }
     );
   }

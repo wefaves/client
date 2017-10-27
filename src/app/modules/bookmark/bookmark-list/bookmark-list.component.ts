@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Bookmark } from '../../../models/bookmark/bookmark';
 import { BookmarkService } from '../../../services/bookmark.service';
+import { ApiError } from '../../../models/error/apiError';
+import { AlertService } from '../../../services/alert.service';
 
 @Component({
   selector: 'app-bookmark-list',
@@ -30,7 +32,8 @@ export class BookmarkListComponent implements OnInit {
     return this._index;
   }
 
-  constructor(private bookmarkService: BookmarkService) {}
+  constructor(private bookmarkService: BookmarkService,
+              private alertService: AlertService) {}
 
   getBookmarks() {
     this.bookmarkService.getUserBookmarks().then(
@@ -38,7 +41,8 @@ export class BookmarkListComponent implements OnInit {
         this._bookmarks = bookmarks;
       }
     ).catch(
-      (err) => {
+      (err: ApiError) => {
+        this.alertService.error(err.cause);
       }
     );
   }

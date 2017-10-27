@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import { TokenService } from '../../../services/tokenService';
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../models/user/user';
+import { ApiError } from '../../../models/error/apiError';
 
 @Component({
   selector: 'app-registration',
@@ -44,14 +45,14 @@ export class RegistrationComponent implements OnInit {
               });
           }
         ).catch(
-          (err) => {
-            this.alertService.error(err.message);
+          (err: ApiError) => {
+            this.alertService.error(err.cause);
           }
         );
       }
     ).catch(
-      (err) => {
-        this.alertService.error(err.message);
+      (err: ApiError) => {
+        this.alertService.error(err.cause);
       }
     );
   }

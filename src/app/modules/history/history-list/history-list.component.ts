@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HistoryService } from '../../../services/history.service';
 import { History } from '../../../models/history/history';
 import { AlertService } from '../../../services/alert.service';
+import { ApiError } from '../../../models/error/apiError';
 
 @Component({
   selector: 'app-history-list',
@@ -27,8 +28,8 @@ export class HistoryListComponent implements OnInit {
         this.loading = false;
       }
     ).catch(
-      (err) => {
-        this.alertService.error(err);
+      (err: ApiError) => {
+        this.alertService.error(err.cause);
         this.loading = false;
       }
     );

@@ -65,10 +65,13 @@
   </div>
 </ng-template>
 
-<a class="btn btn--primary" href="#" (click)="open(content)" style="margin: 20px;">
-  <span class="btn__text">Effacer les données de navigation</span>
+<a class="btn" style="margin: 20px;" (click)="downloadFile()">
+  <span class="btn__text">Sauvegarder l'environement</span>
 </a>
 
+<a class="btn btn--primary" href="#" (click)="open(content)">
+  <span class="btn__text">Effacer les données de navigation</span>
+</a>
 
 <ngb-accordion class="col-sm-12" #acc="ngbAccordion" activeIds="config-panel-one">
   <ngb-panel title="Bookmarks" id="config-panel-one">

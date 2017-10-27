@@ -3,6 +3,7 @@ import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 import { Token } from '../models/user/token';
+import { ApiError } from '../models/error/apiError';
 
 @Injectable()
 export class ApiService {
@@ -43,23 +44,8 @@ export class ApiService {
    * @param error
    * @returns {any}
    */
-  private static handleError(error: Response | any) {
-    let errorModel: any = {};
-
-    if (error instanceof Response) {
-      const body = error.json() || '';
-      const err = body.error || body;
-      const exception = err.exception || null;
-
-      if (exception) {
-        errorModel = { status: err.code, message: `${err.code} - ${exception[0].message}` };
-      } else {
-        errorModel = { status: err.code, message: `${err.code} - ${err.message}` };
-      }
-    } else {
-      errorModel = { status: error.status, message: error.toString()};
-    }
-    return Observable.throw(errorModel);
+  private static handleError(error: Response | any): Observable<ApiError> {
+    return Observable.throw(ApiError.fromResponse(error));
   }
 
   /* ---------------------------------------------------------------------------------------------------------------- */

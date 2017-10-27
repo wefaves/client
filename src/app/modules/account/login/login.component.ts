@@ -8,6 +8,7 @@ import { FacebookService, InitParams, LoginResponse } from 'ngx-facebook';
 import { TokenService } from '../../../services/tokenService';
 import { Token } from '../../../models/user/token';
 import { User } from 'app/models/user/user';
+import { ApiError } from '../../../models/error/apiError';
 
 @Component({
   selector: 'app-login',
@@ -61,16 +62,16 @@ export class LoginComponent implements OnInit {
                   })
               }
             ).catch(
-              (err) => {
-                this.alertService.error(err);
+              (err: ApiError) => {
+                this.alertService.error(err.cause);
               }
             );
           }
         );
       }
     ).catch(
-      (err) => {
-        this.alertService.error(err.message);
+      (err: ApiError) => {
+        this.alertService.error(err.cause);
       }
     );
   }
@@ -92,8 +93,8 @@ export class LoginComponent implements OnInit {
             );
           }
         ).catch(
-          (err) => {
-            this.alertService.error(err);
+          (err: ApiError) => {
+            this.alertService.error(err.cause);
           }
         );
       })

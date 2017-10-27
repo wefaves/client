@@ -3,6 +3,7 @@ import { environment } from '../../../../environments/environment';
 import { AlertService } from "../../../services/alert.service";
 import { BookmarkService } from "../../../services/bookmark.service";
 import {Bookmark} from "../../../models/bookmark/bookmark";
+import { ApiError } from '../../../models/error/apiError';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +11,6 @@ import {Bookmark} from "../../../models/bookmark/bookmark";
   styleUrls: ['./home.component.sass']
 })
 export class HomeComponent implements OnInit {
-
-  environmentName = environment.envName;
-  environmentVersion = environment.version;
 
   private bookmarks: Array<Bookmark> = new Array<Bookmark>();
   private selectedBookmark: Bookmark;
@@ -22,22 +20,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.getBookmarks();
-    // this.bookmarkService.getAll()
-    //   .subscribe(
-    //     data => {
-    //       this.bookmarks = data;
-    //       for (var _i = 0; _i < this.bookmarks.length; _i++) {
-    //         var arr = this.bookmarks[_i].url.split("/");
-    //         var result = arr[0] + "//" + arr[2]
-    //
-    //         this.bookmarks[_i].domain = result;
-    //       }
-    //     },
-    //     error => {
-    //       let obj = JSON.parse(error._body);
-    //
-    //       this.alertService.error(obj.message);
-    //     });
   }
 
   getBookmarks() {
@@ -48,8 +30,8 @@ export class HomeComponent implements OnInit {
         console.log(this.bookmarks);
       }
     ).catch(
-      (err) => {
-        this.alertService.error(err);
+      (err: ApiError) => {
+        this.alertService.error(err.cause);
       }
     );
   }

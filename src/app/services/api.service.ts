@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
-import { Token } from '../models/user/token';
+import 'rxjs/Rx';
 
 @Injectable()
 export class ApiService {

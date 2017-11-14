@@ -8,43 +8,21 @@ export class Token {
   private _fromFB: boolean;
 
   public static GetNewInstance(): Token {
-    return new Token('', '', '', '', false);
+    return new Token(null, null, null, null, null, null, null);
   }
 
-  public static ParseFromObject(object, fromFacebook: boolean = false): Token {
+  public static ParseFromObject(object): Token {
     const token = Token.GetNewInstance();
 
-    if (object) {
-      token.fromFB = fromFacebook;
-      if (fromFacebook) {
-        if (object.accessToken) {
-          token.access_token = object.accessToken;
-        }
-        if (object.expiresIn) {
-          token.expires_in = object.expiresIn;
-        }
-        if (object.signedRequest) {
-          token.signedRequest = object.signedRequest;
-        }
-        if (object.userID) {
-          token.userID = object.userID;
-        }
-      } else {
-        if (object.access_token) {
-          token.access_token = object.access_token;
-        }
-        if (object.refresh_token) {
-          token.refresh_token = object.refresh_token;
-        }
-        if (object.expires_in) {
-          token.expires_in = object.expires_in;
-        }
-        if (object.token_type) {
-          token.token_type = object.token_type;
-        }
-      }
-
-    }
+    if (object.accessToken) token.access_token = object.accessToken;
+    if (object.expiresIn) token.expires_in = object.expiresIn;
+    if (object.signedRequest) token.signedRequest = object.signedRequest;
+    if (object.userID) token.userID = object.userID;
+    if (object.access_token) token.access_token = object.access_token;
+    if (object.refresh_token) token.refresh_token = object.refresh_token;
+    if (object.expires_in) token.expires_in = object.expires_in;
+    if (object.token_type) token.token_type = object.token_type;
+    if (object.fromFB) token.fromFB = object.fromFB;
 
     return token;
   }
@@ -61,11 +39,14 @@ export class Token {
     }
   }
 
-  constructor(access_token: string, refresh_token: string, expires_in: string, token_type: string, fromFB: boolean) {
+  constructor(access_token: string, refresh_token: string, expires_in: string,
+              token_type: string, signedRequest: string, userID: string, fromFB: boolean) {
     this._access_token = access_token;
     this._refresh_token = refresh_token;
     this._expires_in = expires_in;
     this._token_type = token_type;
+    this._signedRequest = signedRequest;
+    this._userID = userID;
     this._fromFB = fromFB;
   }
 

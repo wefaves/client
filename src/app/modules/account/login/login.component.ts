@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit {
   loginWithFacebook() {
     this.fb.login()
       .then((response: LoginResponse) => {
-        const token = Token.ParseFromObject(response.authResponse, true);
+        const token = Token.ParseFromObject(response.authResponse);
 
         this.tokenService.createOnStorage(token);
         this.fb.api('https://graph.facebook.com/me?fields=id,name,picture', 'get').then(

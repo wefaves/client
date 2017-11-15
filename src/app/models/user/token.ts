@@ -14,15 +14,17 @@ export class Token {
   public static ParseFromObject(object): Token {
     const token = Token.GetNewInstance();
 
-    if (object.accessToken) token.access_token = object.accessToken;
-    if (object.expiresIn) token.expires_in = object.expiresIn;
-    if (object.signedRequest) token.signedRequest = object.signedRequest;
-    if (object.userID) token.userID = object.userID;
-    if (object.access_token) token.access_token = object.access_token;
-    if (object.refresh_token) token.refresh_token = object.refresh_token;
-    if (object.expires_in) token.expires_in = object.expires_in;
-    if (object.token_type) token.token_type = object.token_type;
-    if (object.fromFB) token.fromFB = object.fromFB;
+    if (object) {
+      if (object.accessToken) token.access_token = object.accessToken;
+      if (object.expiresIn) token.expires_in = object.expiresIn;
+      if (object.signedRequest) token.signedRequest = object.signedRequest;
+      if (object.userID) token.userID = object.userID;
+      if (object.access_token) token.access_token = object.access_token;
+      if (object.refresh_token) token.refresh_token = object.refresh_token;
+      if (object.expires_in) token.expires_in = object.expires_in;
+      if (object.token_type) token.token_type = object.token_type;
+      if (object.fromFB) token.fromFB = object.fromFB;
+    }
 
     return token;
   }

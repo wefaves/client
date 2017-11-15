@@ -11,8 +11,8 @@ import { ApiError } from '../../../models/error/apiError';
 })
 export class HistoryListComponent implements OnInit {
 
-  private history: [History];
-  private loading = true;
+  history: History[];
+  loading = true;
 
   constructor(private historyService: HistoryService,
               private alertService: AlertService) { }

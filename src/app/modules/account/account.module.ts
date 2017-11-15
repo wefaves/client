@@ -15,6 +15,7 @@ import { BookmarkModule } from '../bookmark/bookmark.module';
 import { DirectivesModule } from '../directives/directives.module';
 import { HistoryModule } from '../history/history.module';
 import { HomeComponent } from './home/home.component';
+import { ResettingComponent } from './resetting/resetting.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,7 @@ import { HomeComponent } from './home/home.component';
   declarations: [
     ProfileComponent, ProfileComponent,
     AccountComponent, LogoutComponent,
-    FeedComponent, LoginComponent,
+    FeedComponent, LoginComponent, ResettingComponent,
     RegistrationComponent, HomeComponent
   ]
 })

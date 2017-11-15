@@ -12,8 +12,8 @@ import { ApiError } from '../../../models/error/apiError';
 })
 export class HomeComponent implements OnInit {
 
-  private bookmarks: Array<Bookmark> = new Array<Bookmark>();
-  private selectedBookmark: Bookmark;
+  bookmarks: Bookmark[] = [];
+  selectedBookmark: Bookmark;
 
   constructor(private bookmarkService: BookmarkService, private alertService: AlertService) {
   }

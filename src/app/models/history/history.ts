@@ -35,7 +35,7 @@ export class History {
     return history;
   }
 
-  public static ParseFromObjectToArray(object): Array<History> {
+  public static ParseFromObjectToArray(object): History[] {
     const array = new Array<History>();
 
     if (object) {

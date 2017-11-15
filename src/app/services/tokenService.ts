@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 import { Token } from '../models/user/token';
 import { CookieService } from 'ng2-cookies';
 

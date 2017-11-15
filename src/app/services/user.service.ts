@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map'
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 import { User } from "../models/user/user";
 import { ApiService } from "./api.service";
 import { Password } from '../models/user/password/Password';

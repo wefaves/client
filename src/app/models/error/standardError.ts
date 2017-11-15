@@ -1,6 +1,6 @@
 export class StandardError {
-  private _status: number;
-  private _cause: string;
+  _status: number;
+  _cause: string;
 
   constructor(status: number, cause: string) {
     this._status = status;

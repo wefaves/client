@@ -4,7 +4,6 @@ import { AlertService } from "../../../services/alert.service";
 import { Router } from "@angular/router";
 import { TokenService } from '../../../services/tokenService';
 import { UserService } from '../../../services/user.service';
-import { User } from '../../../models/user/user';
 import { ApiError } from '../../../models/error/apiError';
 
 @Component({
@@ -14,7 +13,7 @@ import { ApiError } from '../../../models/error/apiError';
 })
 export class RegistrationComponent implements OnInit {
 
-  private model: any = {};
+  model: any = {};
 
   constructor(private tokenService: TokenService,
               private userService: UserService,

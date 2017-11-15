@@ -11,8 +11,8 @@ import * as FileSaver from 'file-saver';
 })
 export class FeedComponent implements OnInit{
 
-  bookmarks: [Bookmark];
-  history: [History];
+  bookmarks: Bookmark[];
+  history: History[];
   closeResult: string;
 
   constructor(config: NgbAccordionConfig,
@@ -49,7 +49,7 @@ export class FeedComponent implements OnInit{
     }
   }
 
-  private downloadFile() {
+  downloadFile() {
     const bookmarksModel =  new Array<any>();
 
     for (const bookmark of this.bookmarks) {

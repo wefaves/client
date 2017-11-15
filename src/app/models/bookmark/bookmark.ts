@@ -38,7 +38,7 @@ export class Bookmark {
     return bookmark;
   }
 
-  public static ParseFromObjectToArray(object): Array<Bookmark> {
+  public static ParseFromObjectToArray(object): Bookmark[] {
     const bookmarks = new Array<Bookmark>();
 
     if (object) {

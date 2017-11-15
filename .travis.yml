@@ -9,7 +9,7 @@ before_script:
 - npm install -g --silent @angular/cli
 - npm install
 script:
-- if [ "$TRAVIS_BRANCH" == "master" ]; then ng build --prod --aot=false; fi
+- if [ "$TRAVIS_BRANCH" == "master" ]; then ng build --prod --aot=true; fi
 - if [ "$TRAVIS_BRANCH" != "master" ]; then ng build --dev --aot=false; fi
 deploy:
   - provider: s3

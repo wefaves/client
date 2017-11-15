@@ -10,7 +10,7 @@ export class BookmarkService {
 
   constructor(private apiService: ApiService) {}
 
-  public getUserBookmarks(): Promise<[Bookmark]> {
+  public getUserBookmarks(): Promise<Bookmark[]> {
     return new Promise((resolve, reject) => {
       this.apiService.getRequest('/users/self/bookmarks')
         .subscribe(

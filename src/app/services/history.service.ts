@@ -8,7 +8,7 @@ export class HistoryService {
 
   constructor(private apiService: ApiService) {}
 
-  getUserHistory(): Promise<[History]> {
+  getUserHistory(): Promise<History[]> {
     return new Promise((resolve, reject) => {
       this.apiService.getRequest('/users/self/history')
         .subscribe(

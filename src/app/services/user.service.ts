@@ -53,7 +53,7 @@ export class UserService {
    */
   getOnStorage(): Promise<User> {
     return new Promise((resolve) => {
-      resolve(localStorage.getItem('user'));
+      resolve(User.ParseFromObject(localStorage.getItem('user')));
     });
   }
 

@@ -11,11 +11,11 @@ import { AlertService } from '../../../services/alert.service';
 })
 export class BookmarkListComponent implements OnInit {
 
-  private _bookmarks: [Bookmark];
-  private _index: number;
+  _bookmarks: Bookmark[];
+  _index: number;
 
   @Input()
-  set bookmarks(bookmarks: [Bookmark]) {
+  set bookmarks(bookmarks: Bookmark[]) {
     if (bookmarks) {
       this._bookmarks = bookmarks
     } else {

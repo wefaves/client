@@ -33,7 +33,8 @@
     "ng": "ng",
     "e2e": "ng e2e",
     "build": "ng build",
-    "test": "ng test"
+    "test": "ng test",
+    "bundle-report": "webpack-bundle-analyzer dist/stats.json"
   },
   "devDependencies": {
     "@angular/cli": "^1.2.6",

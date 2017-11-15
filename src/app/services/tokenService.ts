@@ -45,7 +45,7 @@ export class TokenService {
    */
   getOnStorage(): Promise<Token> {
     return new Promise((resolve) => {
-      resolve(localStorage.getItem('token'));
+      resolve(Token.ParseFromObject(localStorage.getItem('token')));
     });
   }
 

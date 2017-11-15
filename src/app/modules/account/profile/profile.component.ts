@@ -5,6 +5,7 @@ import { Password } from '../../../models/user/password/Password';
 import { Token } from '../../../models/user/token';
 import { TokenService } from '../../../services/tokenService';
 import { AlertService } from '../../../services/alert.service';
+import { ApiError } from '../../../models/error/apiError';
 
 @Component({
   selector: 'app-profile',
@@ -34,8 +35,8 @@ export class ProfileComponent implements OnInit {
         window.scrollTo(0, 0);
       }
     ).catch(
-      (err) => {
-        this.alertService.error(err);
+      (err: ApiError) => {
+        this.alertService.error(err.cause);
         window.scrollTo(0, 0);
       }
     );

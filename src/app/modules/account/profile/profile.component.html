@@ -54,7 +54,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <label>Email:</label>
-                                        <input type="email" placeholder="Email" name="email" [(ngModel)]="user.email" #email="ngModel" disabled/>
+                                        <input type="email" placeholder="Email" name="email" [(ngModel)]="user.email" #email="ngModel"/>
                                     </div>
                                     <div class="col-md-3 col-sm-4">
                                         <button type="submit" class="btn btn--primary type--uppercase">Sauvegarder</button>
@@ -64,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-                <div *ngIf="token.fromFB == false" class="boxed boxed--lg boxed--border">
+                <div *ngIf="token.fromFB === false" class="boxed boxed--lg boxed--border">
                     <h4>Mot de passe</h4>
                     <p>Le mot de passe doit contenir au moins 6 caractères.</p>
                     <form name="changePwdForm" (ngSubmit)="f.form.valid && changePassword()" #f="ngForm" novalidate>

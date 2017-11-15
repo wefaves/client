@@ -3,6 +3,7 @@ import { Bookmark } from '../../../models/bookmark/bookmark';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BookmarkService } from '../../../services/bookmark.service';
 import { AlertService } from '../../../services/alert.service';
+import { ApiError } from '../../../models/error/apiError';
 
 @Component({
   selector: 'app-bookmark-detail',
@@ -50,12 +51,12 @@ export class BookmarkDetailComponent {
 
   editBookmark() {
     this.bookmarkService.editById(this.selectedBookmark).then(
-      (res) => {
+      () => {
         this.alertService.success('Your bookmark has been successfully edited.')
       }
     ).catch(
-      (err) => {
-        this.alertService.success(err);
+      (err: ApiError) => {
+        this.alertService.success(err.cause);
       }
     );
   }
@@ -68,8 +69,8 @@ export class BookmarkDetailComponent {
           window.location.reload();
         }
       ).catch(
-        (err) => {
-          this.alertService.success(err);
+        (err: ApiError) => {
+          this.alertService.success(err.cause);
         }
       );
     } else {
@@ -79,8 +80,8 @@ export class BookmarkDetailComponent {
           window.location.reload();
         }
       ).catch(
-        (err) => {
-          this.alertService.success(err);
+        (err: ApiError) => {
+          this.alertService.success(err.cause);
         }
       );
     }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user/user';
 import { UserService } from '../../services/user.service';
 import { NavigationEnd, Router } from '@angular/router';
+import { ApiError } from '../../models/error/apiError';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-menu',
@@ -10,9 +12,7 @@ import { NavigationEnd, Router } from '@angular/router';
 export class MenuComponent implements OnInit {
 
   user: User;
-
   currentTabItem: string;
-
   show: boolean = false;
 
   constructor(private userService: UserService,

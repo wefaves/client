@@ -3,7 +3,7 @@ import { BookmarkService } from '../../../services/bookmark.service';
 import { Bookmark } from '../../../models/bookmark/bookmark';
 import { History } from '../../../models/history/history';
 import { ModalDismissReasons, NgbAccordionConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { HistoryService } from '../../../services/history.service';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-feed',
@@ -11,7 +11,7 @@ import { HistoryService } from '../../../services/history.service';
 })
 export class FeedComponent implements OnInit{
 
-  bookmark: [Bookmark];
+  bookmarks: [Bookmark];
   history: [History];
   closeResult: string;
 
@@ -26,7 +26,7 @@ export class FeedComponent implements OnInit{
 
     this.bookmarkService.getUserBookmarks().then(
       (bookmark) => {
-        this.bookmark = bookmark;
+        this.bookmarks = bookmark;
       }
     ).catch();
   }
@@ -47,5 +47,18 @@ export class FeedComponent implements OnInit{
     } else {
       return  `with: ${reason}`;
     }
+  }
+
+  private downloadFile() {
+    const bookmarksModel =  new Array<any>();
+
+    for (const bookmark of this.bookmarks) {
+      bookmarksModel.push(Bookmark.GetModel(bookmark));
+    }
+
+    const json = JSON.stringify(bookmarksModel);
+    const blob = new Blob([json], {type: "application/json"});
+
+    FileSaver.saveAs(blob, 'feed.json');
   }
 }

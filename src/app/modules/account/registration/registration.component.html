@@ -11,9 +11,9 @@
             <a routerLink="/account/login">Connexion</a>
           </span>
           <div><br></div>
-          <div *ngFor="let errors of errorMessage">
-            <div *ngIf="errors.text != ''" class="alert alert-danger">{{errors.text }}</div>
-          </div>
+          <!--<div *ngFor="let errors of errorMessage">-->
+            <!--<div *ngIf="errors.text != ''" class="alert alert-danger">{{errors.text }}</div>-->
+          <!--</div>-->
 
           <form (ngSubmit)="registration()" #signupForm="ngForm" >
             <div class="row">

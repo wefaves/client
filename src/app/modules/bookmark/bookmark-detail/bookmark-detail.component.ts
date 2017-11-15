@@ -12,8 +12,8 @@ import { ApiError } from '../../../models/error/apiError';
 })
 export class BookmarkDetailComponent {
 
-  private _bookmark: Bookmark;
-  private _index: number;
+  _bookmark: Bookmark;
+  _index: number;
   selectedBookmark: Bookmark;
 
   constructor(private modalService: NgbModal,

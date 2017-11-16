@@ -42,9 +42,9 @@
         </div>
     </div>
     <div class="card__body">
-        <app-bookmark-list [bookmarks]="_bookmark.bookmark_folder_child" [index]="_index + 1"></app-bookmark-list>
+        <app-bookmark-folder-child [bookmarks]="_bookmark.bookmark_folder_child"></app-bookmark-folder-child>
     </div>
-    <div class="card__bottom">
+    <div *ngIf="_bookmark.bookmarks.length > 0" class="card__bottom">
         <div class="boxed boxed--border" style="background: #fafafa;">
             <ul *ngFor="let row of _bookmark.bookmarks">
                 <li class="list-group-item" style="background: #fafafa;">

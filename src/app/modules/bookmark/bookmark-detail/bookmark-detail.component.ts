@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Bookmark } from '../../../models/bookmark/bookmark';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BookmarkService } from '../../../services/bookmark.service';
 import { AlertService } from '../../../services/alert.service';
 import { ApiError } from '../../../models/error/apiError';

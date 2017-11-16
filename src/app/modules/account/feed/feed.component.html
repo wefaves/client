@@ -64,12 +64,38 @@
     </div>
   </div>
 </ng-template>
+<ng-template #content2 let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Partager votre environement avec vos amis</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="boxed boxed--lg">
+      <div class="row">
+        <div class="col-xs-5">
+          <a class="btn block btn--icon bg--facebook type--uppercase" (click)="shareOnFacebook()">
+            <span class="btn__text">
+              <i class="socicon-facebook"></i>
+                Partager
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
 
 <a class="btn" style="margin: 20px;" (click)="downloadFile()">
   <span class="btn__text">Sauvegarder l'environement</span>
 </a>
 
-<a class="btn btn--primary" href="#" (click)="open(content)">
+<a class="btn btn--primary" href="#" (click)="open(content2)">
+  <span class="btn__text">Patager mon environment</span>
+</a>
+
+<a class="btn btn--primary" href="#" (click)="open(content2)">
   <span class="btn__text">Effacer les données de navigation</span>
 </a>
 

@@ -42,7 +42,7 @@
         </div>
     </div>
     <div class="card__body">
-        <app-bookmark-folder-child [bookmarks]="_bookmark.bookmark_folder_child"></app-bookmark-folder-child>
+        <app-bookmark-folder-child [bookmarks]="_bookmark.bookmark_folder_child" [parent]="_bookmark"></app-bookmark-folder-child>
     </div>
     <div *ngIf="_bookmark.bookmarks.length > 0" class="card__bottom">
         <div class="boxed boxed--border" style="background: #fafafa;">

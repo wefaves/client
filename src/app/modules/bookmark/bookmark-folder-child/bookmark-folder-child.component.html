@@ -1,3 +1,34 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">{{selectedBookmark.title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="col-sm-12">
+      <form novalidate>
+        <div class="col-sm-12">
+          <label>Title:</label>
+          <input type="text" name="title" placeholder="Title" class="validate-required"
+                 [(ngModel)]="selectedBookmark.title" name="title">
+        </div>
+        <div class="col-sm-12" *ngIf="selectedBookmark.url">
+          <label>Url:</label>
+          <input type="text" name="url" placeholder="www.wefaves.com" class="validate-required"
+                 [(ngModel)]="selectedBookmark.url" name="url">
+        </div>
+        <div class="col-sm-6">
+          <button type="submit" class="btn btn--primary" (click)="c('Edit')">Edit</button>
+        </div>
+        <div class="col-sm-6">
+          <button type="submit" class="btn" style="background-color: #a73d33; color: white" (click)="c('Delete')">Delete</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
+
 <div class="card card-1 boxed boxed--lg cardbox-shadow" *ngFor="let bookmark of _bookmarks">
   <div class="card__top">
     <div class="card__avatar">
@@ -7,18 +38,18 @@
       </span>
     </div>
     <div class="card__meta">
-      <!--<a (click)="open(content, null)"><i class="icon icon-File-Edit"></i></a>-->
+      <a (click)="open(content, bookmark, parent, true)"><i class="icon icon-File-Edit"></i></a>
     </div>
   </div>
   <div class="card__body">
-    <app-bookmark-folder-child *ngIf="bookmark.bookmark_folder_child.length > 0" [bookmarks]="bookmark.bookmark_folder_child"></app-bookmark-folder-child>
+    <app-bookmark-folder-child *ngIf="bookmark.bookmark_folder_child.length > 0" [bookmarks]="bookmark.bookmark_folder_child" [parent]="bookmark"></app-bookmark-folder-child>
   </div>
   <div *ngIf="bookmark.bookmarks.length > 0" class="card__bottom">
     <div class="boxed boxed--border" style="background: #fafafa;">
       <ul *ngFor="let row of bookmark.bookmarks">
         <li class="list-group-item" style="background: #fafafa;">
           <p>{{row.title}}</p>
-          <a (click)="open(content, row)"><i class="icon icon-File-Edit"></i></a>
+          <a (click)="open(content, row, bookmark)"><i class="icon icon-File-Edit"></i></a>
         </li>
       </ul>
     </div>

@@ -50,40 +50,10 @@ export class BookmarkDetailComponent {
   }
 
   editBookmark() {
-    this.bookmarkService.editById(this.selectedBookmark).then(
-      () => {
-        this.alertService.success('Your bookmark has been successfully edited.')
-      }
-    ).catch(
-      (err: ApiError) => {
-        this.alertService.success(err.cause);
-      }
-    );
+
   }
 
   deleteBookmark() {
-    if (this.selectedBookmark.bookmark_folder_child) {
-      this.bookmarkService.deleteFolderById(this.selectedBookmark.id).then(
-        () => {
-          this.alertService.success('Your bookmark has been successfully deleted.', true);
-          window.location.reload();
-        }
-      ).catch(
-        (err: ApiError) => {
-          this.alertService.success(err.cause);
-        }
-      );
-    } else {
-      this.bookmarkService.deleteById(this.selectedBookmark.id).then(
-        () => {
-          this.alertService.success('Your bookmark has been successfully deleted.', true);
-          window.location.reload();
-        }
-      ).catch(
-        (err: ApiError) => {
-          this.alertService.success(err.cause);
-        }
-      );
-    }
+
   }
 }

@@ -21,7 +21,6 @@ import { TokenService } from './services/tokenService';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { CookieService } from 'ng2-cookies';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-// import { BookmarkModule } from './modules/bookmark/bookmark.module';
 
 
 @NgModule({

@@ -20,7 +20,7 @@ export class AppComponent {
 
     if (this.environmentName === 'development') {
       console.log('This is '+this.environmentName+' environment.');
-      console.log('Version '+this.environmentVersion);
     }
+    console.log('Version '+this.environmentVersion);
   }
 }

@@ -1,3 +1,5 @@
+<app-navigation></app-navigation>
+
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title">Effacer vos données de navigation</h4>
@@ -91,23 +93,14 @@
   <span class="btn__text">Sauvegarder l'environement</span>
 </a>
 
-<a class="btn btn--primary" href="#" (click)="open(content2)">
+<a class="btn btn--primary" (click)="open(content2)">
   <span class="btn__text">Patager mon environment</span>
 </a>
 
-<a class="btn btn--primary" href="#" (click)="open(content2)">
+<a class="btn btn--secondary" (click)="open(content)">
   <span class="btn__text">Effacer les données de navigation</span>
 </a>
 
-<ngb-accordion class="col-sm-12" #acc="ngbAccordion" activeIds="config-panel-one">
-  <ngb-panel title="Bookmarks" id="config-panel-one">
-    <ng-template ngbPanelContent>
-      <app-bookmark-list [bookmarks]="null" [index]="0"></app-bookmark-list>
-    </ng-template>
-  </ngb-panel>
-  <ngb-panel title="History">
-    <ng-template ngbPanelContent>
-      <app-history-list></app-history-list>
-    </ng-template>
-  </ngb-panel>
-</ngb-accordion>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

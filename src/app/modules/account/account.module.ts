@@ -7,7 +7,7 @@ import { TruncateModule } from 'ng2-truncate';
 import { AccountComponent } from './account.component';
 import { LogoutComponent } from './logout/logout.component';
 import { FacebookModule } from 'ngx-facebook/dist/esm';
-import { FeedComponent } from './feed/feed.component';
+import { FeedComponent } from '../feed/feed.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -16,6 +16,9 @@ import { DirectivesModule } from '../directives/directives.module';
 import { HistoryModule } from '../history/history.module';
 import { HomeComponent } from './home/home.component';
 import { ResettingComponent } from './resetting/resetting.component';
+import { HistoryComponent } from '../feed/history/history.component';
+import { BookmarksComponent } from '../feed/bookmarks/bookmarks.component';
+import { NavigationComponent } from '../feed/navigation/navigation.component';
 
 @NgModule({
   imports: [
@@ -33,7 +36,7 @@ import { ResettingComponent } from './resetting/resetting.component';
     ProfileComponent, ProfileComponent,
     AccountComponent, LogoutComponent,
     FeedComponent, LoginComponent, ResettingComponent,
-    RegistrationComponent, HomeComponent
+    RegistrationComponent, HomeComponent, HistoryComponent, BookmarksComponent, NavigationComponent
   ]
 })
 export class AccountModule { }

@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProfileComponent } from "./profile/profile.component";
 import { AccountComponent } from './account.component';
 import { LogoutComponent } from './logout/logout.component';
-import { FeedComponent } from './feed/feed.component';
+import { FeedComponent } from '../feed/feed.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AuthGuard } from '../../guard/auth.guard';
@@ -19,7 +19,6 @@ const routes: Routes = [
       { path: 'registration', component: RegistrationComponent },
       { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard]},
       { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
-      { path: 'feed', component: FeedComponent, canActivate: [AuthGuard] },
     ]
   }
 ];

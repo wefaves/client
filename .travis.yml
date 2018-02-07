@@ -6,7 +6,7 @@ branches:
   - master
   - develop
 before_script:
-- npm install -g --silent @angular/cli
+- npm install -g --silent @angular/cli@latest
 - npm install
 script:
 - if [ "$TRAVIS_BRANCH" == "master" ]; then ng build --env=prod --aot=true; fi

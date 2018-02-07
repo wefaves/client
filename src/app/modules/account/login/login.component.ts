@@ -9,6 +9,7 @@ import { TokenService } from '../../../services/tokenService';
 import { Token } from '../../../models/user/token';
 import { User } from 'app/models/user/user';
 import { ApiError } from '../../../models/error/apiError';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +33,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/feed']);
     }
     let initParams: InitParams = {
-      appId: '191354358053537',
+      appId: environment.facebook_app_id,
       xfbml: true,
       version: 'v2.9'
     };

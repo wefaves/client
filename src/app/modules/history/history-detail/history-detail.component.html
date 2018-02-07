@@ -33,7 +33,7 @@
   <div class="card__top">
     <div class="card__avatar">
       <span>
-        <strong>{{history.title}}</strong>
+        <h4>{{history.title}}</h4>
       </span>
     </div>
     <div class="card__meta">
@@ -41,10 +41,8 @@
     </div>
   </div>
   <div class="card__body">
-    <a href="#">
-      <h4>
-        {{history.url}}
-      </h4>
+    <a href="{{history.url}}">
+        {{ history.url |  slice:0:100 }}
     </a>
   </div>
   <div class="card__bottom">

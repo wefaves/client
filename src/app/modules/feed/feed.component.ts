@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { BookmarkService } from '../../../services/bookmark.service';
-import { Bookmark } from '../../../models/bookmark/bookmark';
-import { History } from '../../../models/history/history';
+import { BookmarkService } from '../../services/bookmark.service';
+import { Bookmark } from '../../models/bookmark/bookmark';
+import { History } from '../../models/history/history';
 import { ModalDismissReasons, NgbAccordionConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as FileSaver from 'file-saver';
+import { FacebookService, InitParams, UIParams, UIResponse } from 'ngx-facebook';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-feed',
@@ -11,24 +13,24 @@ import * as FileSaver from 'file-saver';
 })
 export class FeedComponent implements OnInit{
 
-  bookmarks: Bookmark[];
-  history: History[];
   closeResult: string;
 
   constructor(config: NgbAccordionConfig,
-              private bookmarkService: BookmarkService,
-              private modalService: NgbModal) {
+              private modalService: NgbModal,
+              private fb: FacebookService) {
     config.closeOthers = true;
     config.type = 'info';
+
+    let initParams: InitParams = {
+      appId: environment.facebook_app_id,
+      xfbml: true,
+      version: 'v2.9'
+    };
+
+    fb.init(initParams);
   }
 
   ngOnInit() {
-
-    this.bookmarkService.getUserBookmarks().then(
-      (bookmark) => {
-        this.bookmarks = bookmark;
-      }
-    ).catch();
   }
 
   open(content) {
@@ -52,13 +54,24 @@ export class FeedComponent implements OnInit{
   downloadFile() {
     const bookmarksModel =  new Array<any>();
 
-    for (const bookmark of this.bookmarks) {
-      bookmarksModel.push(Bookmark.GetModel(bookmark));
-    }
+    // for (const bookmark of this.bookmarks) {
+    //   bookmarksModel.push(Bookmark.GetModel(bookmark));
+    // }
 
     const json = JSON.stringify(bookmarksModel);
     const blob = new Blob([json], {type: "application/json"});
 
     FileSaver.saveAs(blob, 'feed.json');
+  }
+
+  shareOnFacebook() {
+    let params: UIParams = {
+      href: 'https://www.wefaves.com',
+      method: 'share'
+    };
+
+    this.fb.ui(params)
+      .then((res: UIResponse) => console.log(res))
+      .catch((e: any) => console.error(e));
   }
 }

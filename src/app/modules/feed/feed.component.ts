@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { BookmarkService } from '../../../services/bookmark.service';
-import { Bookmark } from '../../../models/bookmark/bookmark';
-import { History } from '../../../models/history/history';
+import { BookmarkService } from '../../services/bookmark.service';
+import { Bookmark } from '../../models/bookmark/bookmark';
+import { History } from '../../models/history/history';
 import { ModalDismissReasons, NgbAccordionConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as FileSaver from 'file-saver';
 import { FacebookService, InitParams, UIParams, UIResponse } from 'ngx-facebook';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-feed',
@@ -13,12 +13,9 @@ import { environment } from '../../../../environments/environment';
 })
 export class FeedComponent implements OnInit{
 
-  bookmarks: Bookmark[];
-  history: History[];
   closeResult: string;
 
   constructor(config: NgbAccordionConfig,
-              private bookmarkService: BookmarkService,
               private modalService: NgbModal,
               private fb: FacebookService) {
     config.closeOthers = true;
@@ -34,12 +31,6 @@ export class FeedComponent implements OnInit{
   }
 
   ngOnInit() {
-
-    this.bookmarkService.getUserBookmarks().then(
-      (bookmark) => {
-        this.bookmarks = bookmark;
-      }
-    ).catch();
   }
 
   open(content) {
@@ -63,9 +54,9 @@ export class FeedComponent implements OnInit{
   downloadFile() {
     const bookmarksModel =  new Array<any>();
 
-    for (const bookmark of this.bookmarks) {
-      bookmarksModel.push(Bookmark.GetModel(bookmark));
-    }
+    // for (const bookmark of this.bookmarks) {
+    //   bookmarksModel.push(Bookmark.GetModel(bookmark));
+    // }
 
     const json = JSON.stringify(bookmarksModel);
     const blob = new Blob([json], {type: "application/json"});

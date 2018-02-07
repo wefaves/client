@@ -3,6 +3,7 @@ import { HistoryService } from '../../../services/history.service';
 import { History } from '../../../models/history/history';
 import { AlertService } from '../../../services/alert.service';
 import { ApiError } from '../../../models/error/apiError';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-history-list',
@@ -15,7 +16,8 @@ export class HistoryListComponent implements OnInit {
   loading = true;
 
   constructor(private historyService: HistoryService,
-              private alertService: AlertService) { }
+              private alertService: AlertService,
+              private http: Http) { }
 
   ngOnInit() {
     this.getHistory();
@@ -24,6 +26,14 @@ export class HistoryListComponent implements OnInit {
   getHistory() {
     this.historyService.getUserHistory().then(
       (history) => {
+        for (let entry of history) {
+          // console.log(entry.url);
+          // this.http.get(entry.url).subscribe(
+          //   (result) => {
+          //     console.log(result);
+          //   }
+          // );
+        }
         this.history = history;
         this.loading = false;
       }
